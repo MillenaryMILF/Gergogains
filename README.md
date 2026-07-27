@@ -137,6 +137,60 @@ want the paths to behave exactly as they will on Pages.
 
 ---
 
+## Die Seite selbst bearbeiten (ohne Terminal)
+
+### Der Web-Editor
+Im Repo auf github.com die Taste **`.`** drücken → vollständiges VS Code im
+Browser, nichts zu installieren. Links Datei wählen, ändern, dann links im
+Quellcodeverwaltungs-Panel Commit-Nachricht eintippen und **Commit & Push**.
+Die Seite ist ~1 Minute später aktualisiert.
+
+Direktlink: https://github.dev/MillenaryMILF/Gergogains
+
+### Was wo geändert wird
+
+| Was du ändern willst | Datei |
+|---|---|
+| Preise, Zahlungslinks, Tracking-IDs, Domain | `assets/js/config.js` |
+| Überschriften, Fließtext, FAQ, Journal-Artikel | `index.html` |
+| Rechtstexte | `privacy.html`, `terms.html`, `refund.html` |
+
+### Ein Bild austauschen — kein Code nötig
+
+Die Dateinamen sind fix, das HTML verweist nur auf sie. Also:
+
+1. Neues Bild vorbereiten — **wichtig**: auf das richtige Seitenverhältnis
+   zuschneiden, sonst schneidet der Browser dir das Motiv ab:
+
+   | Datei | Seitenverhältnis | Zielgröße |
+   |---|---|---|
+   | `hero.jpg` | 3:4 hoch | 825×1100 |
+   | `editorial.jpg` | 3:4 hoch | 975×1300 |
+   | `gallery-fullbody.jpg` | 4:5 hoch | 800×1000 |
+   | `gallery-field.jpg` | 16:9 | 920×518 |
+   | `gallery-coach.jpg` | 1:1 | 300×300 |
+   | `community-band.jpg` | ~2.4:1 breit | 1240×517 |
+
+2. In `assets/img/` gehen → **Add file → Upload files** → Datei mit **exakt dem
+   gleichen Namen** hochladen → Commit.
+
+3. **Nicht vergessen:** zu jedem `.jpg` gehört ein `.webp` mit gleichem Namen.
+   Der Browser nimmt bevorzugt das WebP — tauschst du nur das JPG, siehst du
+   weiter das alte Bild. WebP erzeugen z. B. auf squoosh.app (kostenlos, läuft
+   im Browser, nichts wird hochgeladen).
+
+Fotos vom iPhone sind meist **HEIC** und müssen vorher zu JPG konvertiert
+werden — Browser zeigen HEIC nicht an. Vorsicht bei der Konvertierung: viele
+Tools ignorieren das EXIF-Rotationsflag, dann liegt das Bild auf der Seite quer.
+In der macOS-Vorschau: *Werkzeuge → Größe anpassen* und *Datei → Exportieren als
+JPEG* macht das korrekt.
+
+### Sicherheitsnetz
+Jede Änderung ist ein Commit. Wenn etwas kaputt geht, im Repo auf **Commits**
+gehen, den letzten guten auswählen und **Revert**. Nichts ist unwiederbringlich.
+
+---
+
 ## Things deliberately left undone
 
 - **`docs/analyze.js` is not wired up.** It calls Claude with an
