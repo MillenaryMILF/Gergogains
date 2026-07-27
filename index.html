@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gergö Gains — AI-coached training plans engineered to spec. $19 full plan, personal coaching from $99.">
+<!-- ==========================================================================
+     SEO / SOCIAL
+     The domain below is a PLACEHOLDER. When you connect your real domain,
+     replace every occurrence of YOUR-DOMAIN.example in this block (5 lines)
+     and in assets/js/config.js. Nothing else references the domain.
+     ========================================================================== -->
+<link rel="canonical" href="https://YOUR-DOMAIN.example/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="author" content="Gergö Gains">
+
+<!-- Open Graph (Facebook, Instagram, LinkedIn, WhatsApp link previews) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gergö Gains">
+<meta property="og:title" content="Gergö Gains — Physique Engineering">
+<meta property="og:description" content="AI-coached training plans engineered to spec. $19 full plan, personal coaching from $99.">
+<meta property="og:url" content="https://YOUR-DOMAIN.example/">
+<meta property="og:image" content="https://YOUR-DOMAIN.example/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gergö Gains — physique engineering">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter / X large-image card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gergö Gains — Physique Engineering">
+<meta name="twitter:description" content="AI-coached training plans engineered to spec. $19 full plan, personal coaching from $99.">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.example/assets/img/og-image.jpg">
+
+<!-- Icons -->
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<!-- GOOGLE SEARCH CONSOLE: paste your verification tag here when you verify.
+     <meta name="google-site-verification" content="PLACEHOLDER"> -->
+
+<title>GERGÖ GAINS — Physique Engineering</title>
+<link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  picture{display:contents;}
+  :root{--ink:#0b0b0b;--paper:#ffffff;--muted:#6e6e6e;--line:#0b0b0b;--grid:#e8e8e6;--panel:#f3f3f1;}
+  *{box-sizing:border-box;margin:0;padding:0;border-radius:0!important;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  img,video{max-width:100%;}
+  .mono{font-family:'Space Mono',monospace;}
+  .cond{font-family:'Oswald',sans-serif;text-transform:uppercase;}
+  a{color:inherit;text-decoration:none;} button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.5vw,40px);}
+  .klabel{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);padding:14px 24px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.08em;transition:.18s;}
+  .btn::before{content:"▸";font-size:11px;}
+  .btn:hover{background:var(--paper);color:var(--ink);}
+  .btn.inv{background:var(--paper);color:var(--ink);} .btn.inv:hover{background:var(--ink);color:var(--paper);}
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);}
+  .rv.vis{opacity:1;transform:none;}
+
+  nav{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:100;}
+  nav .inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-family:'Anton',sans-serif;font-size:clamp(17px,3.2vw,24px);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:9px;}
+  .logo .gg{background:var(--ink);color:var(--paper);padding:2px 7px;letter-spacing:.04em;}
+  .navlinks{display:flex;align-items:stretch;height:100%;}
+  .navlinks a{display:flex;align-items:center;padding:0 16px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:12.5px;letter-spacing:.08em;color:var(--ink);border-left:1px solid var(--grid);transition:.18s;white-space:nowrap;}
+  .navlinks a:hover{background:var(--ink);color:var(--paper);}
+  .navlinks .navcta{background:var(--ink);color:var(--paper);font-weight:600;}
+  .navlinks .navcta:hover{background:var(--paper);color:var(--ink);}
+  @media(max-width:920px){.navlinks a:not(.navcta){display:none;}.navlinks .navcta{padding:0 14px;font-size:11.5px;}}
+
+  .hero{border-bottom:2px solid var(--ink);}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);min-height:clamp(440px,72vw,640px);}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;}}
+  .hero-photo{position:relative;border-right:2px solid var(--ink);overflow:hidden;background:#111;min-height:300px;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:grayscale(100%) contrast(1.18) brightness(.96);animation:slowzoom 18s ease-in-out infinite alternate;}
+  @keyframes slowzoom{from{transform:scale(1);}to{transform:scale(1.08);}}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.35));}
+  .hero-photo .ph-tag{position:absolute;left:0;bottom:0;background:var(--ink);color:var(--paper);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;padding:8px 14px;text-transform:uppercase;}
+  @media(max-width:880px){.hero-photo{height:56vh;border-right:none;border-bottom:2px solid var(--ink);}}
+  .hero-right{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,52px);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:34px 34px;}
+  .hero-kick{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+  .hero h1{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(48px,11vw,128px);line-height:.86;}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .hero .sub{font-size:clamp(14px,1.6vw,17px);color:#222;max-width:44ch;margin:22px 0 26px;border-left:3px solid var(--ink);padding-left:16px;}
+  .hero .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  .hero .free-tag{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;}
+  .hero .free-tag b{background:var(--ink);color:var(--paper);padding:3px 8px;}
+  .hero .btn{position:relative;overflow:hidden;}
+  .hero .btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:shine 3.4s infinite;}
+  @keyframes shine{0%{left:-120%;}55%,100%{left:140%;}}
+
+  /* proof strip */
+  .proof{border-bottom:2px solid var(--ink);display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);color:var(--paper);}
+  @media(max-width:680px){.proof{grid-template-columns:1fr 1fr;}}
+  .proof .s{padding:18px clamp(14px,3vw,32px);border-left:1px solid #2a2a2a;}
+  .proof .s:first-child{border-left:none;}
+  @media(max-width:680px){.proof .s:nth-child(3){border-left:none;}.proof .s:nth-child(n+3){border-top:1px solid #2a2a2a;}}
+  .proof .s .n{font-family:'Anton',sans-serif;font-size:clamp(22px,3.5vw,32px);line-height:1;}
+  .proof .s .t{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;margin-top:5px;}
+
+  .manifesto{background:var(--ink);color:var(--paper);border-bottom:2px solid var(--ink);position:relative;overflow:hidden;}
+  .manifesto .wrap{padding:clamp(54px,8vw,100px) clamp(16px,3.5vw,40px);position:relative;}
+  .manifesto .klabel{color:#8a8a8a;}
+  .manifesto h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(28px,5.4vw,62px);line-height:.98;margin:20px 0 26px;max-width:20ch;}
+  .manifesto p{font-size:clamp(15px,1.8vw,19px);max-width:62ch;color:#dcdcdc;line-height:1.6;}
+  .manifesto .std{margin-top:24px;border:1.5px solid #2c2c2c;padding:16px 18px;font-family:'Space Mono',monospace;font-size:11.5px;color:#bdbdbd;line-height:1.7;max-width:72ch;}
+  .manifesto .std b{color:#fff;}
+  .manifesto .sign{margin-top:26px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a;border-top:1px solid #2c2c2c;padding-top:18px;display:inline-block;}
+  .manifesto .bignum{position:absolute;right:-3vw;top:-6vw;font-family:'Anton',sans-serif;font-size:38vw;color:#141414;line-height:1;pointer-events:none;z-index:0;}
+  .manifesto .wrap>*{position:relative;z-index:1;}
+
+  section.blk{border-bottom:2px solid var(--ink);}
+  section.blk .wrap{padding:clamp(50px,7vw,96px) clamp(16px,3.5vw,40px);}
+  .sec-head{display:flex;align-items:flex-end;gap:18px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:40px;flex-wrap:wrap;}
+  .sec-head .idx{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--muted);}
+  .sec-head h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(26px,5vw,56px);line-height:.92;}
+
+  .proc{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--ink);}
+  @media(max-width:820px){.proc{grid-template-columns:1fr 1fr;}}
+  @media(max-width:460px){.proc{grid-template-columns:1fr;}}
+  .proc .st{padding:28px 22px 34px;border-left:1px solid var(--ink);min-height:200px;display:flex;flex-direction:column;transition:background .2s;}
+  .proc .st:hover{background:#f7f7f5;}
+  .proc .st:first-child{border-left:none;}
+  @media(max-width:820px){.proc .st:nth-child(odd){border-left:none;}.proc .st:nth-child(n+3){border-top:1px solid var(--ink);}}
+  @media(max-width:460px){.proc .st{border-left:none;border-top:1px solid var(--ink);min-height:auto;}.proc .st:first-child{border-top:none;}}
+  .proc .st .num{font-family:'Anton',sans-serif;font-size:42px;line-height:1;}
+  .proc .st .mono{font-size:10px;letter-spacing:.16em;color:var(--muted);margin-top:4px;}
+  .proc .st h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:18px;letter-spacing:.03em;margin:auto 0 8px;padding-top:14px;}
+  .proc .st p{font-size:13px;color:#333;}
+
+  .editorial{position:relative;height:clamp(320px,52vw,520px);overflow:hidden;border-bottom:2px solid var(--ink);display:flex;align-items:flex-end;}
+  .editorial img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 32%;filter:grayscale(100%) contrast(1.2) brightness(.82);}
+  .editorial .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.15) 55%,rgba(0,0,0,.55));}
+  .editorial .ed{position:relative;width:100%;padding:0 0 clamp(28px,5vw,56px);}
+  .editorial .klabel{color:#bdbdbd;}
+  .editorial h2{font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--paper);font-size:clamp(38px,9vw,104px);line-height:.86;margin:10px 0 12px;}
+  .editorial h2 .stroke{color:transparent;-webkit-text-stroke:1.5px #fff;}
+  .editorial p{color:#e2e2e2;max-width:42ch;font-size:clamp(13px,1.5vw,16px);}
+
+  .gallery{display:flex;height:clamp(420px,58vw,580px);border:2px solid var(--ink);}
+  .g-left{width:50%;flex:0 0 50%;border-right:2px solid var(--ink);}
+  .g-right{flex:1;display:grid;grid-template-rows:1fr 1fr;}
+  .g-img{position:relative;overflow:hidden;}
+  .g-right .g-img + .g-img{border-top:1px solid var(--ink);}
+  .g-left .g-img{height:100%;}
+  .g-img img{width:100%;height:100%;object-fit:cover;object-position:center 16%;filter:grayscale(100%) contrast(1.15);transition:filter .5s,transform 4s;}
+  .g-img:hover img{filter:grayscale(40%) contrast(1.1);transform:scale(1.04);}
+  .g-img .gc{position:absolute;left:0;bottom:0;background:var(--ink);color:var(--paper);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;padding:5px 9px;text-transform:uppercase;}
+  @media(max-width:820px){.gallery{flex-direction:column;height:auto;}.g-left{width:100%;flex:auto;border-right:none;border-bottom:2px solid var(--ink);}.g-left .g-img{aspect-ratio:4/5;height:auto;}.g-right{grid-template-rows:none;}.g-right .g-img{aspect-ratio:16/9;}}
+
+  .app{background:var(--ink);color:var(--paper);border:2px solid var(--ink);padding:clamp(20px,3.5vw,44px);}
+  .app .klabel{color:#8a8a8a;}
+  .app h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(24px,4.2vw,44px);line-height:.95;margin:10px 0 6px;}
+  .app .intro{color:#c4c4c4;font-size:14px;max-width:56ch;}
+
+  .coach{display:flex;gap:16px;align-items:center;border:1.5px solid #2f2f2f;background:#131313;padding:16px 18px;margin:24px 0;}
+  .coach .av{position:relative;flex:0 0 auto;width:84px;height:84px;}
+  .coach .av .imgwrap{width:100%;height:100%;overflow:hidden;border:1.5px solid #fff;position:relative;z-index:2;background:#000;}
+  .coach .av video{width:100%;height:100%;object-fit:cover;display:block;}
+  .coach .av::before,.coach .av::after{content:"";position:absolute;inset:0;border:1.5px solid #fff;z-index:1;}
+  .coach.speaking .av::before{animation:ring 1.8s infinite;}
+  .coach.speaking .av::after{animation:ring 1.8s .9s infinite;}
+  @keyframes ring{0%{transform:scale(1);opacity:.6;}100%{transform:scale(1.4);opacity:0;}}
+  .coach .av .live{position:absolute;bottom:-2px;right:-2px;z-index:3;width:14px;height:14px;background:#fff;border:2px solid #131313;}
+  .coach .av .live::after{content:"";position:absolute;inset:2px;background:#131313;animation:blink 1.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+  .coach .body{flex:1;min-width:0;}
+  .coach .who{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;}
+  .coach .who b{color:#fff;}
+  .coach .says{font-size:14px;color:#ededed;line-height:1.5;margin-top:6px;min-height:42px;}
+  .coach .says .cursor{display:inline-block;width:8px;height:15px;background:#fff;margin-left:2px;vertical-align:-2px;animation:blink .9s infinite;}
+  .coach .wave{display:flex;gap:3px;align-items:flex-end;height:13px;margin-top:9px;opacity:.25;transition:opacity .2s;}
+  .coach.speaking .wave{opacity:1;}
+  .coach .wave i{width:3px;height:4px;background:#fff;}
+  .coach.speaking .wave i{animation:eq .8s infinite ease-in-out;}
+  .coach .wave i:nth-child(2){animation-delay:.1s;}.coach .wave i:nth-child(3){animation-delay:.25s;}
+  .coach .wave i:nth-child(4){animation-delay:.15s;}.coach .wave i:nth-child(5){animation-delay:.32s;}
+  .coach .wave i:nth-child(6){animation-delay:.05s;}.coach .wave i:nth-child(7){animation-delay:.22s;}
+  @keyframes eq{0%,100%{height:4px;}50%{height:13px;}}
+
+  .progress{display:flex;gap:6px;margin:0 0 24px;}
+  .progress .p{flex:1;height:3px;background:#2a2a2a;}
+  .progress .p.active,.progress .p.done{background:var(--paper);}
+  .pane{display:none;animation:fade .4s;} .pane.on{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .pane h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:21px;letter-spacing:.03em;margin-bottom:5px;}
+  .pane .hint{color:#8a8a8a;font-family:'Space Mono',monospace;font-size:12px;margin-bottom:22px;}
+  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  @media(max-width:680px){.goals{grid-template-columns:1fr;}}
+  .goal{border:1.5px solid #3a3a3a;padding:22px 20px;cursor:pointer;transition:.18s;background:transparent;color:inherit;text-align:left;}
+  .goal:hover{border-color:#fff;transform:translateY(-2px);}
+  .goal.sel{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+  .goal .ic{height:48px;margin-bottom:14px;display:flex;align-items:flex-end;} .goal .ic svg{height:100%;width:auto;}
+  .goal h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:5px;}
+  .goal p{font-size:12px;opacity:.7;line-height:1.45;}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;}
+  @media(max-width:680px){.fields{grid-template-columns:1fr;}}
+  .field{position:relative;}
+  .field label{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;margin-bottom:7px;}
+  .field input,.field select{width:100%;background:transparent;border:none;border-bottom:1.5px solid #3a3a3a;color:#fff;font-family:'Oswald',sans-serif;font-size:17px;padding:7px 0;outline:none;transition:.18s;text-transform:uppercase;}
+  .field input:focus,.field select:focus{border-color:#fff;}
+  .field select option{background:#111;}
+  .bf-trigger{margin-top:8px;background:none;border:none;padding:0;font-family:'Space Mono',monospace;font-size:10.5px;color:#cfcfcf;text-transform:none;border-bottom:1px dashed #6a6a6a;}
+  .bf-trigger:hover{color:#fff;border-color:#fff;}
+  .bf-pop{position:absolute;top:calc(100% + 10px);left:0;z-index:60;width:min(400px,86vw);background:#161616;border:1.5px solid #fff;padding:18px 18px 16px;display:none;box-shadow:0 20px 50px rgba(0,0,0,.5);}
+  .bf-pop.on{display:block;animation:fade .25s;}
+  .bf-pop .bh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .bf-pop .bh .t{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:14px;letter-spacing:.04em;}
+  .bf-pop .bx{background:none;border:none;color:#9a9a9a;font-size:18px;line-height:1;}
+  .bf-row{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-top:1px solid #2a2a2a;}
+  .bf-row:first-of-type{border-top:none;}
+  .bf-row .p{font-family:'Anton',sans-serif;font-size:19px;flex:0 0 64px;}
+  .bf-row .d{font-size:11.5px;color:#bdbdbd;line-height:1.4;}
+  .bf-foot{font-family:'Space Mono',monospace;font-size:9.5px;color:#7a7a7a;margin-top:12px;line-height:1.5;}
+  .seg{display:flex;gap:6px;flex-wrap:wrap;}
+  .seg button{flex:1;min-width:54px;border:1.5px solid #3a3a3a;background:transparent;color:#c4c4c4;padding:9px 4px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:12.5px;letter-spacing:.05em;transition:.18s;}
+  .seg button.sel{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+  .uploads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .upl{border:1.5px dashed #4a4a4a;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.18s;overflow:hidden;position:relative;color:#8a8a8a;text-align:center;padding:8px;}
+  .upl:hover{border-color:#888;background:#161616;}
+  .upl .pls{font-family:'Anton',sans-serif;font-size:26px;line-height:1;}
+  .upl .t{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;margin-top:5px;}
+  .upl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .upl input{display:none;}
+  .privacy{font-family:'Space Mono',monospace;font-size:11px;color:#7a7a7a;margin-top:14px;line-height:1.5;}
+  .nav-btns{display:flex;justify-content:space-between;align-items:center;margin-top:30px;gap:12px;}
+  .btn-w{background:var(--paper);color:var(--ink);border:1.5px solid var(--paper);padding:13px 26px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.08em;transition:.18s;}
+  .btn-w:hover{background:transparent;color:var(--paper);} .btn-w:disabled{opacity:.3;cursor:not-allowed;}
+  .btn-l{background:transparent;border:none;color:#8a8a8a;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .btn-l:hover{color:#fff;}
+  #result{display:none;}
+  .res-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;border-bottom:1.5px solid #2c2c2c;padding-bottom:18px;margin-bottom:20px;}
+  .res-top .rt-meta{display:flex;gap:22px;flex-wrap:wrap;}
+  .res-top .rt-meta .m .n{font-family:'Anton',sans-serif;font-size:24px;line-height:1;}
+  .res-top .rt-meta .m .t{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8a8a8a;margin-top:4px;}
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid #2c2c2c;margin-bottom:20px;}
+  @media(max-width:560px){.metrics{grid-template-columns:1fr 1fr;}}
+  .metrics .mc{padding:18px;border-left:1px solid #2c2c2c;}
+  .metrics .mc:first-child{border-left:none;}
+  @media(max-width:560px){.metrics .mc:nth-child(3){border-left:none;}.metrics .mc:nth-child(n+3){border-top:1px solid #2c2c2c;}}
+  .metrics .mc .k{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:#8a8a8a;text-transform:uppercase;}
+  .metrics .mc .val{font-family:'Anton',sans-serif;font-size:28px;line-height:1;margin-top:8px;}
+  .metrics .mc .nt{font-family:'Space Mono',monospace;font-size:10px;color:#9a9a9a;margin-top:6px;line-height:1.4;}
+  .metrics .mc.hl{background:var(--paper);color:var(--ink);}
+  .metrics .mc.hl .k{color:#555;} .metrics .mc.hl .nt{color:#444;}
+  .analysis{background:#161616;border:1.5px solid #2c2c2c;padding:22px;margin-bottom:20px;font-size:13.5px;color:#c8c8c8;line-height:1.6;}
+  .analysis b{color:#fff;}
+  .sched{display:grid;gap:10px;}
+  .scard{border:1.5px solid #2c2c2c;padding:16px 18px;}
+  .scard .sh{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;border-bottom:1px solid #232323;padding-bottom:8px;}
+  .scard .sh .dy{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a8a8a;}
+  .scard .sh .nm{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:17px;letter-spacing:.03em;}
+  .scard ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 22px;}
+  @media(max-width:600px){.scard ul{grid-template-columns:1fr;}}
+  .scard li{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;gap:14px;border-bottom:1px solid #1c1c1c;}
+  .scard li span{font-family:'Space Mono',monospace;color:#8a8a8a;font-size:12px;flex:0 0 auto;}
+  .res-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;align-items:center;}
+
+  /* FUEL / nutrition */
+  .fuel-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border:2px solid var(--ink);}
+  @media(max-width:880px){.fuel-grid{grid-template-columns:1fr;}}
+  .fuel-info{padding:clamp(24px,3.5vw,40px);border-right:2px solid var(--ink);}
+  @media(max-width:880px){.fuel-info{border-right:none;border-bottom:2px solid var(--ink);}}
+  .fuel-info h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;font-size:21px;letter-spacing:.03em;margin-bottom:16px;}
+  .frow{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--grid);}
+  .frow:first-of-type{border-top:none;}
+  .frow .fk{font-family:'Anton',sans-serif;font-size:21px;flex:0 0 110px;line-height:1.15;}
+  .frow .fd{font-size:13px;color:#333;line-height:1.5;}
+  .frow .fd b{font-weight:600;}
+  .fuel-note{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--muted);margin-top:16px;line-height:1.6;}
+  .partners{padding:clamp(24px,3.5vw,40px);background:var(--panel);display:flex;flex-direction:column;}
+  .partners h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;font-size:21px;letter-spacing:.03em;margin-bottom:6px;}
+  .partners .psub{font-size:12.5px;color:var(--muted);margin-bottom:18px;}
+  .pslot{border:1.5px solid var(--ink);background:var(--paper);padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:.18s;}
+  .pslot:hover{background:var(--ink);color:var(--paper);}
+  .pslot .pl .pt{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:15px;letter-spacing:.04em;}
+  .pslot .pl .pd{font-size:11.5px;color:var(--muted);margin-top:3px;}
+  .pslot:hover .pl .pd{color:#bdbdbd;}
+  .pslot .go{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;white-space:nowrap;border-bottom:1.5px solid currentColor;}
+  .aff-disc{font-family:'Space Mono',monospace;font-size:9.5px;color:var(--muted);margin-top:auto;padding-top:12px;line-height:1.6;}
+
+  /* FAQ */
+  .faq details{border:1.5px solid var(--ink);border-top:none;}
+  .faq details:first-of-type{border-top:1.5px solid var(--ink);}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 20px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:15px;letter-spacing:.04em;transition:.15s;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";font-family:'Anton',sans-serif;font-size:20px;}
+  .faq details[open] summary{background:var(--ink);color:var(--paper);}
+  .faq details[open] summary::after{content:"–";}
+  .faq .fa{padding:16px 20px 20px;font-size:13.5px;color:#333;line-height:1.6;border-top:1.5px solid var(--ink);}
+
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);}
+  @media(max-width:880px){.pricing{grid-template-columns:1fr;}}
+  .pcard{padding:30px 26px 32px;border-left:1.5px solid var(--ink);display:flex;flex-direction:column;}
+  .pcard:first-child{border-left:none;}
+  @media(max-width:880px){.pcard{border-left:none;border-top:1.5px solid var(--ink);}.pcard:first-child{border-top:none;}}
+  .pcard.dark{background:var(--ink);color:var(--paper);}
+  .pcard .spectag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--muted);}
+  .pcard.dark .spectag{color:#8a8a8a;}
+  .pcard h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;font-size:24px;letter-spacing:.03em;margin:8px 0 2px;}
+  .pcard .amt{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,64px);line-height:1;margin:10px 0 2px;}
+  .pcard .term{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px;}
+  .pcard.dark .term{color:#8a8a8a;}
+  .pcard ul{list-style:none;flex:1;}
+  .pcard li{display:flex;gap:11px;padding:9px 0;border-top:1px solid var(--grid);font-size:13px;line-height:1.4;}
+  .pcard li:first-child{border-top:none;}
+  .pcard.dark li{border-color:#272727;}
+  .pcard li::before{content:"—";color:var(--muted);flex:0 0 auto;}
+  .pcard.dark li::before{color:#777;}
+  .pcard li b{font-weight:600;}
+  .pcard .act{margin-top:24px;}
+  .pcard .flag{display:inline-block;background:var(--paper);color:var(--ink);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;padding:4px 9px;text-transform:uppercase;margin-bottom:14px;}
+  .reassure{font-family:'Space Mono',monospace;text-align:center;font-size:11px;color:var(--muted);margin-top:20px;text-transform:uppercase;letter-spacing:.08em;}
+
+  .journal{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);}
+  @media(max-width:820px){.journal{grid-template-columns:1fr;}}
+  .post{border-left:1.5px solid var(--ink);cursor:pointer;transition:.18s;}
+  .post:first-child{border-left:none;}
+  @media(max-width:820px){.post{border-left:none;border-top:1.5px solid var(--ink);}.post:first-child{border-top:none;}}
+  .post:hover{background:var(--ink);color:var(--paper);}
+  .post .pbody{padding:26px 24px 30px;}
+  .post .cat{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .post:hover .cat{color:#9a9a9a;}
+  .post h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:19px;letter-spacing:.02em;margin:12px 0 10px;line-height:1.1;}
+  .post p{font-size:13px;color:#444;}
+  .post:hover p{color:#cdcdcd;}
+  .post .read{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:16px;display:inline-block;border-bottom:1.5px solid currentColor;}
+
+  .band{position:relative;overflow:hidden;border:2px solid var(--ink);text-align:center;padding:clamp(50px,8vw,100px) clamp(20px,5vw,60px);}
+  .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:grayscale(100%) contrast(1.2) brightness(.6);}
+  .band .ov{position:absolute;inset:0;background:rgba(8,8,8,.62);}
+  .band .b-inner{position:relative;}
+  .band .klabel{color:#9a9a9a;margin-bottom:18px;}
+  .band h2{font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--paper);font-size:clamp(30px,6vw,68px);line-height:.92;max-width:16ch;margin:0 auto 18px;}
+  .band p{color:#dadada;max-width:46ch;margin:0 auto 28px;font-size:14.5px;}
+
+  .modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;}
+  .modal.on{display:flex;}
+  .modal .back{position:absolute;inset:0;background:rgba(8,8,8,.6);}
+  .modal .box{position:relative;background:var(--paper);border:2px solid var(--ink);max-width:440px;width:100%;padding:34px 30px;}
+  .modal .x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;line-height:1;color:var(--ink);}
+  .modal .spectag{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;}
+  .modal h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;font-size:23px;margin:6px 0 2px;}
+  .modal .mprice{font-family:'Anton',sans-serif;font-size:48px;line-height:1;margin:8px 0 2px;}
+  .modal .mdesc{font-size:13px;color:#444;margin:10px 0 20px;line-height:1.5;}
+  .modal .field{margin-bottom:18px;}
+  .modal .field label{color:var(--muted);}
+  .modal .field input{border-bottom:1.5px solid var(--ink);color:var(--ink);font-family:'Oswald',sans-serif;text-transform:none;}
+  .modal .pay{width:100%;justify-content:center;}
+  .modal .methods{display:flex;gap:6px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+  .modal .methods span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--grid);padding:5px 10px;}
+  .modal .secure{font-family:'Space Mono',monospace;text-align:center;font-size:11px;color:var(--muted);margin-top:14px;}
+
+  .reader{position:fixed;inset:0;z-index:1100;display:none;}
+  .reader.on{display:block;}
+  .reader .rback{position:absolute;inset:0;background:rgba(8,8,8,.7);}
+  .reader .rbox{position:absolute;top:0;right:0;height:100%;width:min(680px,100%);background:var(--paper);border-left:2px solid var(--ink);overflow-y:auto;padding:clamp(26px,5vw,56px);animation:slidein .35s ease;}
+  @keyframes slidein{from{transform:translateX(40px);opacity:.4;}to{transform:none;opacity:1;}}
+  .reader .rx{position:sticky;top:0;float:right;background:var(--ink);color:var(--paper);border:none;width:38px;height:38px;font-size:20px;line-height:1;}
+  .reader .rcat{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+  .reader h1{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(28px,5vw,46px);line-height:.95;margin:14px 0 8px;}
+  .reader .rmeta{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:24px;}
+  .reader .rbody{font-size:15px;line-height:1.72;color:#1c1c1c;}
+  .reader .rbody p{margin-bottom:16px;}
+  .reader .rbody h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:15px;letter-spacing:.04em;margin:24px 0 10px;}
+  .reader .rbody ol,.reader .rbody ul{margin:0 0 16px 20px;}
+  .reader .rbody li{margin-bottom:8px;}
+  .reader .rcta{margin-top:30px;border-top:2px solid var(--ink);padding-top:22px;}
+
+  footer.foot{background:var(--ink);color:var(--paper);}
+  footer.foot .wrap{padding:50px clamp(16px,3.5vw,40px) 36px;}
+  .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  .foot-grid .col h5{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a;margin-bottom:14px;}
+  .foot-grid .col a{display:block;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.04em;color:#d4d4d4;padding:4px 0;}
+  .foot-grid .col a:hover{color:#fff;}
+  .foot-logo{font-family:'Anton',sans-serif;font-size:30px;letter-spacing:.1em;text-transform:uppercase;}
+  .foot-bottom{margin-top:38px;padding-top:18px;border-top:1px solid #262626;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .foot-bottom p{font-family:'Space Mono',monospace;font-size:10.5px;color:#7a7a7a;line-height:1.7;}
+  .disclaimer{font-family:'Space Mono',monospace;font-size:10px;color:#6a6a6a;line-height:1.7;margin-top:12px;max-width:84ch;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap inner">
+    <div class="logo"><span class="gg">GG</span> GERGÖ GAINS</div>
+    <div class="navlinks">
+      <a href="#system">About</a>
+      <a href="#build">AI Coach</a>
+      <a href="#fuel">Fuel</a>
+      <a href="#pricing">Plans</a>
+      <a href="#journal">Journal</a>
+      <a href="#build" class="navcta">Get my plan — $19</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="hero-photo">
+      <picture><source srcset="assets/img/hero.webp" type="image/webp"><img src="assets/img/hero.jpg" alt="Gergö"></picture>
+      <span class="ph-tag">Gergö · −8 kg / 8 weeks · verified</span>
+    </div>
+    <div class="hero-right">
+      <div class="hero-kick">// Coached by an AI version of me</div>
+      <h1>Shape<br>your<br><span class="stroke">Form.</span></h1>
+      <p class="sub">I'm Gergö. Set your goal, talk to my AI coach, and walk out with a training plan engineered exactly the way I'd program it for you — built for your first session or your tenth year.</p>
+      <div class="cta-row">
+        <a href="#build" class="btn">Meet your AI coach</a>
+        <span class="free-tag">Full plan <b>$19</b> · coaching from $99</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="proof">
+  <div class="s"><div class="n">−8 KG</div><div class="t">in 8 weeks — my own cut</div></div>
+  <div class="s"><div class="n">+STRENGTH</div><div class="t">lifts went up while cutting</div></div>
+  <div class="s"><div class="n">60 DAYS</div><div class="t">tracked. measured. no guessing</div></div>
+  <div class="s"><div class="n">EVIDENCE</div><div class="t">published training science only</div></div>
+</div>
+
+<section class="manifesto" id="system">
+  <div class="bignum">G</div>
+  <div class="wrap">
+    <div class="klabel rv">// Who's coaching you</div>
+    <h2 class="rv">I'm Gergö. Lifter. Industrial engineer. I build physiques like processes.</h2>
+    <p class="rv">I dropped 8 kilos in 8 weeks and got stronger doing it — not by guessing, but by measuring. That's the whole philosophy: measured inputs, controlled process, specified output. My AI coach is trained on how I actually program and how I actually talk, so you get my method on demand for $19 — and me directly when you want to go further.</p>
+    <div class="std rv"><b>// The standard:</b> every program follows established, published training principles — progressive overload, 2×+ weekly frequency per muscle, evidence-based protein targets (1.6–2.2 g/kg). No bro-science, no fad protocols, no shortcuts sold as systems.</div>
+    <span class="sign rv">Designed according to the principles of the industry — Gergö</span>
+  </div>
+</section>
+
+<section class="blk" id="method">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">01 / 05</span><h2>The Process</h2></div>
+    <div class="proc rv">
+      <div class="st"><div class="num">01</div><div class="mono">INPUT</div><h3>Set parameters</h3><p>Age, mass, height, body-fat, experience, frequency — home, gym or both.</p></div>
+      <div class="st"><div class="num">02</div><div class="mono">COACH</div><h3>Talk to AI Gergö</h3><p>My avatar — built from my real footage — walks you through it and explains every call.</p></div>
+      <div class="st"><div class="num">03</div><div class="mono">SPECIFY</div><h3>Choose a goal</h3><p>Aesthetics, strength or calisthenics. The whole plan re-weights to it.</p></div>
+      <div class="st"><div class="num">04</div><div class="mono">DEPLOY</div><h3>Sync &amp; train</h3><p>A balanced, progressive schedule — exported to your calendar in one tap.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="editorial">
+  <picture><source srcset="assets/img/editorial.webp" type="image/webp"><img src="assets/img/editorial.jpg" loading="lazy" decoding="async" alt=""></picture>
+  <div class="ov"></div>
+  <div class="wrap"><div class="ed">
+    <div class="klabel">// The standard</div>
+    <h2>Train to <span class="stroke">spec.</span></h2>
+    <p>Not just heavier numbers — proportion, symmetry and a physique built on purpose. Every session points at the output you specified.</p>
+  </div></div>
+</section>
+
+<section class="blk">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">02 / 05</span><h2>The physique, unfiltered</h2></div>
+    <div class="gallery rv">
+      <div class="g-left"><div class="g-img"><picture><source srcset="assets/img/gallery-fullbody.webp" type="image/webp"><img src="assets/img/gallery-fullbody.jpg" loading="lazy" decoding="async" alt="Full body — locker"></picture><span class="gc">REF / Full body</span></div></div>
+      <div class="g-right">
+        <div class="g-img"><picture><source srcset="assets/img/gallery-field.webp" type="image/webp"><img src="assets/img/gallery-field.jpg" loading="lazy" decoding="async" alt="Field — natural light" style="object-position:center 24%;"></picture><span class="gc">REF / Field</span></div>
+        <div class="g-img"><picture><source srcset="assets/img/gallery-coach.webp" type="image/webp"><img src="assets/img/gallery-coach.jpg" loading="lazy" decoding="async" alt="The coach — from my footage" style="object-position:center 30%;filter:grayscale(100%) contrast(1.18);"></picture><span class="gc">REF / The coach — my real footage</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="build">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">03 / 05</span><h2>Your AI coach</h2></div>
+    <div class="app rv">
+      <div class="klabel">// AI Gergö</div>
+      <h2>Build your plan</h2>
+      <p class="intro">My AI coach — built from my own footage — walks you through it, asking the right questions and explaining every decision the way I would in person.</p>
+
+      <div class="coach" id="coach">
+        <div class="av">
+          <div class="imgwrap">
+            <video id="coachVid" muted loop playsinline preload="auto" poster="assets/img/coach-poster.jpg">
+              <source src="assets/video/coach.mp4" type="video/mp4">
+            </video>
+          </div>
+          <span class="live"></span>
+        </div>
+        <div class="body">
+          <div class="who"><b>AI GERGÖ</b> · your coach · built from real footage</div>
+          <div class="says" id="coachSays"></div>
+          <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <div class="progress" id="progress"><div class="p active"></div><div class="p"></div><div class="p"></div><div class="p"></div></div>
+      <div id="builder">
+        <div class="pane on" data-pane="0">
+          <h3>What are you training for?</h3>
+          <p class="hint">// sets volume, rep range and selection</p>
+          <div class="goals" id="goals">
+            <button class="goal" data-goal="aesthetics">
+              <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="8" r="4"/><path d="M11 17 C16 14 32 14 37 17"/><path d="M11 17 C13 23 14 26 15 30 L33 30 C34 26 35 23 37 17"/><path d="M11 17 L7 28"/><path d="M37 17 L41 28"/><path d="M17 30 L14 44"/><path d="M31 30 L34 44"/><path d="M24 18 L24 30" opacity=".5"/></svg></div>
+              <h4>Aesthetics</h4><p>Symmetry, proportion, the V-taper. Sculpting bias.</p>
+            </button>
+            <button class="goal" data-goal="strength">
+              <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="11" r="3.4"/><path d="M30 14 C27 18 24 21 20 25"/><path d="M20 25 L19 36"/><path d="M20 25 L26 33"/><path d="M28 16 L19 33"/><line x1="6" y1="36" x2="42" y2="36"/><rect x="8" y="31" width="4" height="10"/><rect x="36" y="31" width="4" height="10"/></svg></div>
+              <h4>Strength</h4><p>Maximal force. The deadlift, the big compounds.</p>
+            </button>
+            <button class="goal" data-goal="calisthenics">
+              <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="10" x2="42" y2="10"/><path d="M24 10 L26 19"/><path d="M28 10 L29 19"/><circle cx="11" cy="22" r="3.4"/><line x1="14" y1="22" x2="38" y2="20"/><path d="M26 19 L27 21"/></svg></div>
+              <h4>Calisthenics</h4><p>The front lever, planche, handstands. Bodyweight base.</p>
+            </button>
+          </div>
+          <div class="nav-btns"><span></span><button class="btn-w" id="to1" disabled>Continue ▸</button></div>
+        </div>
+        <div class="pane" data-pane="1">
+          <h3>Current stage</h3>
+          <p class="hint">// sets loads, volume, progression rate &amp; your FFMI</p>
+          <div class="fields">
+            <div class="field"><label>Age</label><input type="number" id="age" placeholder="24"></div>
+            <div class="field"><label>Bodyweight / kg</label><input type="number" id="weight" placeholder="78"></div>
+            <div class="field"><label>Height / cm</label><input type="number" id="height" placeholder="182"></div>
+            <div class="field">
+              <label>Body-fat / %</label>
+              <input type="number" id="bf" placeholder="12">
+              <button type="button" class="bf-trigger" id="bfTrigger">Not sure? Open body-fat guide ↗</button>
+              <div class="bf-pop" id="bfPop">
+                <div class="bh"><span class="t">Body-fat guide</span><button class="bx" id="bfClose">×</button></div>
+                <div class="bf-row"><span class="p">6–9%</span><span class="d">Striated &amp; vascular, deep ab separation. Stage-lean.</span></div>
+                <div class="bf-row"><span class="p">10–12%</span><span class="d">Abs clearly visible, some vascularity. Photo-ready.</span></div>
+                <div class="bf-row"><span class="p">13–15%</span><span class="d">Top abs visible, flat waist. Fit &amp; sustainable.</span></div>
+                <div class="bf-row"><span class="p">16–19%</span><span class="d">Solid but soft. Abs hidden, slight waist softness.</span></div>
+                <div class="bf-row"><span class="p">20–25%</span><span class="d">No visible definition, rounder midsection.</span></div>
+                <div class="bf-foot">// male reference. Match yourself in a mirror, enter the midpoint. Women carry ~8–10% more for the same look. Visual estimate, not clinical.</div>
+              </div>
+            </div>
+            <div class="field" style="grid-column:1/-1;"><label>Experience</label><div class="seg" id="exp"><button data-v="Beginner">Beginner</button><button data-v="Intermediate">Intermediate</button><button data-v="Advanced">Advanced</button></div></div>
+            <div class="field"><label>Days / week</label><div class="seg" id="days"><button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button><button data-v="6">6</button></div></div>
+            <div class="field"><label>Environment</label><div class="seg" id="env"><button data-v="Gym">Gym</button><button data-v="Home">Home</button><button data-v="Both">Both</button></div></div>
+          </div>
+          <div class="nav-btns"><button class="btn-l" data-back="0">◂ Back</button><button class="btn-w" id="to2">Continue ▸</button></div>
+        </div>
+        <div class="pane" data-pane="2">
+          <h3>Reference photos</h3>
+          <p class="hint">// optional in demo — used for the visual analysis</p>
+          <div class="uploads">
+            <label class="upl"><span class="pls">+</span><span class="t">Front</span><input type="file" accept="image/*" data-slot="front"></label>
+            <label class="upl"><span class="pls">+</span><span class="t">Back</span><input type="file" accept="image/*" data-slot="back"></label>
+            <label class="upl"><span class="pls">+</span><span class="t">Side</span><input type="file" accept="image/*" data-slot="side"></label>
+          </div>
+          <p class="privacy">// photos stay in your browser for this demo and are never uploaded</p>
+          <div class="nav-btns"><button class="btn-l" data-back="1">◂ Back</button><button class="btn-w" id="to3">Continue ▸</button></div>
+        </div>
+        <div class="pane" data-pane="3">
+          <h3>Deploy</h3>
+          <p class="hint">// calendar export settings</p>
+          <div class="fields" style="grid-template-columns:1fr 1fr;">
+            <div class="field"><label>Start time</label><input type="time" id="starttime" value="18:00"></div>
+            <div class="field"><label>Block length</label><select id="dur"><option value="60">60 min</option><option value="75">75 min</option><option value="90" selected>90 min</option><option value="120">120 min</option></select></div>
+          </div>
+          <div class="nav-btns"><button class="btn-l" data-back="2">◂ Back</button><button class="btn-w" id="generate">Generate plan ▸</button></div>
+        </div>
+        <div id="result">
+          <div class="res-top"><div><div class="klabel" style="margin-bottom:6px;">// Output</div><h3 id="planTitle" class="cond" style="font-size:26px;font-weight:700;">—</h3></div><div class="rt-meta" id="planMeta"></div></div>
+          <div class="metrics" id="metrics"></div>
+          <div class="analysis" id="analysis"></div>
+          <div class="sched" id="sched"></div>
+          <div class="res-actions">
+            <button class="btn-w" data-buy="plan">Get my full plan + PDF — $19 ▸</button>
+            <button class="btn-l" id="ics">↓ Preview calendar (.ics)</button>
+            <a href="#pricing" class="btn-l" style="border-bottom:1.5px solid #8a8a8a;">Want me on it? → Coaching</a>
+            <button class="btn-l" id="restart">↺ Restart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUEL -->
+<section class="blk" id="fuel">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">04 / 05</span><h2>Fuel the build</h2></div>
+    <div class="fuel-grid rv">
+      <div class="fuel-info">
+        <h3>The numbers that matter</h3>
+        <div class="frow"><span class="fk">1.6–2.2 g/kg</span><span class="fd"><b>Protein, daily.</b> The established evidence-based range for muscle growth. At 80 kg that's 130–175 g — most lifters undershoot it for years. I did: 150 g when I needed 250 at 97 kg. Fixing that gap changed everything.</span></div>
+        <div class="frow"><span class="fk">−300–500</span><span class="fd"><b>Calorie deficit for a cut.</b> Enough to lose fat steadily without eating into strength. Bigger deficits cost muscle. My 8-week cut ran here — strength went up.</span></div>
+        <div class="frow"><span class="fk">+200–300</span><span class="fd"><b>Surplus for a lean bulk.</b> Muscle is built slowly; anything beyond a small surplus is mostly fat.</span></div>
+        <div class="frow"><span class="fk">3–5 g</span><span class="fd"><b>Creatine monohydrate, daily.</b> The most-studied supplement in sports science. Safe, cheap, works.</span></div>
+        <div class="frow"><span class="fk">Track 60</span><span class="fd"><b>Track everything for 60 days.</b> Not forever — long enough to calibrate your eye. After that you can estimate accurately for life.</span></div>
+        <p class="fuel-note">// general guidance from published sports-nutrition consensus, not individual dietary advice. Your $19 plan calculates your personal protein &amp; calorie targets from your inputs.</p>
+      </div>
+      <div class="partners">
+        <h3>What I actually use</h3>
+        <p class="psub">Hitting 2 g/kg from food alone is hard. These are the two categories worth supplementing — partner links below.</p>
+        <a class="pslot" href="https://REPLACE-WITH-YOUR-AFFILIATE-LINK/protein" target="_blank" rel="noopener sponsored">
+          <span class="pl"><span class="pt">Whey Protein</span><span class="pd">30 g per scoop — the easiest 60 g of your daily target</span></span>
+          <span class="go">Shop →</span>
+        </a>
+        <a class="pslot" href="https://REPLACE-WITH-YOUR-AFFILIATE-LINK/creatine" target="_blank" rel="noopener sponsored">
+          <span class="pl"><span class="pt">Creatine Monohydrate</span><span class="pd">3–5 g daily — the most evidence-backed supplement there is</span></span>
+          <span class="go">Shop →</span>
+        </a>
+        <a class="pslot" href="https://REPLACE-WITH-YOUR-AFFILIATE-LINK/vitamins" target="_blank" rel="noopener sponsored">
+          <span class="pl"><span class="pt">Daily Vitamins / D3</span><span class="pd">Cover the basics — especially D3 through winter</span></span>
+          <span class="go">Shop →</span>
+        </a>
+        <p class="aff-disc">// Affiliate disclosure: these are partner links — if you buy through them I may earn a commission at no extra cost to you. I only list categories I use myself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="pricing">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">05 / 05</span><h2>Plans &amp; coaching</h2></div>
+    <div class="pricing rv">
+      <div class="pcard">
+        <div class="spectag">SPEC 00 — AI PLAN</div>
+        <h3>The Plan</h3>
+        <div class="amt">$19</div>
+        <div class="term">One-time · instant delivery</div>
+        <ul>
+          <li>AI coach builds your full plan &amp; FFMI from your stats &amp; photos</li>
+          <li>Balanced 8-week schedule for your goal, days &amp; setting</li>
+          <li>Personal protein &amp; calorie targets</li>
+          <li>One-tap calendar export + downloadable PDF</li>
+          <li>Strengths, weak points &amp; prioritised fixes</li>
+          <li>Re-run any time · Journal &amp; community access</li>
+        </ul>
+        <div class="act"><button class="btn" data-buy="plan">Get The Plan — $19 ▸</button></div>
+      </div>
+      <div class="pcard dark">
+        <div class="flag">Most popular</div>
+        <div class="spectag">SPEC 01 — GUIDED</div>
+        <h3>The Blueprint</h3>
+        <div class="amt">$99</div>
+        <div class="term">One-time · ~8-week cycle</div>
+        <ul>
+          <li><b>Everything in The Plan</b></li>
+          <li>I personally review your analysis &amp; plan</li>
+          <li><b>1× 45-min video call</b> with me — setup, form, questions</li>
+          <li>A hand-tuned program matched to your kit &amp; schedule</li>
+          <li><b>1 form-check review</b> — send lifts, get corrections</li>
+          <li><b>1 progress review at week 4</b> with a plan revision</li>
+          <li>Direct support through the cycle</li>
+        </ul>
+        <div class="act"><button class="btn-w" data-buy="blueprint">Get The Blueprint — $99 ▸</button></div>
+      </div>
+      <div class="pcard">
+        <div class="spectag">SPEC 02 — BESPOKE</div>
+        <h3>The Commission</h3>
+        <div class="amt">$249</div>
+        <div class="term">One-time · ~16-week build</div>
+        <ul>
+          <li><b>Everything in The Blueprint</b></li>
+          <li>Fully bespoke program I engineer from the ground up</li>
+          <li><b>3× video calls</b> — kickoff, mid-cycle recalibration, final</li>
+          <li><b>Progress reviews every 2 weeks</b> with revisions</li>
+          <li>Unlimited form-check video reviews</li>
+          <li>Nutrition structuring for your cut / lean-bulk</li>
+          <li>Priority direct messaging &amp; final re-assessment</li>
+        </ul>
+        <div class="act"><button class="btn" data-buy="commission">Commission a build — $249 ▸</button></div>
+      </div>
+    </div>
+    <p class="reassure">Secure checkout · Apple Pay · Google Pay · Card · 14-day guarantee</p>
+  </div>
+</section>
+
+<section class="blk" id="faqsec">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">+ / FAQ</span><h2>Questions, answered</h2></div>
+    <div class="faq rv">
+      <details><summary>Is the AI coach really based on you?</summary><div class="fa">Yes — the avatar uses my real footage, and the coaching logic is built on how I actually program: the same splits, frequencies and standards I train with myself. It's an AI tool reflecting my method, not a licensed professional, and for anything medical you should see a doctor.</div></details>
+      <details><summary>I'm a complete beginner. Is this for me?</summary><div class="fa">Especially for you. Every plan scales: beginners get simpler movement selections, conservative loading and clear "2 reps in reserve" instructions. The structure stays identical as you advance — only the numbers grow. You won't outgrow it; you re-run it.</div></details>
+      <details><summary>What exactly do I get for $19?</summary><div class="fa">A complete 8-week program built for your goal, schedule and equipment (home, gym or both), your FFMI baseline, personal protein and calorie targets, a weak-point priority list, calendar export and a PDF. One-time payment, re-run whenever your body changes.</div></details>
+      <details><summary>Where does the training advice come from?</summary><div class="fa">Published, established sports-science principles only: progressive overload, training each muscle 2×+ per week, evidence-based protein ranges (1.6–2.2 g/kg) and graded skill progressions. No fad protocols, no bro-science.</div></details>
+      <details><summary>What's the difference between $99 and $249 coaching?</summary><div class="fa">The Blueprint ($99) is one guided 8-week cycle: a call with me, a hand-tuned program, one form check and a week-4 review. The Commission ($249) is a 16-week bespoke build with three calls, reviews every two weeks, unlimited form checks and nutrition structuring. Both start with the same AI analysis.</div></details>
+      <details><summary>Refunds?</summary><div class="fa">14-day money-back guarantee on every tier, no questions asked. If the plan isn't for you, you get your money back.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="journal">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="idx">+ / JOURNAL</span><h2>The Journal</h2></div>
+    <div class="journal rv">
+      <article class="post" data-article="chest"><div class="pbody"><div class="cat">[ AESTHETICS ]</div><h3>The upper-chest gap nobody trains for</h3><p>Why a developed chest still reads flat — and the two angles that build the clavicular shelf.</p><span class="read">Read →</span></div></article>
+      <article class="post" data-article="freq"><div class="pbody"><div class="cat">[ METHOD ]</div><h3>Frequency beats volume once you're lean</h3><p>The case for training weak points every two days instead of burying them in sets.</p><span class="read">Read →</span></div></article>
+      <article class="post" data-article="lever"><div class="pbody"><div class="cat">[ CALISTHENICS ]</div><h3>From tuck to full front lever</h3><p>A realistic progression timeline, and why one leg always comes before two.</p><span class="read">Read →</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="blk" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="band rv">
+      <picture><source srcset="assets/img/community-band.webp" type="image/webp"><img src="assets/img/community-band.jpg" loading="lazy" decoding="async" alt=""></picture>
+      <div class="ov"></div>
+      <div class="b-inner">
+        <div class="klabel">// The community</div>
+        <h2>Build to the same standard.</h2>
+        <p>Share progress, compare specs, and get accountability from people who treat training as a process, not a mood.</p>
+        <a href="#build" class="btn inv">Build my plan — $19</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="col" style="max-width:280px;">
+        <div class="foot-logo">GERGÖ GAINS</div>
+        <p style="font-family:'Space Mono',monospace;font-size:11px;color:#9a9a9a;margin-top:12px;line-height:1.6;">A personal physique engineering system. Coached by an AI version of me — built on the principles of the industry.</p>
+      </div>
+      <div class="col"><h5>System</h5><a href="#build">AI coach</a><a href="#method">The process</a><a href="#fuel">Fuel</a><a href="#pricing">Plans</a></div>
+      <div class="col"><h5>Community</h5><a href="#journal">Journal</a><a href="#faqsec">FAQ</a><a href="#">Builds</a></div>
+      <div class="col"><h5>Gergö</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Contact</a></div>
+      <div class="col"><h5>Legal</h5><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a></div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 GERGÖ GAINS — ALL RIGHTS RESERVED</p>
+      <p class="disclaimer">Gergö Gains provides general fitness and nutrition guidance and is not a substitute for professional medical, dietary or coaching advice. The "AI coach" is an AI tool reflecting Gergö's training style, not a licensed professional. FFMI and body-fat figures are estimates, not clinical measurements. Some links are affiliate links. Consult a physician before beginning any programme. Results vary. Stop any movement that causes pain.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="checkout">
+  <div class="back" data-close></div>
+  <div class="box">
+    <button class="x" data-close>×</button>
+    <div class="spectag" id="ckSpec">SPEC 00</div>
+    <h3 id="ckTier">The Plan</h3>
+    <div class="mprice" id="ckPrice">$19</div>
+    <div class="mdesc" id="ckDesc"></div>
+    <div class="field"><label>Email for delivery</label><input type="email" id="ckEmail" placeholder="you@email.com"></div>
+    <button class="btn pay" id="ckPay">Pay &amp; continue</button>
+    <div class="methods"><span>Apple Pay</span><span>Google Pay</span><span>Visa</span><span>Mastercard</span></div>
+    <div class="secure">🔒 Secure checkout · merchant-of-record handles tax</div>
+  </div>
+</div>
+
+<div class="reader" id="reader">
+  <div class="rback" data-rclose></div>
+  <div class="rbox">
+    <button class="rx" data-rclose>×</button>
+    <div class="rcat" id="rcat"></div>
+    <h1 id="rtitle"></h1>
+    <div class="rmeta" id="rmeta"></div>
+    <div class="rbody" id="rbody"></div>
+    <div class="rcta"><a href="#build" class="btn" data-rclose>Build my plan — $19 ▸</a></div>
+  </div>
+</div>
+
+<!-- CONFIG: all placeholders (payment links, prices, tracking IDs) live here -->
+<script src="assets/js/config.js"></script>
+<!-- CONSENT + TRACKING: gtag loads only after the visitor accepts -->
+<script src="assets/js/consent.js" defer></script>
+
+<script>
+(function(){
+  "use strict";
+  /* ===== PAYMENT — paste your live Lemon Squeezy buy links here ===== */
+  /* Payment links, prices and tracking IDs all live in assets/js/config.js
+     — that is the ONLY file you edit to go live. */
+  if(!window.GG_CONFIG){
+    console.error("GG: assets/js/config.js failed to load — checkout links and prices unavailable.");
+    return;
+  }
+  const CHECKOUT = window.GG_CONFIG.CHECKOUT;
+  const TIERS    = window.GG_CONFIG.TIERS;
+
+  const ARTICLES={
+    chest:{cat:"[ AESTHETICS ]",title:"The upper-chest gap nobody trains for",meta:"Gergö Gains Journal · 4 min read",body:`<p>Most lifters with a "flat" chest don't have a small chest — they have an underdeveloped clavicular head: the upper fibres of the pec that run down from the collarbone. It's the section that creates the full, shelf-like look from the front.</p><p>The reason it lags is mechanical. The flat bench — the lift most people anchor their chest training to — loads the sternal fibres far more than the clavicular head. You can bench for years and barely touch the top of the chest.</p><h4>Two fixes do most of the work</h4><ol><li><b>Incline pressing at a genuinely steep angle.</b> Most "incline" benches drift to 30°, still largely mid-chest. Set it to ~45–60° and the load shifts up. Make it your primary press.</li><li><b>A low-to-high cable fly.</b> Cables set low, hands driven up and inward toward eye level — the line of resistance finally matches the fibre direction of the upper pec.</li></ol><p>Run them fresh, two to three times a week, 8–12 reps on the press and 12–15 on the fly, chasing a deep stretch. Within a couple of months the upper shelf fills in.</p><p>Same principle as everything I do: a muscle grows where the load actually lands. Point the load at the gap.</p>`},
+    freq:{cat:"[ METHOD ]",title:"Frequency beats volume once you're lean",meta:"Gergö Gains Journal · 4 min read",body:`<p>There's a point where adding more sets stops working. You're at 20 hard sets a week, lean enough to see everything, and the needle won't move. The instinct is more volume. Usually the answer is the opposite: spread what you have across more days.</p><p>Muscle protein synthesis — the building signal — spikes after a session and settles back within roughly 36–48 hours. Train a muscle once a week and it sits flat five of seven days. Train it twice or three times and you re-trigger the signal before it decays — more building time on the <b>same weekly volume</b>.</p><h4>In practice</h4><p>Hit your weak point every two to three days instead of one brutal session. Ten sets of side delts on Monday leaves them fried and idle until next Monday. The same ten split across three days keeps quality high and signals growth three times instead of once.</p><p>That's exactly why my aesthetic split biases frequency toward lagging groups and keeps the strong ones at maintenance. Same work, sequenced like a process.</p><p>The catch: frequency only pays once technique and recovery are solid. Beginners grow on anything — keep it simple early, pull this lever when progress stalls.</p>`},
+    lever:{cat:"[ CALISTHENICS ]",title:"From tuck to full front lever",meta:"Gergö Gains Journal · 5 min read",body:`<p>The front lever looks like raw strength, and it is — but most people stall because they skip the leverage progressions that build it safely.</p><p>It's a straight-body hold under a bar, parallel to the ground, driven by the lats and the entire anterior core as one rigid plank. Difficulty scales with how far your mass sits from the shoulders, so you shorten the lever and lengthen it gradually:</p><ol><li><b>Tuck</b> — knees to chest. Clean 10–15s holds first.</li><li><b>Advanced tuck</b> — hips open to ~90°, back flat. The step everyone rushes.</li><li><b>One-leg</b> — extend a single leg, alternate. Big jump; live here a while.</li><li><b>Straddle, then full</b> — close the legs last.</li></ol><h4>Two cues fix most form</h4><p>Depress the shoulders — pull them down away from your ears; it's a lat action. And brace glutes and abs so the body stays one line. A sagging hip is a core failure, not a back failure.</p><p>One leg before two isn't a shortcut — it's load added in increments your tendons can adapt to. Like adding 2.5 kg to a bar. Engineered, not forced.</p>`}
+  };
+
+  /* ---- AI COACH: typed dialogue + real talking-video loop ---- */
+  const coachEl=document.getElementById('coach');
+  const saysEl=document.getElementById('coachSays');
+  const vid=document.getElementById('coachVid');
+  let typeTimer=null;
+  function coachSay(text){
+    clearTimeout(typeTimer);
+    coachEl.classList.add('speaking');
+    if(vid){vid.currentTime=0;const p=vid.play();if(p&&p.catch)p.catch(()=>{});}
+    saysEl.textContent='';
+    let i=0;
+    (function step(){
+      if(i<=text.length){
+        saysEl.innerHTML=text.slice(0,i)+'<span class="cursor"></span>';
+        i++; typeTimer=setTimeout(step, 18);
+      } else {
+        saysEl.textContent=text;
+        coachEl.classList.remove('speaking');
+        if(vid)vid.pause();
+      }
+    })();
+  }
+  const LINES={
+    0:"Alright — let's build this properly. First call: what are we actually training for? Pick your target and I'll shape everything around it.",
+    1:"Now the numbers. Give me the real ones — bodyweight, height, body fat. I can't engineer a plan around a guess.",
+    2:"Got photos? Front, back, side. This is where I see the actual weak points instead of assuming them.",
+    3:"Almost done. When do you train and for how long? I'll drop the whole 8 weeks straight into your calendar.",
+    result:"Done. This is exactly how I'd program you right now — run it hard. Want me personally on it? Coaching's right below."
+  };
+
+  const state={goal:null,age:null,weight:null,height:null,bf:null,exp:null,days:null,env:null,photos:{},start:"18:00",dur:90};
+  const panes=[...document.querySelectorAll('.pane')];
+  const dots=[...document.querySelectorAll('#progress .p')];
+  function show(i){panes.forEach(p=>p.classList.toggle('on',+p.dataset.pane===i));dots.forEach((d,k)=>{d.classList.toggle('active',k===i);d.classList.toggle('done',k<i);});document.getElementById('result').style.display='none';if(LINES[i])coachSay(LINES[i]);document.querySelector('.app').scrollIntoView({behavior:'smooth',block:'start'});}
+  document.querySelectorAll('#goals .goal').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('#goals .goal').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');state.goal=b.dataset.goal;document.getElementById('to1').disabled=false;
+    const r={aesthetics:"Aesthetics — proportion and the V-taper. Good. I'll bias frequency to your weak points.",strength:"Strength — the deadlift and the big compounds. We build the engine. Let's go.",calisthenics:"Calisthenics — levers and planche on a bodyweight base. Skill first, always."};
+    coachSay(r[state.goal]);
+  }));
+  document.getElementById('to1').onclick=()=>show(1);
+  function seg(id,key){document.querySelectorAll('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');state[key]=b.dataset.v;}));}
+  seg('exp','exp');seg('days','days');seg('env','env');
+  ['age','weight','height','bf'].forEach(id=>document.getElementById(id).addEventListener('input',e=>state[id]=e.target.value));
+  document.getElementById('to2').onclick=()=>{if(!state.days){state.days="4";document.querySelector('#days [data-v="4"]').classList.add('sel');}if(!state.exp){state.exp="Intermediate";document.querySelector('#exp [data-v="Intermediate"]').classList.add('sel');}if(!state.env){state.env="Gym";document.querySelector('#env [data-v="Gym"]').classList.add('sel');}show(2);};
+  document.getElementById('to3').onclick=()=>show(3);
+  document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>show(+b.dataset.back));
+  document.querySelectorAll('.upl input').forEach(inp=>inp.addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{const lbl=inp.closest('.upl');let img=lbl.querySelector('img');if(!img){img=document.createElement('img');lbl.appendChild(img);}img.src=ev.target.result;state.photos[inp.dataset.slot]=true;};r.readAsDataURL(f);}));
+
+  const bfPop=document.getElementById('bfPop');
+  document.getElementById('bfTrigger').onclick=(e)=>{e.stopPropagation();bfPop.classList.toggle('on');};
+  document.getElementById('bfClose').onclick=()=>bfPop.classList.remove('on');
+  document.addEventListener('click',(e)=>{if(bfPop.classList.contains('on') && !bfPop.contains(e.target) && e.target.id!=='bfTrigger')bfPop.classList.remove('on');});
+
+  const HOME={"Back Squat":"Goblet Squat","Front Squat":"Goblet Squat","Leg Press":"Walking Lunge","Romanian Deadlift":"DB Romanian Deadlift","Deadlift":"DB Romanian Deadlift","RDL":"DB Romanian Deadlift","Leg Curl":"Nordic Curl","Lying Leg Curl":"Nordic Curl","Standing Calf":"Single-Leg Calf Raise","Seated Calf":"Single-Leg Calf Raise","Cable Lateral Raise":"DB Lateral Raise","Lateral Raise":"DB Lateral Raise","Lat Pulldown":"Band Pulldown","Chest-Supported Row":"DB Row","Barbell Row":"DB Row","Single-Arm Row":"Single-Arm DB Row","Reverse Pec-Deck":"Bent Rear Delt Fly","Rear Delt Cable":"Bent Rear Delt Fly","Low-to-High Fly":"Banded Low-to-High Fly","Cable Fly":"DB Fly","Rope Pushdown":"Band Pushdown","Overhead Cable Extension":"DB Overhead Extension","Overhead Tricep Ext":"DB Overhead Extension","Triceps":"DB Overhead Extension","60° Incline Press":"Incline DB Press","Incline Bench":"Incline DB Press","Bench Press":"DB Floor Press","Flat DB Press":"DB Floor Press","Weighted Dip":"Bench Dip","EZ-Bar Curl":"DB Curl","Barbell Curl":"DB Curl","Overhead Press":"Standing DB Press","Seated DB Press":"Standing DB Press","Face Pull":"Band Face Pull"};
+  function swap(n){return (state.env==="Home"&&HOME[n])?HOME[n]:n;}
+
+  const T={
+    aesthetics:{title:"Aesthetic Specialization",
+      3:[{nm:"Push — Chest & Delts",ex:[["60° Incline Press","4×6–8"],["Overhead Press","3×8"],["Cable Lateral Raise","4×15–20"],["Low-to-High Fly","3×12"],["Overhead Tricep Ext","3×12"],["Rope Pushdown","3×12"]]},{nm:"Pull — Back & Arms",ex:[["Weighted Pull-up","4×5"],["Chest-Supported Row","4×8–10"],["Reverse Pec-Deck","4×15"],["Incline DB Curl","4×10"],["Hammer Curl","3×12"],["Face Pull","3×15"]]},{nm:"Legs — Full",ex:[["Back Squat","4×6–8"],["Romanian Deadlift","4×8–10"],["Leg Curl","4×10–12"],["Leg Press","3×12"],["Standing Calf","4×15"],["Seated Calf","3×20"]]}],
+      4:[{nm:"Delts · U.Chest · Arms",ex:[["60° Incline Press","4×6–8"],["Overhead Press","4×6–8"],["Cable Lateral Raise","4×15–20"],["Low-to-High Fly","3×12"],["EZ-Bar Curl","4×8–10"],["Overhead Tricep Ext","3×12"]]},{nm:"Legs — Full",ex:[["Back Squat","4×6–8"],["Romanian Deadlift","4×8–10"],["Leg Press","3×12"],["Leg Curl","4×10–12"],["Standing Calf","4×15"],["Seated Calf","3×20"]]},{nm:"Back + Priority",ex:[["Weighted Pull-up","4×4–6"],["Chest-Supported Row","4×8–10"],["Low-to-High Fly","3×12"],["Reverse Pec-Deck","4×15"],["Cable Lateral Raise","3×15"],["Incline DB Curl","3×10"]]},{nm:"Shoulders & Arms",ex:[["Seated DB Press","4×8"],["Cable Lateral Raise","4×15–20"],["Lateral Raise","2×20"],["Barbell Curl","4×8"],["Hammer Curl","3×12"],["Rope Pushdown","3×15"]]}],
+      5:[{nm:"Chest & Delts",ex:[["60° Incline Press","4×6–8"],["Flat DB Press","3×8–10"],["Cable Lateral Raise","4×15–20"],["Low-to-High Fly","3×12"],["Overhead Tricep Ext","3×12"]]},{nm:"Back",ex:[["Weighted Pull-up","4×5"],["Chest-Supported Row","4×8–10"],["Lat Pulldown","3×10–12"],["Reverse Pec-Deck","4×15"],["Face Pull","3×15"]]},{nm:"Legs — Full",ex:[["Back Squat","4×6–8"],["Romanian Deadlift","4×8–10"],["Leg Press","3×12"],["Leg Curl","4×10–12"],["Standing Calf","4×15"]]},{nm:"Shoulders & Arms",ex:[["Overhead Press","4×6–8"],["Cable Lateral Raise","4×18"],["EZ-Bar Curl","4×8–10"],["Hammer Curl","3×12"],["Rope Pushdown","3×15"]]},{nm:"Weak-Point Pump",ex:[["Low-to-High Fly","4×15"],["Incline DB Curl","4×12"],["Lateral Raise","3×20"],["Cable Fly","3×15"],["Rear Delt Cable","3×20"]]}],
+      6:[{nm:"Push A",ex:[["60° Incline Press","4×6–8"],["Cable Lateral Raise","4×18"],["Low-to-High Fly","3×12"],["Overhead Tricep Ext","3×12"]]},{nm:"Pull A",ex:[["Weighted Pull-up","4×5"],["Chest-Supported Row","4×8"],["Reverse Pec-Deck","4×15"],["Incline DB Curl","4×10"]]},{nm:"Legs A",ex:[["Back Squat","4×6–8"],["Romanian Deadlift","4×8"],["Leg Curl","4×12"],["Standing Calf","4×15"]]},{nm:"Push B",ex:[["Overhead Press","4×6–8"],["Flat DB Press","3×10"],["Cable Lateral Raise","4×18"],["Rope Pushdown","3×15"]]},{nm:"Pull B",ex:[["Pull-up (volume)","4×max"],["Single-Arm Row","3×10"],["Cable Lateral Raise","3×15"],["EZ-Bar Curl","4×8"]]},{nm:"Legs B",ex:[["Romanian Deadlift","4×8"],["Leg Press","4×12"],["Leg Curl","4×12"],["Seated Calf","4×20"]]}]},
+    strength:{title:"Strength Foundation",
+      3:[{nm:"Squat Focus",ex:[["Back Squat","5×5"],["Romanian Deadlift","3×6"],["Leg Press","3×8"],["Weighted Plank","3×45s"]]},{nm:"Bench Focus",ex:[["Bench Press","5×5"],["Overhead Press","3×6"],["Weighted Dip","3×6"],["Barbell Row","3×6"]]},{nm:"Deadlift Focus",ex:[["Deadlift","5×3"],["Front Squat","3×5"],["Weighted Pull-up","4×5"],["Barbell Curl","3×8"]]}],
+      4:[{nm:"Upper — Heavy",ex:[["Bench Press","5×5"],["Weighted Pull-up","5×5"],["Overhead Press","3×6"],["Barbell Row","3×6"]]},{nm:"Lower — Heavy",ex:[["Back Squat","5×5"],["Deadlift","3×3"],["Leg Press","3×8"],["Standing Calf","3×12"]]},{nm:"Upper — Volume",ex:[["Incline Bench","4×6"],["Chest-Supported Row","4×8"],["Seated DB Press","3×8"],["Barbell Curl","3×8"]]},{nm:"Lower — Volume",ex:[["Front Squat","4×6"],["Romanian Deadlift","4×8"],["Leg Curl","3×10"],["Seated Calf","3×15"]]}],
+      5:[{nm:"Squat",ex:[["Back Squat","5×5"],["Leg Press","3×8"],["Leg Curl","3×10"],["Standing Calf","3×12"]]},{nm:"Bench",ex:[["Bench Press","5×5"],["Weighted Dip","3×6"],["Triceps","3×10"],["Lateral Raise","3×15"]]},{nm:"Deadlift",ex:[["Deadlift","5×3"],["Barbell Row","4×6"],["Weighted Pull-up","4×6"],["Barbell Curl","3×8"]]},{nm:"Press",ex:[["Overhead Press","5×5"],["Incline Bench","3×8"],["Lateral Raise","3×15"],["Triceps","3×10"]]},{nm:"Accessory",ex:[["Front Squat","4×6"],["RDL","4×8"],["Chest-Supported Row","4×10"],["Barbell Curl","3×12"]]}]},
+    calisthenics:{title:"Calisthenics Mastery",
+      3:[{nm:"Push — Skill",ex:[["Planche Lean","5×20s"],["Pseudo-Planche Push-up","4×6"],["Wall HSPU","4×5"],["Weighted Dip","4×8"],["Pike Push-up","3×10"]]},{nm:"Pull — Skill",ex:[["Front Lever (tuck)","5×15s"],["Weighted Pull-up","4×5"],["Australian Row","4×10"],["Tuck Raise","3×6"],["Hammer Curl","3×12"]]},{nm:"Legs & Core",ex:[["Pistol Squat","4×6"],["Nordic Curl","3×6"],["Dragon Flag","4×8"],["Hanging Leg Raise","4×12"],["Calf Raise","4×20"]]}],
+      4:[{nm:"Push — Skill",ex:[["Planche Lean","5×20s"],["Pseudo-Planche Push-up","4×6"],["Wall HSPU","4×5"],["Weighted Dip","4×8"]]},{nm:"Pull — Skill",ex:[["Front Lever (tuck)","5×15s"],["Weighted Pull-up","4×5"],["Australian Row","4×10"],["Tuck Raise","3×6"]]},{nm:"Legs & Core",ex:[["Pistol Squat","4×6"],["Nordic Curl","3×6"],["Dragon Flag","4×8"],["Hanging Leg Raise","4×12"]]},{nm:"Skills & Volume",ex:[["Handstand Practice","8×30s"],["Muscle-up Progression","5×3"],["Dip","4×12"],["Pull-up","4×max"]]}],
+      5:[{nm:"Push Strength",ex:[["Pseudo-Planche Push-up","5×6"],["Wall HSPU","5×5"],["Weighted Dip","4×8"],["Pike Push-up","3×10"]]},{nm:"Pull Strength",ex:[["Front Lever (tuck)","5×15s"],["Weighted Pull-up","5×5"],["Australian Row","4×10"],["Hammer Curl","3×12"]]},{nm:"Legs",ex:[["Pistol Squat","4×6"],["Nordic Curl","4×6"],["Jump Squat","3×10"],["Calf Raise","4×20"]]},{nm:"Skill Day",ex:[["Handstand Balance","8×30s"],["Planche Lean","5×20s"],["Lever Holds","5×15s"],["Muscle-up","5×3"]]},{nm:"Core & Conditioning",ex:[["Dragon Flag","5×8"],["Hanging Leg Raise","4×12"],["L-Sit","5×20s"],["Hollow Hold","4×40s"]]}]}
+  };
+  function getPlan(){const g=T[state.goal];let d=parseInt(state.days||"4",10);const keys=Object.keys(g).filter(k=>!isNaN(+k)).map(Number).sort((a,b)=>a-b);if(!g[d])d=keys.reduce((p,c)=>Math.abs(c-d)<Math.abs(p-d)?c:p,keys[0]);return{title:g.title,days:g[d],used:d};}
+  function ffmiDesc(n){if(n<18)return"Building base";if(n<20)return"Average";if(n<21.5)return"Fit / athletic";if(n<23)return"Very muscular";if(n<24.5)return"Advanced — near natural ceiling";return"Elite / exceptional";}
+  function computeFFMI(){const w=parseFloat(state.weight),hcm=parseFloat(state.height),bf=parseFloat(state.bf);if(!w||!hcm||!bf)return null;const hm=hcm/100;const ffm=w*(1-bf/100);const ffmi=ffm/(hm*hm);const norm=ffmi+6.1*(1.8-hm);return{norm:norm,ffm:ffm,bf:bf};}
+  function proteinTarget(){const w=parseFloat(state.weight);if(!w)return null;return{lo:Math.round(w*1.6),hi:Math.round(w*2.2)};}
+  function metricsHTML(){const m=computeFFMI();const p=proteinTarget();const goalShort={aesthetics:"Aesthetics",strength:"Strength",calisthenics:"Calisth."}[state.goal];
+    const ff = m?`<div class="mc hl"><div class="k">FFMI (normalised)</div><div class="val">${m.norm.toFixed(1)}</div><div class="nt">${ffmiDesc(m.norm)}</div></div>`:`<div class="mc hl"><div class="k">FFMI (normalised)</div><div class="val">—</div><div class="nt">add weight, height &amp; body-fat</div></div>`;
+    const lean = m?`<div class="mc"><div class="k">Fat-free mass</div><div class="val">${m.ffm.toFixed(1)}</div><div class="nt">kg of lean mass</div></div>`:`<div class="mc"><div class="k">Fat-free mass</div><div class="val">—</div><div class="nt">kg of lean mass</div></div>`;
+    const prot = p?`<div class="mc"><div class="k">Protein / day</div><div class="val">${p.lo}–${p.hi}g</div><div class="nt">1.6–2.2 g/kg target</div></div>`:`<div class="mc"><div class="k">Protein / day</div><div class="val">—</div><div class="nt">add bodyweight</div></div>`;
+    return ff+lean+prot+`<div class="mc"><div class="k">Spec</div><div class="val" style="font-size:20px;">${goalShort}</div><div class="nt">${state.env||'Gym'} · ${state.days||4}×/wk</div></div>`;}
+  function analysisText(){const bits=[];const exp=state.exp||"Intermediate";bits.push(`<b>Spec:</b> ${state.goal[0].toUpperCase()+state.goal.slice(1)} · ${state.days||4} sessions/wk · ${exp.toLowerCase()} · ${(state.env||'Gym').toLowerCase()}.`);
+    const m=computeFFMI();if(m){bits.push(`<b>FFMI ${m.norm.toFixed(1)} — ${ffmiDesc(m.norm)}.</b> FFMI indexes lean mass to height, tracking real muscle independent of body fat. ~19 average, ~22 athletic, ~25 near the natural ceiling. Your baseline — watch it climb.`);}
+    const p=proteinTarget();if(p){bits.push(`<b>Fuel:</b> ${p.lo}–${p.hi} g protein daily (1.6–2.2 g/kg, the published evidence-based range). On a cut hold a 300–500 kcal deficit; lean-bulking, +200–300. Creatine 3–5 g/day is the only other supplement worth defaulting to.`);}
+    const note={aesthetics:"Frequency biased toward lagging groups, compounds kept for the base — the fastest route to a balanced, proportional output.",strength:"Built around the main lifts with submaximal volume to drive them up while managing fatigue.",calisthenics:"Skill work front-loaded onto fresh days, with strength &amp; core supporting the progressions."}[state.goal];bits.push(`<b>Logic:</b> ${note} Every prescription here follows published training science — progressive overload, ≥2× weekly frequency per muscle, graded progressions. No bro-science.`);
+    if(exp==="Beginner")bits.push(`<b>Beginner note:</b> master the movement before the load — keep 2 reps in reserve, add weight only when every rep is clean. The structure stays identical as you advance; only the numbers grow.`);
+    if(state.env==="Home")bits.push(`<b>Home build:</b> machine/barbell lifts swapped for dumbbell, band &amp; bodyweight equivalents — same stimulus, no gym.`);
+    if(state.env==="Both")bits.push(`<b>Both:</b> full gym selection by default, with home-friendly swaps for days you can't get in.`);
+    bits.push(`<b>Photos:</b> ${Object.keys(state.photos).length?('received — drive the visual symmetry &amp; weak-point analysis.'):('none — add front, back, side for the full visual analysis.')}`);
+    return bits.join("<br><br>");}
+  function render(){const plan=getPlan();document.getElementById('planTitle').textContent=plan.title;document.getElementById('planMeta').innerHTML=`<div class="m"><div class="n">${plan.used}</div><div class="t">Days/wk</div></div><div class="m"><div class="n">${state.env||'Gym'}</div><div class="t">Env</div></div><div class="m"><div class="n">${state.exp||'Int.'}</div><div class="t">Level</div></div><div class="m"><div class="n">8</div><div class="t">Weeks</div></div>`;
+    document.getElementById('metrics').innerHTML=metricsHTML();document.getElementById('analysis').innerHTML=analysisText();const wrap=document.getElementById('sched');wrap.innerHTML='';plan.days.forEach((d,i)=>{const li=d.ex.map(e=>`<li>${swap(e[0])}<span>${e[1]}</span></li>`).join('');wrap.insertAdjacentHTML('beforeend',`<div class="scard"><div class="sh"><span class="dy">SESSION ${i+1}</span><span class="nm">${d.nm}</span></div><ul>${li}</ul></div>`);});panes.forEach(p=>p.classList.remove('on'));dots.forEach(d=>d.classList.add('done'));document.getElementById('result').style.display='block';coachSay(LINES.result);document.querySelector('.app').scrollIntoView({behavior:'smooth',block:'start'});}
+  document.getElementById('generate').onclick=()=>{state.start=document.getElementById('starttime').value||"18:00";state.dur=parseInt(document.getElementById('dur').value,10);render();};
+  document.getElementById('restart').onclick=()=>show(0);
+
+  const WD={3:[1,3,5],4:[1,2,4,5],5:[1,2,3,5,6],6:[1,2,3,4,5,6]};
+  function pad(n){return String(n).padStart(2,'0');}
+  function fmt(dt){return dt.getFullYear()+pad(dt.getMonth()+1)+pad(dt.getDate())+'T'+pad(dt.getHours())+pad(dt.getMinutes())+'00';}
+  function nextWeekday(t){const d=new Date();const c=d.getDay();let diff=(t-c+7)%7;const o=new Date(d);o.setDate(d.getDate()+diff);o.setHours(0,0,0,0);return o;}
+  function esc(s){return s.replace(/([,;\\])/g,'\\$1').replace(/\n/g,'\\n');}
+  document.getElementById('ics').onclick=()=>{const plan=getPlan();const days=WD[plan.used]||WD[4];const[hh,mm]=state.start.split(':').map(Number);let ics="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//GERGOGAINS//Plan//EN\r\nCALSCALE:GREGORIAN\r\n";plan.days.forEach((d,i)=>{const wd=days[i%days.length];const start=nextWeekday(wd);start.setHours(hh,mm,0,0);const end=new Date(start.getTime()+state.dur*60000);const desc=esc(d.ex.map(e=>`• ${swap(e[0])} — ${e[1]}`).join('\n'));ics+="BEGIN:VEVENT\r\nUID:gg-"+i+"-"+Date.now()+"@gergogains.com\r\nDTSTAMP:"+fmt(new Date())+"\r\nDTSTART:"+fmt(start)+"\r\nDTEND:"+fmt(end)+"\r\nRRULE:FREQ=WEEKLY;COUNT=8\r\nSUMMARY:"+esc('Gergö · '+d.nm)+"\r\nDESCRIPTION:"+desc+"\r\nEND:VEVENT\r\n";});ics+="END:VCALENDAR";const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='gergo-gains-plan.ics';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);};
+
+  const modal=document.getElementById('checkout');let active="plan";
+  function openCk(t){active=t;const i=TIERS[t];document.getElementById('ckSpec').textContent=i.spec;document.getElementById('ckTier').textContent=i.tier;document.getElementById('ckPrice').textContent=i.price;document.getElementById('ckDesc').textContent=i.desc;document.getElementById('ckPay').innerHTML=i.pay;modal.classList.add('on');}
+  document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',()=>openCk(b.dataset.buy)));
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>modal.classList.remove('on')));
+  document.getElementById('ckPay').onclick=()=>{const email=document.getElementById('ckEmail').value.trim();let url=CHECKOUT[active];if(email)url+=(url.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);window.location.href=url;};
+
+  const reader=document.getElementById('reader');
+  document.querySelectorAll('.post').forEach(p=>p.addEventListener('click',()=>{const a=ARTICLES[p.dataset.article];if(!a)return;document.getElementById('rcat').textContent=a.cat;document.getElementById('rtitle').textContent=a.title;document.getElementById('rmeta').textContent=a.meta;document.getElementById('rbody').innerHTML=a.body;reader.classList.add('on');document.body.style.overflow='hidden';}));
+  function closeReader(){reader.classList.remove('on');document.body.style.overflow='';}
+  document.querySelectorAll('[data-rclose]').forEach(b=>b.addEventListener('click',closeReader));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('on');closeReader();bfPop.classList.remove('on');}});
+
+  const io=new IntersectionObserver((entries)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('vis');io.unobserve(en.target);}});},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  coachSay(LINES[0]);
+})();
+</script>
+</body>
+</html>
