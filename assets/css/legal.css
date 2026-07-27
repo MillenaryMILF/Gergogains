@@ -1,0 +1,24 @@
+/* Shared styling for privacy.html / terms.html / refund.html.
+   Deliberately plain — these pages must be readable, not designed. */
+:root{--ink:#0b0b0b;--paper:#fff;--muted:#6e6e6e;--panel:#f3f3f1;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px);}
+header.lh{border-bottom:2px solid var(--ink);padding:22px 0;margin-bottom:44px;}
+header.lh .in{max-width:760px;margin:0 auto;padding:0 clamp(16px,4vw,32px);display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+.logo{font-family:'Arial Narrow','Helvetica Neue',Impact,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:19px;}
+.logo a{color:inherit;text-decoration:none;}
+.back{font-family:ui-monospace,'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;}
+.back:hover{color:var(--ink);}
+h1{font-family:'Arial Narrow','Helvetica Neue',Impact,sans-serif;text-transform:uppercase;font-size:clamp(30px,6vw,46px);line-height:1.02;margin-bottom:10px;}
+h2{font-size:17px;text-transform:uppercase;letter-spacing:.05em;margin:36px 0 10px;padding-top:16px;border-top:1px solid #ddd;}
+p,li{font-size:15px;margin-bottom:12px;}
+ul,ol{padding-left:22px;margin-bottom:12px;}
+a{color:var(--ink);}
+.meta{font-family:ui-monospace,'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:34px;}
+.note{background:var(--panel);border-left:3px solid var(--ink);padding:14px 16px;margin:20px 0;font-size:14px;}
+.todo{background:#fff8d6;border-left:3px solid #b8951f;padding:14px 16px;margin:20px 0;font-size:14px;}
+.todo b{text-transform:uppercase;letter-spacing:.08em;font-size:12px;}
+code{font-family:ui-monospace,'Space Mono',monospace;background:var(--panel);padding:1px 5px;font-size:13px;}
+footer.lf{border-top:2px solid var(--ink);margin-top:56px;padding:22px 0 44px;font-family:ui-monospace,'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--muted);}
+footer.lf a{color:var(--muted);margin-right:14px;}
