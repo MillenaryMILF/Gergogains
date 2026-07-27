@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aesthetic Analysis — Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141414;
+    --ink-soft:#454545;
+    --ink-faint:#8c8c8c;
+    --line:#e2e0db;
+    --line-strong:#1a1a1a;
+    --paper:#f7f5f1;
+    --card:#ffffff;
+    --accent:#1a1a1a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(20px,5vw,72px) clamp(16px,4vw,40px);
+  }
+  .sheet{
+    max-width:920px;
+    margin:0 auto;
+  }
+  .label{
+    font-size:10.5px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+  }
+  .serif{font-family:'Cormorant Garamond',serif;}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:18px;
+    flex-wrap:wrap;
+    gap:14px;
+    animation:rise .9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .masthead h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:clamp(30px,6vw,52px);
+    line-height:1;
+    letter-spacing:-.01em;
+  }
+  .masthead h1 em{font-style:italic;}
+  .masthead .meta{
+    text-align:right;
+    line-height:1.9;
+  }
+  .masthead .meta div{font-size:11px;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:clamp(20px,4vw,46px);
+    align-items:center;
+    margin-top:40px;
+  }
+  @media(max-width:680px){.hero{grid-template-columns:1fr;}}
+
+  .scorewrap{display:flex;align-items:baseline;gap:18px;margin:14px 0 6px;}
+  .bigscore{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(78px,16vw,128px);
+    line-height:.82;
+    letter-spacing:-.03em;
+  }
+  .bigscore span{font-size:.34em;color:var(--ink-faint);}
+  .tier{
+    border:1px solid var(--line-strong);
+    border-radius:40px;
+    padding:5px 16px;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-weight:600;
+    align-self:center;
+  }
+  .hero p.lede{
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:42ch;
+    margin-top:14px;
+  }
+  .percentile{
+    margin-top:22px;
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+  }
+  .percentile .stat{border-left:1px solid var(--line);padding-left:14px;}
+  .percentile .stat .n{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1;}
+  .percentile .stat .t{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px;}
+
+  /* ---------- face svg ---------- */
+  .facecard{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .facecard svg{width:100%;height:auto;display:block;}
+  .facecard .cap{
+    position:absolute;left:20px;bottom:16px;
+    font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .draw line,.draw path,.draw circle{
+    animation:dash 2.4s ease forwards;
+  }
+  @keyframes dash{from{stroke-dashoffset:1200;}to{stroke-dashoffset:0;}}
+
+  /* ---------- sections ---------- */
+  .section{margin-top:clamp(46px,7vw,78px);}
+  .section-head{
+    display:flex;align-items:baseline;gap:16px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:12px;margin-bottom:28px;
+  }
+  .section-head .no{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink-faint);}
+  .section-head h2{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;font-size:clamp(24px,4vw,34px);letter-spacing:-.01em;
+  }
+
+  /* ---------- score rows ---------- */
+  .scores{display:grid;gap:20px;}
+  .row .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+  .row .name{font-size:14px;font-weight:500;}
+  .row .name small{display:block;font-weight:400;color:var(--ink-faint);font-size:11.5px;margin-top:1px;letter-spacing:0;}
+  .row .val{font-family:'Cormorant Garamond',serif;font-size:22px;}
+  .row .val span{color:var(--ink-faint);font-size:14px;}
+  .track{height:2px;background:var(--line);position:relative;border-radius:2px;overflow:hidden;}
+  .track i{position:absolute;left:0;top:0;height:100%;background:var(--line-strong);border-radius:2px;width:0;animation:fill 1.6s cubic-bezier(.2,.8,.2,1) forwards;}
+  @keyframes fill{to{width:var(--w);}}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:680px){.twocol{grid-template-columns:1fr;}}
+
+  /* ---------- cards ---------- */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:28px 26px;
+  }
+  .card.dark{background:var(--ink);color:#f3f1ec;border-color:var(--ink);}
+  .card.dark .label{color:#9b9b97;}
+  .card .label{margin-bottom:16px;}
+  . list{list-style:none;}
+  .list li{
+    display:flex;gap:13px;
+    padding:13px 0;
+    border-top:1px solid var(--line);
+    font-size:14px;line-height:1.5;
+  }
+  .card.dark .list li{border-color:#2e2e2e;}
+  .list li:first-child{border-top:none;}
+  .list li .mk{
+    flex:0 0 auto;width:18px;font-family:'Cormorant Garamond',serif;font-size:16px;
+    color:var(--ink-faint);line-height:1.4;
+  }
+  .card.dark .list li .mk{color:#7d7d79;}
+  .list li b{font-weight:600;}
+  .list li span{color:var(--ink-soft);}
+  .card.dark .list li span{color:#bdbcb7;}
+
+  /* recommendations */
+  .recgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  @media(max-width:680px){.recgrid{grid-template-columns:1fr;}}
+  .rec{
+    border:1px solid var(--line);border-radius:22px;padding:26px 24px;background:var(--card);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .rec:hover{transform:translateY(-3px);box-shadow:0 18px 40px -28px rgba(0,0,0,.4);}
+  .rec h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:21px;margin:10px 0 12px;}
+  .rec p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+  .rec .idx{font-size:10px;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;}
+
+  .priority{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line);border-radius:30px;padding:3px 11px;color:var(--ink-soft);}
+
+  /* footer */
+  .foot{
+    margin-top:64px;border-top:1px solid var(--line-strong);padding-top:20px;
+    display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  }
+  .foot p{font-size:11px;color:var(--ink-faint);max-width:62ch;line-height:1.7;}
+  .foot .mono{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .reveal{animation:rise .8s cubic-bezier(.2,.8,.2,1) both;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div>
+      <div class="label" style="margin-bottom:10px;">Aesthetic Assessment</div>
+      <h1>Facial &amp; Body<br><em>Analysis Report</em></h1>
+    </div>
+    <div class="meta">
+      <div>Ref · AR–0521</div>
+      <div>21 May 2026</div>
+      <div>2 Source Images</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero reveal" style="animation-delay:.1s;">
+    <div>
+      <div class="label">Composite Index</div>
+      <div class="scorewrap">
+        <div class="bigscore">8.1<span>/10</span></div>
+        <div class="tier">Top Decile</div>
+      </div>
+      <p class="lede">A genuinely strong baseline. Clear masculine bone structure and an athletic, well-conditioned frame carry the score; the gains from here are refinement, not reconstruction.</p>
+      <div class="percentile">
+        <div class="stat"><div class="n">~88<small style="font-size:18px;">th</small></div><div class="t">Est. percentile</div></div>
+        <div class="stat"><div class="n">High</div><div class="t">Symmetry tier</div></div>
+        <div class="stat"><div class="n">Lean</div><div class="t">Body comp</div></div>
+      </div>
+    </div>
+
+    <!-- FACE CONTOUR -->
+    <div class="facecard">
+      <svg viewBox="0 0 320 360" fill="none" class="draw"
+           stroke="#1a1a1a" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+        <!-- face outline -->
+        <path d="M160 38
+                 C112 38 92 78 92 122
+                 C92 150 96 172 104 196
+                 C112 222 126 252 146 274
+                 C152 281 156 286 160 290
+                 C164 286 168 281 174 274
+                 C194 252 208 222 216 196
+                 C224 172 228 150 228 122
+                 C228 78 208 38 160 38 Z"
+              stroke-dasharray="1200"/>
+        <!-- hairline -->
+        <path d="M104 96 C118 64 142 56 160 56 C178 56 202 64 216 96" stroke-dasharray="1200" opacity=".55"/>
+        <!-- brows -->
+        <path d="M112 132 C124 124 140 124 150 130" stroke-dasharray="400"/>
+        <path d="M170 130 C180 124 196 124 208 132" stroke-dasharray="400"/>
+        <!-- eyes -->
+        <path d="M116 148 C126 142 142 142 150 149 C142 156 126 156 116 148 Z" stroke-dasharray="400"/>
+        <path d="M170 149 C178 142 194 142 204 148 C194 156 178 156 170 149 Z" stroke-dasharray="400"/>
+        <circle cx="132" cy="149" r="3.4" stroke-dasharray="60"/>
+        <circle cx="188" cy="149" r="3.4" stroke-dasharray="60"/>
+        <!-- nose -->
+        <path d="M160 152 L154 196 C154 204 166 204 166 196 L160 152" stroke-dasharray="400" opacity=".85"/>
+        <path d="M148 198 C154 204 166 204 172 198" stroke-dasharray="200" opacity=".7"/>
+        <!-- lips -->
+        <path d="M138 230 C150 224 170 224 182 230 C170 238 150 238 138 230 Z" stroke-dasharray="400"/>
+        <path d="M138 230 L182 230" stroke-dasharray="120" opacity=".6"/>
+        <!-- jaw accent -->
+        <path d="M118 250 C132 274 150 286 160 290 C170 286 188 274 202 250" stroke-dasharray="600" opacity=".5"/>
+        <!-- analysis guides -->
+        <g stroke="#1a1a1a" stroke-width=".6" opacity=".28" stroke-dasharray="3 4">
+          <line x1="160" y1="20" x2="160" y2="310"/>
+          <line x1="60" y1="122" x2="260" y2="122"/>
+          <line x1="60" y1="196" x2="260" y2="196"/>
+          <line x1="60" y1="230" x2="260" y2="230"/>
+        </g>
+        <g fill="#1a1a1a" opacity=".45" font-family="Hanken Grotesk" font-size="8" letter-spacing="1">
+          <text x="264" y="124">BROW</text>
+          <text x="264" y="198">BASE</text>
+          <text x="264" y="232">LIP</text>
+        </g>
+      </svg>
+      <div class="cap">Vertical thirds · midline symmetry plot</div>
+    </div>
+  </section>
+
+  <!-- FACIAL -->
+  <section class="section">
+    <div class="section-head">
+      <span class="no">01</span>
+      <h2>Facial Assessment</h2>
+    </div>
+    <div class="scores">
+      <div class="row"><div class="top"><div class="name">Bone Structure <small>Jaw definition, chin projection, gonial angle</small></div><div class="val">8.6<span>/10</span></div></div><div class="track"><i style="--w:86%;animation-delay:.1s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Symmetry <small>Left/right balance across the midline</small></div><div class="val">8.3<span>/10</span></div></div><div class="track"><i style="--w:83%;animation-delay:.2s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Proportion &amp; Harmony <small>Facial thirds, vertical balance</small></div><div class="val">8.0<span>/10</span></div></div><div class="track"><i style="--w:80%;animation-delay:.3s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Midface &amp; Cheekbones <small>Zygomatic width, midface compactness</small></div><div class="val">7.8<span>/10</span></div></div><div class="track"><i style="--w:78%;animation-delay:.4s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Eye Area <small>Canthal tilt, brow position, hooding</small></div><div class="val">7.6<span>/10</span></div></div><div class="track"><i style="--w:76%;animation-delay:.5s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Hair <small>Density, hairline, style execution</small></div><div class="val">7.9<span>/10</span></div></div><div class="track"><i style="--w:79%;animation-delay:.6s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Skin Quality <small>Tone evenness, texture, sun condition</small></div><div class="val">7.2<span>/10</span></div></div><div class="track"><i style="--w:72%;animation-delay:.7s;"></i></div></div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="section">
+    <div class="section-head">
+      <span class="no">02</span>
+      <h2>Physique Assessment</h2>
+    </div>
+    <div class="scores">
+      <div class="row"><div class="top"><div class="name">Muscularity &amp; Development <small>Mass and definition relative to frame</small></div><div class="val">8.5<span>/10</span></div></div><div class="track"><i style="--w:85%;animation-delay:.1s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Conditioning / Leanness <small>Estimated low-teens body fat</small></div><div class="val">8.4<span>/10</span></div></div><div class="track"><i style="--w:84%;animation-delay:.2s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">V-Taper <small>Shoulder-to-waist ratio</small></div><div class="val">8.2<span>/10</span></div></div><div class="track"><i style="--w:82%;animation-delay:.3s;"></i></div></div>
+      <div class="row"><div class="top"><div class="name">Posture &amp; Presentation <small>Carriage, framing, presence in-frame</small></div><div class="val">7.7<span>/10</span></div></div><div class="track"><i style="--w:77%;animation-delay:.4s;"></i></div></div>
+    </div>
+  </section>
+
+  <!-- STRENGTHS / IMPROVE -->
+  <section class="section">
+    <div class="twocol">
+      <div class="card dark">
+        <div class="label">Standout Strengths</div>
+        <ul class="list">
+          <li><span class="mk">i</span><div><b>Defined jaw &amp; chin.</b> <span>A clean mandibular line with good chin projection — the strongest single feature and the anchor of the overall score.</span></div></li>
+          <li><span class="mk">ii</span><div><b>Athletic frame.</b> <span>Low body fat with visible abdominal and shoulder development reads as disciplined and healthy, not bulky.</span></div></li>
+          <li><span class="mk">iii</span><div><b>High symmetry.</b> <span>Features sit evenly across the midline; eyes and brows are well matched.</span></div></li>
+          <li><span class="mk">iv</span><div><b>Strong brow &amp; eye colour.</b> <span>Defined brow ridge and light eyes give an open, masculine upper face.</span></div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="label">Areas to Refine</div>
+        <ul class="list">
+          <li><span class="mk">i</span><div><b>Skin / sun condition.</b> <span>Visible redness and sun exposure in the second image. The single highest-leverage fix — daily SPF and recovery will lift skin clarity quickly.</span></div></li>
+          <li><span class="mk">ii</span><div><b>Hairline contrast.</b> <span>The very light blonde reads slightly washed against fair skin in flat lighting; a softer tone or grown-out natural shade adds depth.</span></div></li>
+          <li><span class="mk">iii</span><div><b>Facial hair definition.</b> <span>Stubble is currently uneven. A maintained, sharply lined short beard would reinforce the jaw further.</span></div></li>
+          <li><span class="mk">iv</span><div><b>Lower-eyelid support.</b> <span>Minor under-eye shadowing — almost entirely a sleep, hydration and lighting variable.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="section">
+    <div class="section-head">
+      <span class="no">03</span>
+      <h2>Action Plan</h2>
+    </div>
+    <div class="recgrid">
+      <div class="rec">
+        <div class="idx">Skincare · 01</div>
+        <h3>Protect &amp; even the skin</h3>
+        <p>Daily broad-spectrum SPF 30–50, especially on snow and at altitude where reflection doubles exposure. Add a simple gentle cleanser and a fragrance-free moisturiser. Expect visibly clearer, more even tone within weeks.</p>
+        <span class="priority">Highest leverage</span>
+      </div>
+      <div class="rec">
+        <div class="idx">Grooming · 02</div>
+        <h3>Frame the jaw</h3>
+        <p>Keep the beard short but defined — clean the neckline and cheek line every few days. A subtly lower, more natural hair tone (or grown-out roots) will read richer against fair skin than the brightest blonde.</p>
+        <span class="priority">Quick win</span>
+      </div>
+      <div class="rec">
+        <div class="idx">Style · 03</div>
+        <h3>Dress the frame</h3>
+        <p>The shoulder-to-waist ratio is an asset — lean into structured, fitted cuts (knit polos, tailored overshirts, mid-rise trousers) rather than oversized fits that hide it. Cooler, muted tones flatter the colouring.</p>
+        <span class="priority">Maintain</span>
+      </div>
+      <div class="rec">
+        <div class="idx">Presentation · 04</div>
+        <h3>Photograph it well</h3>
+        <p>Soft, slightly-above eye-level light and a relaxed half-smile suit your features far more than harsh overhead locker-room lighting. Prioritise rest and hydration before key photos to clear under-eye shadowing.</p>
+        <span class="priority">Maintain</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <p>Assessment is an aesthetic estimate generated from two photographs under uncontrolled lighting; scores are subjective and not a medical, dermatological or psychological evaluation. Attractiveness is multidimensional and partly cultural — treat this as one informed perspective, not a verdict. You present as a fit, healthy young adult with a strong baseline; the notes above are refinements, not corrections.</p>
+    <div class="mono">End of Report · AR–0521</div>
+  </footer>
+
+</div>
+</body>
+</html>

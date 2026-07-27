@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Plan — Aesthetic Specialization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#141414;--ink-soft:#454545;--ink-faint:#8c8c8c;--line:#e2e0db;--line-strong:#1a1a1a;--paper:#f7f5f1;--card:#fff;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;padding:clamp(20px,5vw,64px) clamp(14px,4vw,36px);}
+  .sheet{max-width:880px;margin:0 auto;}
+  .label{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;}
+  header.mast{border-bottom:1px solid var(--line-strong);padding-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;animation:rise .8s cubic-bezier(.2,.8,.2,1) both;}
+  header.mast h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,6.5vw,52px);line-height:1;}
+  header.mast h1 em{font-style:italic;}
+  header.mast .meta{text-align:right;}
+  header.mast .meta div{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);line-height:1.9;}
+  .logic{margin-top:34px;background:var(--ink);color:#f3f1ec;border-radius:24px;padding:30px 28px;animation:rise .8s .1s cubic-bezier(.2,.8,.2,1) both;}
+  .logic .label{color:#9b9b97;margin-bottom:14px;}
+  .logic ul{list-style:none;}
+  .logic li{display:flex;gap:13px;padding:11px 0;border-top:1px solid #2c2c2c;font-size:13.5px;line-height:1.55;}
+  .logic li:first-child{border-top:none;}
+  .logic li .mk{flex:0 0 16px;font-family:'Cormorant Garamond',serif;color:#7d7d79;}
+  .logic li b{font-weight:600;} .logic li span{color:#bdbcb7;}
+  .freq{margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:10px;}
+  .freq .f{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:14px 12px;text-align:center;}
+  .freq .f .n{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1;}
+  .freq .f .t{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:6px;}
+  .freq .f.pri{background:var(--ink);} .freq .f.pri .n{color:#fff;} .freq .f.pri .t{color:#9b9b97;}
+  .cyc{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap;}
+  .cyc .c{flex:1;min-width:120px;border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--card);}
+  .cyc .c .d{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px;}
+  .cyc .c .nm{font-family:'Cormorant Garamond',serif;font-size:17px;}
+  .cyc .c.rest{background:var(--paper);border-style:dashed;}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px 24px;margin-top:20px;}
+  .day .dhead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:8px;}
+  .day .dhead .dn{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink-faint);}
+  .day .dhead h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(20px,3.6vw,28px);}
+  .day .dhead .tag{margin-left:auto;align-self:center;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line-strong);border-radius:30px;padding:4px 11px;font-weight:600;white-space:nowrap;}
+  .skill{font-size:12.5px;color:var(--ink-soft);padding:12px 0 4px;display:flex;gap:10px;}
+  .skill .s{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;flex:0 0 auto;padding-top:2px;}
+  table{width:100%;border-collapse:collapse;margin-top:8px;}
+  tr{border-top:1px solid var(--line);} tr:first-child{border-top:none;}
+  td{padding:11px 0;vertical-align:top;font-size:13.5px;}
+  td.ex{font-weight:500;width:48%;}
+  td.ex small{display:block;font-weight:400;color:var(--ink-faint);font-size:11.5px;margin-top:2px;}
+  td.sr{width:28%;color:var(--ink-soft);font-variant-numeric:tabular-nums;}
+  td.pr{width:24%;text-align:right;}
+  .pri-t{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:600;border-bottom:1.5px solid var(--ink);padding-bottom:1px;}
+  .mn{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+  .note{margin-top:34px;border:1px solid var(--line);border-radius:24px;padding:28px 26px;background:var(--card);}
+  .note h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;margin-bottom:14px;}
+  .note p{font-size:13.5px;color:var(--ink-soft);margin-bottom:12px;}
+  .note p b{color:var(--ink);font-weight:600;}
+  footer{margin-top:48px;border-top:1px solid var(--line-strong);padding-top:18px;}
+  footer p{font-size:11px;color:var(--ink-faint);line-height:1.7;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <div>
+      <div class="label" style="margin-bottom:9px;">Custom Programme · v3</div>
+      <h1>Aesthetic<br><em>Specialization</em></h1>
+    </div>
+    <div class="meta">
+      <div>4-Day Rolling Cycle</div>
+      <div>3 Train · 1 Rest</div>
+      <div>Delts · Arms · Upper Chest</div>
+    </div>
+  </header>
+
+  <section class="logic">
+    <div class="label">Three priorities, two protected pillars</div>
+    <ul>
+      <li><span class="mk">1</span><div><b>Upper chest joins the priority tier.</b> <span>60&deg; incline pressing and low-to-high cable flys, twice per cycle. The clavicular head is what builds the upper shelf — even on a strong chest it's usually the part that lags.</span></div></li>
+      <li><span class="mk">2</span><div><b>Shoulders &amp; arms stay priority.</b> <span>Both hit twice per cycle — roughly every 2 days — with the freshest, heaviest work on delts and biceps.</span></div></li>
+      <li><span class="mk">3</span><div><b>Legs are protected, not neglected.</b> <span>A full, serious session every cycle — squat, RDL, leg press, hamstring and calf work. Frequency is moderate by design, but the volume is real. Never skip it.</span></div></li>
+      <li><span class="mk">4</span><div><b>Back every 4 days.</b> <span>Once per cycle at maintenance-plus, with the 3-second row eccentric kept in to keep developing it.</span></div></li>
+      <li><span class="mk">5</span><div><b>Rolling loop.</b> <span>Run Day 1&nbsp;&rarr;&nbsp;2&nbsp;&rarr;&nbsp;3&nbsp;&rarr;&nbsp;rest regardless of weekday so the spacing stays true.</span></div></li>
+    </ul>
+  </section>
+
+  <div class="freq">
+    <div class="f pri"><div class="n">~2 days</div><div class="t">Upper Chest</div></div>
+    <div class="f pri"><div class="n">~2 days</div><div class="t">Shoulders</div></div>
+    <div class="f pri"><div class="n">~2 days</div><div class="t">Arms</div></div>
+    <div class="f"><div class="n">~4 days</div><div class="t">Legs · full</div></div>
+    <div class="f"><div class="n">~4 days</div><div class="t">Back</div></div>
+  </div>
+
+  <div class="cyc">
+    <div class="c"><div class="d">Day 1</div><div class="nm">Delts · U.Chest · Arms</div></div>
+    <div class="c"><div class="d">Day 2</div><div class="nm">Legs — full</div></div>
+    <div class="c"><div class="d">Day 3</div><div class="nm">Back + Priority 2nd hit</div></div>
+    <div class="c rest"><div class="d">Day 4</div><div class="nm">Rest</div></div>
+  </div>
+
+  <section class="day">
+    <div class="dhead"><span class="dn">01</span><h2>Delts · Upper Chest · Arms</h2><span class="tag">Priority</span></div>
+    <div class="skill"><span class="s">Skill</span><div>Handstand holds &rarr; wall HSPU, 4–5 sets on fresh shoulders.</div></div>
+    <table>
+      <tr><td class="ex">60&deg; Incline Press<small>Barbell or DB — upper-chest driver</small></td><td class="sr">4 × 6–8</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Overhead Press<small>Delt mass + press strength</small></td><td class="sr">4 × 6–8</td><td class="pr"><span class="pri-t">Lead lift</span></td></tr>
+      <tr><td class="ex">Cable Lateral Raise<small>Delt cap / width</small></td><td class="sr">4 × 15–20</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Low-to-High Cable Fly<small>Press up &amp; in — clavicular pec</small></td><td class="sr">3 × 12–15</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">EZ-Bar Curl<small>Heavy bicep — overall mass</small></td><td class="sr">4 × 8–10</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Overhead Cable Extension<small>Tricep long head</small></td><td class="sr">3 × 12</td><td class="pr"></td></tr>
+    </table>
+  </section>
+
+  <section class="day">
+    <div class="dhead"><span class="dn">02</span><h2>Legs — Full Session</h2><span class="tag">Protected</span></div>
+    <table>
+      <tr><td class="ex">Back Squat<small>Hold quad strength</small></td><td class="sr">4 × 6–8</td><td class="pr"><span class="pri-t">Lead lift</span></td></tr>
+      <tr><td class="ex">Romanian Deadlift<small>Your best lift — keep pushing</small></td><td class="sr">4 × 8–10</td><td class="pr"></td></tr>
+      <tr><td class="ex">Leg Press<small>Added quad volume</small></td><td class="sr">3 × 10–12</td><td class="pr"></td></tr>
+      <tr><td class="ex">Lying Leg Curl<small>Hamstring balance</small></td><td class="sr">4 × 10–12</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Bulgarian Split Squat<small>Symmetry + glute</small></td><td class="sr">3 × 10/leg</td><td class="pr"></td></tr>
+      <tr><td class="ex">Standing Calf Raise<small>2s stretch + 2s squeeze</small></td><td class="sr">4 × 12–15</td><td class="pr"><span class="mn">Tempo</span></td></tr>
+      <tr><td class="ex">Seated Calf Raise<small>Soleus, high rep</small></td><td class="sr">3 × 20</td><td class="pr"></td></tr>
+    </table>
+  </section>
+
+  <section class="day">
+    <div class="dhead"><span class="dn">03</span><h2>Back + Priority 2nd Hit</h2><span class="tag">Back + priority</span></div>
+    <div class="skill"><span class="s">Skill</span><div>Front lever — tuck / advanced-tuck holds, 5 sets. Progress one leg at a time.</div></div>
+    <table>
+      <tr><td class="ex">Weighted Pull-up<small>Back lead — keep your strength</small></td><td class="sr">4 × 4–6</td><td class="pr"><span class="pri-t">Lead lift</span></td></tr>
+      <tr><td class="ex">Chest-Supported Row<small>3s eccentric — no letting go</small></td><td class="sr">4 × 8–10</td><td class="pr"><span class="mn">Tempo</span></td></tr>
+      <tr><td class="ex">Low-to-High Cable Fly<small>Upper chest — 2nd weekly hit</small></td><td class="sr">3 × 12–15</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Reverse Pec-Deck<small>Rear delt — round the shoulder</small></td><td class="sr">4 × 15–20</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Dumbbell Lateral Raise<small>Side delt — 2nd weekly hit</small></td><td class="sr">3 × 15–20</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+      <tr><td class="ex">Incline Dumbbell Curl<small>Bicep — 2nd weekly hit, stretch</small></td><td class="sr">3 × 10–12</td><td class="pr"><span class="pri-t">Priority</span></td></tr>
+    </table>
+  </section>
+
+  <section class="note">
+    <h3>Running it well</h3>
+    <p><b>Upper-chest cues.</b> Keep the 60&deg; bench genuinely steep — most "incline" pressing drifts to 30&deg; and turns into mid-chest. On the cable fly, set the pulleys low and drive hands up and together toward eye level; feel it in the collarbone area, not the front delt.</p>
+    <p><b>The rolling cycle.</b> Loop Day 1 &rarr; 2 &rarr; 3 &rarr; Rest regardless of weekday. Upper chest, delts and arms land roughly every 2 days; legs and back every 4. If you ever feel run-down, take the rest day a session early — the loop just resumes.</p>
+    <p><b>Don't trade legs away.</b> When time is tight the instinct is to cut the leg day — don't. It's already the lowest-frequency session; skipping it drops legs to once every 8+ days and the balance slips. Cut a set elsewhere instead.</p>
+    <p><b>Progression.</b> Double progression: top of the rep range on all sets, then add the smallest jump and rebuild. Log every session.</p>
+    <p><b>Cut.</b> ~300–400 kcal under maintenance, protein ≈2g/kg, weights held steady — enough to bring this morning's vascularity into all-day without costing the size you're building up top.</p>
+  </section>
+
+  <footer>
+    <p>General training guidance for a healthy, experienced lifter — not medical or coaching supervision. Progress loads conservatively, prioritise form over numbers, and back off any movement that causes joint pain rather than muscular fatigue.</p>
+  </footer>
+
+</div>
+</body>
+</html>
