@@ -1,0 +1,6 @@
+# Gergö Gains
+# Replace YOUR-DOMAIN.example below once your custom domain is live.
+User-agent: *
+Allow: /
+
+Sitemap: https://YOUR-DOMAIN.example/sitemap.xml
