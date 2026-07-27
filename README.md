@@ -1,9 +1,14 @@
 # GERGÖ GAINS — website
 
 Static single-page site. No backend, no build step, no API keys.
-Deployed with GitHub Pages straight from the `main` branch.
+Deployed with GitHub Pages from the `main` branch, root folder.
+Repo: `MillenaryMILF/gergo-gains`.
 
-**Live URL:** https://gergoszittyai.github.io/
+**Live URL:** https://millenarymilf.github.io/gergo-gains/
+
+(Project-repo URL, so the site lives under a `/gergo-gains/` path. Every asset
+path in the repo is relative, so this works unchanged — and keeps working once
+you point a custom domain at the root.)
 
 ---
 
@@ -22,7 +27,7 @@ Three jobs. Roughly 30 minutes total, in this order.
    | A     | `@`   | `185.199.109.153` |
    | A     | `@`   | `185.199.110.153` |
    | A     | `@`   | `185.199.111.153` |
-   | CNAME | `www` | `gergoszittyai.github.io` |
+   | CNAME | `www` | `millenarymilf.github.io` |
 
 3. On GitHub: **Settings → Pages → Custom domain**, type your domain, Save.
    GitHub writes the `CNAME` file for you — you do not edit it by hand.
