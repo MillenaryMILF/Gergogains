@@ -93,7 +93,7 @@ window.GG_CONFIG = {
      Leave as-is until then — a wrong domain is worse than a placeholder.
      ----------------------------------------------------------------------- */
   SITE: {
-    domain:  "https://YOUR-DOMAIN.example",  // PLACEHOLDER — no trailing slash
-    contact: "REPLACE@YOUR-DOMAIN.example"   // PLACEHOLDER — used in legal pages
+    domain:  "https://gergogains.com",  // PLACEHOLDER — no trailing slash
+    contact: "REPLACE@gergogains.com"   // PLACEHOLDER — used in legal pages
   }
 };

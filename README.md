@@ -4,7 +4,7 @@ Static single-page site. No backend, no build step, no API keys.
 Deployed with GitHub Pages from the `main` branch, root folder.
 Repo: `MillenaryMILF/Gergogains`.
 
-**Live URL:** https://millenarymilf.github.io/Gergogains/
+**Live URL:** https://gergogains.com  (github.io-Fallback: https://millenarymilf.github.io/Gergogains/)
 
 (Project-repo URL, so the site lives under a `/Gergogains/` path. Every asset
 path in the repo is relative, so this works unchanged — and keeps working once
