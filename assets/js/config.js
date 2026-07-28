@@ -83,7 +83,7 @@ window.GG_CONFIG = {
      ----------------------------------------------------------------------- */
   LEAD: {
     endpoint:    "https://api.web3forms.com/submit",
-    endpointKey: "REPLACE-WEB3FORMS-ACCESS-KEY"   // PLACEHOLDER
+    endpointKey: "04e7eb17-9245-4dc9-aff6-c8e916404e31"
   },
 
   /* --------------------------------------------------------------------------
