@@ -254,6 +254,43 @@
   .analysis{background:#161616;border:1.5px solid #2c2c2c;padding:22px;margin-bottom:20px;font-size:13.5px;color:#c8c8c8;line-height:1.6;}
   .analysis b{color:#fff;}
   .sched{display:grid;gap:10px;}
+  /* ---- plan UI + paywall (assets/js/plan-ui.js) ---- */
+  .gg-block{border:1.5px solid var(--ink);padding:clamp(16px,2.4vw,26px);margin-bottom:16px;}
+  .gg-block h4,.gg-gate h4,.gg-lead h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:15px;letter-spacing:.05em;margin-bottom:8px;}
+  .gg-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;max-width:70ch;}
+  .gg-chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .gg-chip{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--ink);background:transparent;}
+  .gg-chip.on{background:var(--ink);color:var(--paper);}
+  .gg-tbl{width:100%;border-collapse:collapse;font-size:13px;}
+  .gg-tbl th{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 8px 8px 0;border-bottom:1.5px solid var(--ink);}
+  .gg-tbl td{padding:7px 8px 7px 0;border-bottom:1px solid var(--grid);vertical-align:middle;}
+  .gg-tbl tr.gg-pri td{font-weight:600;}
+  .gg-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.14em;background:var(--ink);color:var(--paper);padding:2px 5px;margin-left:6px;}
+  .gg-n{font-family:'Space Mono',monospace;white-space:nowrap;}
+  .gg-bar{height:6px;background:var(--grid);min-width:70px;}
+  .gg-bar i{display:block;height:100%;}
+  .gg-note{background:#fff8d6;border-left:3px solid #b8951f;padding:12px 14px;margin-top:16px;font-size:13px;}
+  .gg-note ul{margin:8px 0 0 18px;} .gg-note li{margin-bottom:6px;line-height:1.55;}
+  ul.gg-sess{list-style:none;margin:0;}
+  ul.gg-sess li{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-bottom:1px solid var(--grid);}
+  .gg-ex{flex:1 1 auto;font-weight:500;}
+  .gg-rx{font-family:'Space Mono',monospace;font-size:12px;white-space:nowrap;}
+  .gg-why{flex:0 0 100%;font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .gg-gate{border:2px solid var(--ink);background:var(--panel);padding:clamp(18px,2.6vw,30px);margin-bottom:16px;position:relative;}
+  .gg-lock{position:absolute;top:0;right:0;background:var(--ink);color:var(--paper);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;padding:5px 10px;}
+  ul.gg-teaser{list-style:none;margin:0 0 14px;}
+  ul.gg-teaser li{font-family:'Space Mono',monospace;font-size:11.5px;padding:6px 0;border-bottom:1px solid var(--grid);color:#3a3a3a;}
+  .gg-eviblock{background:var(--panel);}
+  ol.gg-cite{margin:0 0 0 18px;font-size:12.5px;line-height:1.55;}
+  ol.gg-cite li{margin-bottom:12px;}
+  .gg-use{color:var(--muted);font-size:11.5px;}
+  .gg-disc{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:14px;}
+  .gg-lead{border:1.5px solid var(--ink);padding:clamp(16px,2.4vw,26px);}
+  .gg-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .gg-row input{flex:1 1 220px;border:1.5px solid var(--ink);padding:12px 14px;font-family:inherit;font-size:14px;background:var(--paper);}
+  .gg-msg{font-family:'Space Mono',monospace;font-size:11px;margin-top:10px;min-height:16px;}
+  .gg-msg.ok{color:#1a6b2f;} .gg-msg.warn{color:#a33;}
+
   .scard{border:1.5px solid #2c2c2c;padding:16px 18px;}
   .scard .sh{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;border-bottom:1px solid #232323;padding-bottom:8px;}
   .scard .sh .dy{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;color:#8a8a8a;}
@@ -626,10 +663,11 @@
         <div class="spectag">SPEC 00 — AI PLAN</div>
         <h3>The Plan</h3>
         <div class="amt">$19</div>
-        <div class="term">One-time · instant delivery</div>
+        <div class="term">One-time · emailed within 24h</div>
         <ul>
           <li>AI coach builds your full plan &amp; FFMI from your stats &amp; photos</li>
-          <li>Balanced 8-week schedule for your goal, days &amp; setting</li>
+          <li>Weeks 2&ndash;8: progression, RIR schedule &amp; both deloads</li>
+          <li>Per-muscle volume counted the way the research counts it</li>
           <li>Personal protein &amp; calorie targets</li>
           <li>One-tap calendar export + downloadable PDF</li>
           <li>Strengths, weak points &amp; prioritised fixes</li>
@@ -681,7 +719,7 @@
     <div class="faq rv">
       <details><summary>Is the AI coach really based on you?</summary><div class="fa">Yes — the avatar uses my real footage, and the coaching logic is built on how I actually program: the same splits, frequencies and standards I train with myself. It's an AI tool reflecting my method, not a licensed professional, and for anything medical you should see a doctor.</div></details>
       <details><summary>I'm a complete beginner. Is this for me?</summary><div class="fa">Especially for you. Every plan scales: beginners get simpler movement selections, conservative loading and clear "2 reps in reserve" instructions. The structure stays identical as you advance — only the numbers grow. You won't outgrow it; you re-run it.</div></details>
-      <details><summary>What exactly do I get for $19?</summary><div class="fa">A complete 8-week program built for your goal, schedule and equipment (home, gym or both), your FFMI baseline, personal protein and calorie targets, a weak-point priority list, calendar export and a PDF. One-time payment, re-run whenever your body changes.</div></details>
+      <details><summary>What exactly do I get for $19?</summary><div class="fa">Weeks 2 to 8 of your programme: the full progression, the reps-in-reserve schedule, both deload weeks, every exercise substitution for your setup, and a PDF. Emailed within 24 hours. What stays free: your FFMI, your per-muscle weekly volume targets, the honest note on what your training days cannot carry, and the whole of week 1. You see the method before you pay for the rest.</div></details>
       <details><summary>Where does the training advice come from?</summary><div class="fa">Published, established sports-science principles only: progressive overload, training each muscle 2×+ per week, evidence-based protein ranges (1.6–2.2 g/kg) and graded skill progressions. No fad protocols, no bro-science.</div></details>
       <details><summary>What's the difference between $99 and $249 coaching?</summary><div class="fa">The Blueprint ($99) is one guided 8-week cycle: a call with me, a hand-tuned program, one form check and a week-4 review. The Commission ($249) is a 16-week bespoke build with three calls, reviews every two weeks, unlimited form checks and nutrition structuring. Both start with the same AI analysis.</div></details>
       <details><summary>Refunds?</summary><div class="fa">14-day money-back guarantee on every tier, no questions asked. If the plan isn't for you, you get your money back.</div></details>
@@ -765,6 +803,10 @@
 <script src="assets/js/config.js"></script>
 <!-- CONSENT + TRACKING: gtag loads only after the visitor accepts -->
 <script src="assets/js/consent.js" defer></script>
+<!-- PLAN ENGINE: exercise database, evidence-based programming, paywall UI -->
+<script src="assets/js/exercise-db.js"></script>
+<script src="assets/js/programming.js"></script>
+<script src="assets/js/plan-ui.js" defer></script>
 
 <script>
 (function(){

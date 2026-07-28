@@ -31,7 +31,7 @@ window.GG_CONFIG = {
      actual charge is whatever your Lemon Squeezy product is set to.
      ----------------------------------------------------------------------- */
   TIERS: {
-    plan:       {spec:"SPEC 00 — AI PLAN", tier:"The Plan",       price:"$19",  pay:"Pay $19 &amp; get my plan ▸",      desc:"My AI coach's full build for you: balanced 8-week plan, FFMI, protein & calorie targets, weak-point fixes, calendar export and a PDF. Delivered instantly."},
+    plan:       {spec:"SPEC 00 — AI PLAN", tier:"The Plan",       price:"$19",  pay:"Pay $19 &amp; unlock weeks 2-8 ▸",      desc:"Weeks 2-8 of your programme: the full progression, RIR schedule, both deloads, every substitution for your setup, and a PDF. Your volume targets and week 1 stay free. Emailed within 24 hours."},
     blueprint:  {spec:"SPEC 01 — GUIDED",  tier:"The Blueprint",  price:"$99",  pay:"Pay $99 &amp; book your call ▸",   desc:"Everything in The Plan, plus I personally review it, a 45-min video call, a hand-tuned program, a form check and a week-4 review. I'll email you to book."},
     commission: {spec:"SPEC 02 — BESPOKE", tier:"The Commission", price:"$249", pay:"Pay $249 &amp; start the build ▸", desc:"A fully bespoke 16-week build: 3 calls, fortnightly reviews, unlimited form checks, nutrition structuring and priority messaging. I'll email you to begin."}
   },
@@ -68,7 +68,26 @@ window.GG_CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
-     4) SITE
+     4) LEAD CAPTURE / PLAN DELIVERY                            [PLACEHOLDER]
+     --------------------------------------------------------------------------
+     No server. The free diagnosis form and the buyer's spec are POSTed to a
+     form endpoint that emails them to you, so you can send the plan by hand.
+
+     Setup (2 minutes): go to web3forms.com, enter your email, and it gives you
+     an access key. Paste it below. The key is public by design — it can only
+     send mail to the address you registered, so it is safe in a public repo.
+     Free tier covers 250 submissions/month.
+
+     Until this is set, the form tells the visitor it is not configured rather
+     than silently losing their email.
+     ----------------------------------------------------------------------- */
+  LEAD: {
+    endpoint:    "https://api.web3forms.com/submit",
+    endpointKey: "REPLACE-WEB3FORMS-ACCESS-KEY"   // PLACEHOLDER
+  },
+
+  /* --------------------------------------------------------------------------
+     5) SITE
      --------------------------------------------------------------------------
      Set `domain` once you own one. It is used for canonical + Open Graph URLs.
      Leave as-is until then — a wrong domain is worse than a placeholder.

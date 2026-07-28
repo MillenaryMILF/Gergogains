@@ -204,9 +204,14 @@
               return true;
             })
             .sort((x,y) => {
+              /* Share first: how much of this exercise's total work actually
+                 lands on the muscle we are trying to train. Without this the
+                 allocator will happily use a chest dip as "triceps work" and
+                 lead a leg day with it. */
+              const share = e => (e.contrib[m]||0) /
+                Object.values(e.contrib).reduce((a,b)=>a+b,0);
               const lenS = e => e.len==='long'?2 : e.len==='mid'?1 : 0;
-              const compS = e => Object.keys(e.contrib).length>1?1:0;
-              return (lenS(y)-lenS(x)) || (compS(y)-compS(x));
+              return (share(y)-share(x)) || (lenS(y)-lenS(x));
             });
           if (!cands.length) continue;
 
@@ -230,6 +235,19 @@
         }
         if (!placed) break;
       }
+
+      /* Selection used "share of work on the target" to pick the right exercise
+         for a muscle. Ordering is a separate concern: compounds go before
+         isolation, or you have simply invented pre-exhaustion. The weak-point
+         lead keeps its first slot regardless — that is the one place where
+         being fresh is worth more than movement class. */
+      const nMuscles = c => Object.keys(c.ex.contrib).length;
+      const leadItem = sess.items[0];
+      const tail = sess.items.slice(1)
+        .map((c,i)=>({c,i}))
+        .sort((a,b) => (nMuscles(b.c)-nMuscles(a.c)) || (a.i-b.i))
+        .map(x=>x.c);
+      sess.items = leadItem ? [leadItem, ...tail] : [];
 
       /* Rule 4 repair. Moving separated isolations to the end is not enough:
          the compound that fatigued them can simply end up as the new
