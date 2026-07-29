@@ -43,9 +43,7 @@
 
 <title>GERGÖ GAINS — Physique Engineering</title>
 <link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <style>
   picture{display:contents;}
   :root{--ink:#0b0b0b;--paper:#ffffff;--muted:#6e6e6e;--line:#0b0b0b;--grid:#e8e8e6;--panel:#f3f3f1;}
@@ -117,6 +115,9 @@
   .manifesto .bignum{position:absolute;right:-3vw;top:-6vw;font-family:'Anton',sans-serif;font-size:38vw;color:#141414;line-height:1;pointer-events:none;z-index:0;}
   .manifesto .wrap>*{position:relative;z-index:1;}
 
+  /* The nav is sticky and 64px tall, so an anchor jump used to land with the
+     section heading hidden underneath it. */
+  section[id],div[id]{scroll-margin-top:72px;}
   section.blk{border-bottom:2px solid var(--ink);}
   section.blk .wrap{padding:clamp(50px,7vw,96px) clamp(16px,3.5vw,40px);}
   /* Section rhythm. Uniform padding on every block is what made the page read

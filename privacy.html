@@ -7,6 +7,7 @@
 <meta name="description" content="How Gergö Gains handles your data.">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/legal.css">
 </head>
 <body>
@@ -62,16 +63,16 @@ is the only storage used without consent.</p>
 <p><b>Legal basis:</b> consent, GDPR Art. 6(1)(a). You may withdraw it at any time
 by clearing your browser storage for this site, which brings the notice back.</p>
 
-<h2>5. Fonts are loaded from Google</h2>
-<p>Typefaces are requested from <code>fonts.googleapis.com</code> and
-<code>fonts.gstatic.com</code>. This means your IP address is transmitted to Google
-when the page loads, before any consent is given.</p>
-<div class="todo"><b>Known issue — worth fixing</b><br>
-European courts have found that embedding Google Fonts without consent can breach
-the GDPR. The clean fix is to self-host the font files so nothing is requested from
-Google at all. See the README for how. Until then this disclosure is the honest
-minimum, not a full remedy.
-</div>
+<h2>5. Fonts</h2>
+<p>Typefaces are served from this website's own domain. Loading them does not
+contact Google, or any other third party, and happens without your IP address
+leaving this site. No cookie or storage of any kind is involved.</p>
+<p>This was previously not the case: the fonts were embedded from
+<code>fonts.googleapis.com</code> and <code>fonts.gstatic.com</code>, which
+transmitted your IP address to Google before any consent was given. A German
+court held that practice to be a GDPR breach (Landgericht München I,
+20 January 2022, 3 O 17493/20). The font files are now hosted here, so the
+request no longer leaves this server.</p>
 
 <h2>6. Hosting</h2>
 <p>This site is served as static files by GitHub Pages (GitHub, Inc.). Like any web
