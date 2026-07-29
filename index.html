@@ -119,6 +119,11 @@
 
   section.blk{border-bottom:2px solid var(--ink);}
   section.blk .wrap{padding:clamp(50px,7vw,96px) clamp(16px,3.5vw,40px);}
+  /* Section rhythm. Uniform padding on every block is what made the page read
+     flat below the hero: the eye gets no cue about what carries weight.
+     .tight = supporting material, .tall = the sections that do the arguing. */
+  section.blk.tight .wrap{padding:clamp(32px,4.2vw,58px) clamp(16px,3.5vw,40px);}
+  section.blk.tall  .wrap{padding:clamp(66px,9.5vw,132px) clamp(16px,3.5vw,40px);}
   .sec-head{display:flex;align-items:flex-end;gap:18px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:40px;flex-wrap:wrap;}
   .sec-head .idx{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.1em;color:var(--muted);}
   .sec-head h2{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:clamp(26px,5vw,56px);line-height:.92;}
@@ -403,18 +408,69 @@
   /* ---- method: industrial principles ---- */
   .method-lead{max-width:62ch;font-size:clamp(14px,1.6vw,17px);line-height:1.7;margin-bottom:34px;}
   .method-lead b{font-weight:600;}
-  .princ{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);}
-  .princ .p{border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:22px 22px 24px;}
+  /* The eight principles are not equal. Constraints and capacity planning carry
+     the argument — they get full-width treatment and the inverted lead card.
+     The remaining six are supporting evidence and are set dense. */
+  .princ-lead{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1.5px solid var(--ink);border-bottom:none;}
+  @media(max-width:820px){.princ-lead{grid-template-columns:1fr;}}
+  .princ-lead .p{padding:clamp(26px,3.4vw,40px);border-left:1.5px solid var(--ink);}
+  .princ-lead .p:first-child{border-left:none;}
+  @media(max-width:820px){.princ-lead .p{border-left:none;}.princ-lead .p+.p{border-top:1.5px solid var(--ink);}}
+  .princ-lead .p.inv{background:var(--ink);color:var(--paper);}
+  .princ-lead .p .n{font-family:'Anton',sans-serif;font-size:clamp(38px,5.4vw,64px);line-height:.9;letter-spacing:0;color:var(--ink);}
+  .princ-lead .p.inv .n{color:var(--paper);}
+  .princ-lead .p h4{font-family:'Anton',sans-serif;text-transform:uppercase;font-weight:400;font-size:clamp(20px,2.6vw,30px);line-height:1.02;letter-spacing:.01em;margin:12px 0 6px;}
+  .princ-lead .p .field{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+  .princ-lead .p.inv .field{color:#9a9a9a;}
+  .princ-lead .p p{font-size:clamp(14px,1.5vw,15.5px);line-height:1.66;color:#2a2a2a;max-width:46ch;}
+  .princ-lead .p.inv p{color:#d8d8d8;}
+  .princ-lead .p .arrow{display:block;margin:14px 0 8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;padding-top:12px;border-top:1.5px solid var(--ink);}
+  .princ-lead .p.inv .arrow{border-color:#3a3a3a;color:#fff;}
+
+  .princ{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);}
+  @media(max-width:900px){.princ{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.princ{grid-template-columns:1fr;}}
+  .princ .p{border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:18px 18px 20px;}
   .princ .p .n{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);}
-  .princ .p h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:16px;letter-spacing:.03em;margin:8px 0 4px;}
-  .princ .p .field{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-  .princ .p p{font-size:13.5px;line-height:1.62;color:#2a2a2a;}
-  .princ .p .arrow{display:block;margin:10px 0 6px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink);}
-  .creds{display:flex;flex-wrap:wrap;gap:0;border:1.5px solid var(--ink);margin-top:36px;}
-  .creds div{flex:1 1 190px;padding:18px 20px;border-right:1.5px solid var(--ink);}
+  .princ .p h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:15px;letter-spacing:.03em;margin:6px 0 3px;}
+  .princ .p .field{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .princ .p p{font-size:12.5px;line-height:1.58;color:#2a2a2a;}
+  .princ .p .arrow{display:block;margin:8px 0 5px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--ink);}
+
+  /* Raised out of the bottom of the method section into a full-bleed band —
+     these are the only hard numbers on the page and were the last thing seen. */
+  .creds{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:none;border-bottom:2px solid var(--ink);margin:0;}
+  .creds div{padding:clamp(18px,2.6vw,28px) clamp(14px,3vw,32px);border-right:1.5px solid var(--ink);}
   .creds div:last-child{border-right:none;}
-  .creds .k{font-family:'Anton',sans-serif;font-size:clamp(24px,3.4vw,36px);line-height:1;}
+  .creds .k{font-family:'Anton',sans-serif;font-size:clamp(26px,3.8vw,44px);line-height:1;}
   .creds .l{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+  @media(max-width:680px){
+    .creds{grid-template-columns:1fr 1fr;}
+    .creds div:nth-child(2n){border-right:none;}
+    .creds div:nth-child(n+3){border-top:1.5px solid var(--ink);}
+  }
+
+  /* ---------------------------------------------------------------------
+     Narrow phones (360-430px). Two things overflow here:
+     the volume table in the results panel, and long unbroken headings.
+     The table's fourth column is a decorative bar duplicating numbers that
+     are already in the adjacent cell, so it is the one that goes.
+     --------------------------------------------------------------------- */
+  @media(max-width:430px){
+    .gg-tbl{font-size:12px;table-layout:fixed;width:100%;}
+    .gg-tbl th,.gg-tbl td{padding-right:4px;word-break:break-word;}
+    .gg-tbl th:nth-child(3),.gg-tbl td:nth-child(3){display:none;}
+    .gg-tbl th:nth-child(2){font-size:9px;}
+    .gg-tag{display:inline-block;margin-left:0;margin-top:3px;}
+    .princ-lead .p .n{font-size:34px;}
+    .sec-head{gap:8px;margin-bottom:26px;}
+    .sec-head h2{font-size:clamp(23px,8.5vw,30px);word-break:break-word;}
+    .creds .k{font-size:23px;}
+    .creds .l{font-size:9px;letter-spacing:.1em;}
+    .gg-block,.gg-gate,.gg-lead{padding:14px;}
+    ul.gg-sess li{gap:4px;}
+    .gg-rx{font-size:11px;}
+  }
 </style>
 </head>
 <body>
@@ -469,6 +525,15 @@
   </div>
 </section>
 
+<!-- The hard numbers, directly under the claim they back. Was buried at the
+     foot of the method section, where it was the last thing anyone saw. -->
+<div class="creds">
+  <div><div class="k">97&rarr;87</div><div class="l">kg in 8 weeks</div></div>
+  <div><div class="k">187</div><div class="l">logged sessions</div></div>
+  <div><div class="k">5</div><div class="l">cited sources in every plan</div></div>
+  <div><div class="k">0</div><div class="l">claims without one</div></div>
+</div>
+
 <section class="blk" id="process">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">01 / 06</span><h2>The Process</h2></div>
@@ -491,7 +556,7 @@
   </div></div>
 </section>
 
-<section class="blk">
+<section class="blk tight">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">02 / 06</span><h2>The physique, unfiltered</h2></div>
     <div class="gallery rv">
@@ -504,20 +569,15 @@
   </div>
 </section>
 
-<section class="blk" id="method">
+<section class="blk tall" id="method">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">03 / 06</span><h2>The method</h2></div>
     <p class="method-lead rv">I'm an industrial engineer from Austria. My work is finding why a system
     produces less than it should, and fixing the one thing that actually limits it. These are the tools
     I use professionally. Every one of them has a direct, unforced translation to training &mdash; and
     together they are why this plan looks different from the ones you have followed before.</p>
-    <div class="princ rv"><div class="p"><div class="n">01</div><h4>Theory of constraints</h4><div class="field">Bottleneck analysis</div><p>A production line runs at the speed of its slowest station. Everything upstream piles up, everything downstream waits. Adding capacity anywhere else changes nothing.</p><span class="arrow">&darr; applied to training</span><p>Your weakest muscle sets the ceiling for your whole upper body — and most plans give volume to whatever already feels strong.</p></div><div class="p"><div class="n">02</div><h4>Capacity planning</h4><div class="field">Load levelling</div><p>You cannot schedule more work into a shift than the shift can hold. Plans that ignore this do not fail loudly; they quietly under-deliver everywhere.</p><span class="arrow">&darr; applied to training</span><p>Four sessions carry roughly 150 counted sets. Ask for 200 and something silently gets cut. Here the targets are scaled to what your week can actually hold, and the shortfall is named.</p></div><div class="p"><div class="n">03</div><h4>Overall equipment effectiveness</h4><div class="field">Availability x performance x quality</div><p>Output is not one number. It is uptime multiplied by speed multiplied by how much of the output is usable. A line at 100% speed and 60% uptime is a bad line.</p><span class="arrow">&darr; applied to training</span><p>Adherence x intensity x execution. A perfect programme followed 60% of the time loses to an average one followed 95% of the time. That is why sessions here are capped at what you will finish.</p></div><div class="p"><div class="n">04</div><h4>Specification and tolerance</h4><div class="field">Range, not a single value</div><p>No engineer specifies a single number. They specify a target and the band around it where the part still works.</p><span class="arrow">&darr; applied to training</span><p>Twelve to sixteen sets, not 'twelve'. Training inside a band is what makes a plan survive a bad week.</p></div><div class="p"><div class="n">05</div><h4>Statistical process control</h4><div class="field">Signal versus noise</div><p>Every process varies. The skill is telling ordinary variation apart from a real shift that needs intervention.</p><span class="arrow">&darr; applied to training</span><p>One bad session is noise. Three weeks of falling performance at the same load is a signal — and that is what the scheduled deloads are placed to catch.</p></div><div class="p"><div class="n">06</div><h4>Root cause analysis</h4><div class="field">Five whys</div><p>You do not fix the symptom. You keep asking why until you reach the cause that, once removed, stops it recurring.</p><span class="arrow">&darr; applied to training</span><p>A muscle is not growing. Is it volume, proximity to failure, recovery, food, or execution? Adding sets to a technique problem just adds a technique problem.</p></div><div class="p"><div class="n">07</div><h4>PDCA cycle</h4><div class="field">Plan, do, check, act</div><p>Improvement is not continuous effort. It is bounded cycles: change one thing, run it, measure, decide, repeat.</p><span class="arrow">&darr; applied to training</span><p>An eight-week block with a deload is one cycle. Changing your programme every fortnight means you never reach the measuring step.</p></div><div class="p"><div class="n">08</div><h4>Measurement system analysis</h4><div class="field">Trust the gauge first</div><p>Before optimising anything you verify the instrument. An unreliable gauge makes every decision downstream worse than guessing.</p><span class="arrow">&darr; applied to training</span><p>Bodyweight swings two kilos on water alone. Weekly averages and a fixed measurement protocol come before any decision about your calories.</p></div></div>
-    <div class="creds rv">
-      <div><div class="k">97&rarr;87</div><div class="l">kg in 8 weeks</div></div>
-      <div><div class="k">187</div><div class="l">logged sessions</div></div>
-      <div><div class="k">5</div><div class="l">cited sources in every plan</div></div>
-      <div><div class="k">0</div><div class="l">claims without one</div></div>
-    </div>
+    <div class="princ-lead rv"><div class="p inv"><div class="n">01</div><h4>Theory of constraints</h4><div class="field">Bottleneck analysis</div><p>A production line runs at the speed of its slowest station. Everything upstream piles up, everything downstream waits. Adding capacity anywhere else changes nothing.</p><span class="arrow">&darr; applied to training</span><p>Your weakest muscle sets the ceiling for your whole upper body — and most plans give volume to whatever already feels strong.</p></div><div class="p"><div class="n">02</div><h4>Capacity planning</h4><div class="field">Load levelling</div><p>You cannot schedule more work into a shift than the shift can hold. Plans that ignore this do not fail loudly; they quietly under-deliver everywhere.</p><span class="arrow">&darr; applied to training</span><p>Four sessions carry roughly 150 counted sets. Ask for 200 and something silently gets cut. Here the targets are scaled to what your week can actually hold, and the shortfall is named.</p></div></div>
+    <div class="princ rv"><div class="p"><div class="n">03</div><h4>Overall equipment effectiveness</h4><div class="field">Availability x performance x quality</div><p>Output is not one number. It is uptime multiplied by speed multiplied by how much of the output is usable. A line at 100% speed and 60% uptime is a bad line.</p><span class="arrow">&darr; applied to training</span><p>Adherence x intensity x execution. A perfect programme followed 60% of the time loses to an average one followed 95% of the time. That is why sessions here are capped at what you will finish.</p></div><div class="p"><div class="n">04</div><h4>Specification and tolerance</h4><div class="field">Range, not a single value</div><p>No engineer specifies a single number. They specify a target and the band around it where the part still works.</p><span class="arrow">&darr; applied to training</span><p>Twelve to sixteen sets, not 'twelve'. Training inside a band is what makes a plan survive a bad week.</p></div><div class="p"><div class="n">05</div><h4>Statistical process control</h4><div class="field">Signal versus noise</div><p>Every process varies. The skill is telling ordinary variation apart from a real shift that needs intervention.</p><span class="arrow">&darr; applied to training</span><p>One bad session is noise. Three weeks of falling performance at the same load is a signal — and that is what the scheduled deloads are placed to catch.</p></div><div class="p"><div class="n">06</div><h4>Root cause analysis</h4><div class="field">Five whys</div><p>You do not fix the symptom. You keep asking why until you reach the cause that, once removed, stops it recurring.</p><span class="arrow">&darr; applied to training</span><p>A muscle is not growing. Is it volume, proximity to failure, recovery, food, or execution? Adding sets to a technique problem just adds a technique problem.</p></div><div class="p"><div class="n">07</div><h4>PDCA cycle</h4><div class="field">Plan, do, check, act</div><p>Improvement is not continuous effort. It is bounded cycles: change one thing, run it, measure, decide, repeat.</p><span class="arrow">&darr; applied to training</span><p>An eight-week block with a deload is one cycle. Changing your programme every fortnight means you never reach the measuring step.</p></div><div class="p"><div class="n">08</div><h4>Measurement system analysis</h4><div class="field">Trust the gauge first</div><p>Before optimising anything you verify the instrument. An unreliable gauge makes every decision downstream worse than guessing.</p><span class="arrow">&darr; applied to training</span><p>Bodyweight swings two kilos on water alone. Weekly averages and a fixed measurement protocol come before any decision about your calories.</p></div></div>
   </div>
 </section>
 
@@ -616,7 +676,7 @@
 </section>
 
 <!-- FUEL -->
-<section class="blk" id="fuel">
+<section class="blk tight" id="fuel">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">05 / 06</span><h2>Fuel the build</h2></div>
     <div class="fuel-grid rv">
@@ -650,7 +710,7 @@
   </div>
 </section>
 
-<section class="blk" id="pricing">
+<section class="blk tall" id="pricing">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">06 / 06</span><h2>Plans &amp; coaching</h2></div>
     <div class="pricing rv">
@@ -708,7 +768,7 @@
   </div>
 </section>
 
-<section class="blk" id="faqsec">
+<section class="blk tight" id="faqsec">
   <div class="wrap">
     <div class="sec-head rv"><span class="idx">+ / FAQ</span><h2>Questions, answered</h2></div>
     <div class="faq rv">

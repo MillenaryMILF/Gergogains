@@ -1,6 +1,9 @@
 global.window = {};
-require('/Users/gergoszittyai/Projects/gergo-gains/assets/js/exercise-db.js');
-require('/Users/gergoszittyai/Projects/gergo-gains/assets/js/programming.js');
+// Resolved relative to this file, so the suite runs from any checkout and in CI.
+// These were absolute paths to one machine, which made the suite unrunnable
+// everywhere else — including the "run before every commit" rule in the README.
+require('../assets/js/exercise-db.js');
+require('../assets/js/programming.js');
 const DB = window.GG_DB, E = window.GG_ENGINE;
 
 let fail = 0;
