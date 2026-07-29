@@ -1,5 +1,4 @@
 # Gergö Gains
-# Replace gergogains.com below once your custom domain is live.
 User-agent: *
 Allow: /
 

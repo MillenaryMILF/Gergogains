@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Audit Report — Gergö Gains</title>
+<meta name="description" content="An example of the report you receive with The Audit: bottleneck analysis, utilisation profile per muscle, loss sources and a fix list ordered by effect per unit of effort.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gergogains.com/audit-sample.html">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/legal.css">
+<style>
+  /* Report-specific additions on top of legal.css. Same monochrome rules as
+     the main site: no colour, no rounded corners. */
+  .wrap{max-width:860px;}
+  .banner{border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:16px 18px;margin:0 0 30px;}
+  .banner .bt{font-family:ui-monospace,'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;}
+  .banner p{font-size:13.5px;margin:0;color:#dcdcdc;}
+  .spec{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);margin:0 0 8px;}
+  @media(max-width:620px){.spec{grid-template-columns:1fr 1fr;}}
+  .spec div{padding:12px 14px;border-left:1px solid var(--ink);}
+  .spec div:first-child{border-left:none;}
+  @media(max-width:620px){.spec div:nth-child(odd){border-left:none;}.spec div:nth-child(n+3){border-top:1px solid var(--ink);}}
+  .spec .k{font-family:ui-monospace,'Space Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .spec .v{font-family:'Arial Narrow','Helvetica Neue',Impact,sans-serif;font-weight:700;font-size:20px;line-height:1.15;margin-top:4px;}
+  table.rep{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0 6px;}
+  table.rep th{font-family:ui-monospace,'Space Mono',monospace;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 8px 8px 0;border-bottom:1.5px solid var(--ink);vertical-align:bottom;}
+  table.rep td{padding:7px 8px 7px 0;border-bottom:1px solid #e2e2e0;vertical-align:middle;}
+  table.rep td.n{font-family:ui-monospace,'Space Mono',monospace;white-space:nowrap;}
+  table.rep tr.crit td{font-weight:700;}
+  .bar{height:7px;background:#e8e8e6;min-width:60px;position:relative;}
+  .bar i{display:block;height:100%;background:var(--ink);}
+  .bar.over i{background:repeating-linear-gradient(90deg,var(--ink) 0 3px,#fff 3px 6px);}
+  .flagcell{font-family:ui-monospace,'Space Mono',monospace;font-size:9px;letter-spacing:.1em;white-space:nowrap;}
+  .tag{background:var(--ink);color:var(--paper);padding:2px 5px;font-family:ui-monospace,'Space Mono',monospace;font-size:8.5px;letter-spacing:.12em;}
+  ol.fixes{list-style:none;padding-left:0;counter-reset:fix;}
+  ol.fixes li{counter-increment:fix;border:1.5px solid var(--ink);padding:14px 16px;margin-bottom:10px;display:grid;grid-template-columns:auto 1fr;gap:0 16px;}
+  ol.fixes li::before{content:counter(fix);font-family:'Arial Narrow','Helvetica Neue',Impact,sans-serif;font-weight:700;font-size:26px;line-height:1;grid-row:1/span 3;}
+  ol.fixes .ft{font-weight:700;font-size:15px;margin-bottom:4px;}
+  ol.fixes .fd{font-size:13.5px;margin-bottom:6px;}
+  ol.fixes .fm{font-family:ui-monospace,'Space Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .cta{border:2px solid var(--ink);padding:22px 24px;margin:40px 0 0;}
+  .cta h3{font-family:'Arial Narrow','Helvetica Neue',Impact,sans-serif;text-transform:uppercase;font-size:24px;margin-bottom:8px;}
+  .cta a.b{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;padding:13px 22px;font-family:ui-monospace,'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:12px;}
+  .scroller{overflow-x:auto;}
+  @media(max-width:520px){
+    table.rep{font-size:12px;}
+    table.rep th:nth-child(4),table.rep td:nth-child(4){display:none;}
+  }
+</style>
+</head>
+<body>
+<header class="lh"><div class="in">
+  <div class="logo"><a href="index.html">GERGÖ GAINS</a></div>
+  <a class="back" href="index.html">&larr; Back to site</a>
+</div></header>
+
+<main class="wrap">
+
+<div class="banner">
+  <div class="bt">Example report &mdash; figures are illustrative</div>
+  <p>This is a worked demonstration of what <b>The Audit</b> delivers, not a real
+  client. The lifter is invented, and every number below was constructed to show the
+  method. Your report uses your own logged sets and will look different. Nothing here
+  is a result, a testimonial, or a promise of an outcome.</p>
+</div>
+
+<h1>Audit report</h1>
+<div class="meta">Sample &middot; Spec 02 &mdash; The Audit &middot; 8-week cycle</div>
+
+<h2>0. Intake</h2>
+<p>What an audit starts from: a training log covering at least four consecutive weeks,
+plus the constraints you actually train under. No photographs are required.</p>
+
+<div class="spec">
+  <div><div class="k">Subject</div><div class="v">Client A</div></div>
+  <div><div class="k">Age / mass / height</div><div class="v">29 &middot; 82 kg &middot; 178 cm</div></div>
+  <div><div class="k">Experience</div><div class="v">Intermediate</div></div>
+  <div><div class="k">Schedule</div><div class="v">4 days &middot; gym</div></div>
+</div>
+<div class="spec">
+  <div><div class="k">Normalised FFMI</div><div class="v">21.9</div></div>
+  <div><div class="k">Lean mass (est.)</div><div class="v">68.9 kg</div></div>
+  <div><div class="k">Protein target</div><div class="v">131&ndash;180 g</div></div>
+  <div><div class="k">Log supplied</div><div class="v">8 weeks</div></div>
+</div>
+<p class="meta" style="margin-top:10px;margin-bottom:0;">Body-fat estimate 16%. FFMI is normalised to
+178 cm. Protein range is 1.6&ndash;2.2 g/kg of bodyweight <a href="#sources">[5]</a>.</p>
+
+<h2>1. Bottleneck analysis</h2>
+<p>A production line runs at the speed of its slowest station. The question an audit
+answers is not &ldquo;is this programme good&rdquo; but <b>which single station is
+holding the rest of the line back</b>, because that is the only place where added
+capacity changes the output.</p>
+
+<p>Two stations are running far below the rest. One of them is the constraint:</p>
+
+<div class="note">
+<b>Constraint: rear delts &mdash; 3 programmed sets against a target of 13 (23% utilisation),
+trained once per week.</b><br>
+Evidence in the log: no direct rear-delt movement appears in any of the eight weeks.
+The three sets counted are the fractional contribution of face-pulls performed as a
+warm-up, at a load that never increased. Meanwhile the opposing station &mdash; front
+delts &mdash; runs at 123%, most of it incidental to 22 weekly sets of chest pressing.
+That imbalance is what caps shoulder width and what shows in a rear double-biceps.
+</div>
+
+<div class="note">
+<b>Second constraint: hamstrings &mdash; 4 sets against a target of 13 (31%), trained
+once per week.</b><br>
+The log contains one hinge pattern, performed after squats in the same session, with
+its top set falling in five of the eight weeks. Quads run at 108%. This is a
+posterior-chain deficit, not a leg-volume deficit &mdash; total lower-body sets are
+close to target, they are simply pointed at one side of the joint.
+</div>
+
+<p>Both were missed because the total looks healthy. That is the trap: <b>144 sets a
+week is not a low-volume programme.</b> The volume is there. It is in the wrong
+places, and no amount of adding to what is already at 147% will move the constraint.</p>
+
+<h2>2. Utilisation profile</h2>
+<p>Programmed sets are counted the way the research counts them &mdash; a direct set
+scores 1.0, a set where the muscle acts as a synergist scores 0.5 &mdash; and measured
+against the weekly target for this bodyweight, experience level and training age
+<a href="#sources">[1]</a>.</p>
+
+<div class="scroller">
+<table class="rep">
+  <thead><tr>
+    <th>Muscle</th><th>Programmed / target</th><th>Utilisation</th>
+    <th style="width:34%">&nbsp;</th><th>Freq</th><th>Status</th>
+  </tr></thead>
+  <tbody>
+    <tr class="crit"><td>Rear delts <span class="tag">CONSTRAINT</span></td><td class="n">3 / 13</td><td class="n">23%</td><td><div class="bar"><i style="width:23%"></i></div></td><td class="n">1&times;</td><td class="flagcell">STARVED</td></tr>
+    <tr class="crit"><td>Hamstrings <span class="tag">CONSTRAINT</span></td><td class="n">4 / 13</td><td class="n">31%</td><td><div class="bar"><i style="width:31%"></i></div></td><td class="n">1&times;</td><td class="flagcell">STARVED</td></tr>
+    <tr><td>Side delts</td><td class="n">6 / 16</td><td class="n">38%</td><td><div class="bar"><i style="width:38%"></i></div></td><td class="n">1&times;</td><td class="flagcell">UNDER</td></tr>
+    <tr><td>Calves</td><td class="n">4 / 10</td><td class="n">40%</td><td><div class="bar"><i style="width:40%"></i></div></td><td class="n">1&times;</td><td class="flagcell">UNDER</td></tr>
+    <tr><td>Upper back</td><td class="n">6 / 13</td><td class="n">46%</td><td><div class="bar"><i style="width:46%"></i></div></td><td class="n">1&times;</td><td class="flagcell">UNDER</td></tr>
+    <tr><td>Glutes</td><td class="n">6 / 13</td><td class="n">46%</td><td><div class="bar"><i style="width:46%"></i></div></td><td class="n">1&times;</td><td class="flagcell">UNDER</td></tr>
+    <tr><td>Abs</td><td class="n">8 / 11</td><td class="n">73%</td><td><div class="bar"><i style="width:73%"></i></div></td><td class="n">2&times;</td><td class="flagcell">UNDER</td></tr>
+    <tr><td>Lats</td><td class="n">12 / 14</td><td class="n">86%</td><td><div class="bar"><i style="width:86%"></i></div></td><td class="n">2&times;</td><td class="flagcell">IN BAND</td></tr>
+    <tr><td>Traps</td><td class="n">9 / 10</td><td class="n">90%</td><td><div class="bar"><i style="width:90%"></i></div></td><td class="n">1&times;</td><td class="flagcell">LOW FREQ</td></tr>
+    <tr><td>Quads</td><td class="n">14 / 13</td><td class="n">108%</td><td><div class="bar over"><i style="width:100%"></i></div></td><td class="n">2&times;</td><td class="flagcell">IN BAND</td></tr>
+    <tr><td>Triceps</td><td class="n">16 / 14</td><td class="n">114%</td><td><div class="bar over"><i style="width:100%"></i></div></td><td class="n">3&times;</td><td class="flagcell">OVER</td></tr>
+    <tr><td>Front delts</td><td class="n">16 / 13</td><td class="n">123%</td><td><div class="bar over"><i style="width:100%"></i></div></td><td class="n">2&times;</td><td class="flagcell">OVER</td></tr>
+    <tr><td>Biceps</td><td class="n">18 / 14</td><td class="n">129%</td><td><div class="bar over"><i style="width:100%"></i></div></td><td class="n">4&times;</td><td class="flagcell">OVER</td></tr>
+    <tr><td>Chest</td><td class="n">22 / 15</td><td class="n">147%</td><td><div class="bar over"><i style="width:100%"></i></div></td><td class="n">2&times;</td><td class="flagcell">OVER</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="meta" style="margin-bottom:0;">Hatched bars are over target. Frequency below 2&times; per
+week is flagged regardless of whether the weekly total is met <a href="#sources">[1]</a>.</p>
+
+<h2>3. Capacity check</h2>
+<p>Before prescribing anything, the arithmetic has to close. Four sessions at this
+session length carry roughly <b>150 counted sets</b> a week. That is the capacity of
+the shift, and it is not negotiable by wanting more.</p>
+
+<div class="spec">
+  <div><div class="k">Programmed now</div><div class="v">144 sets</div></div>
+  <div><div class="k">Sum of all targets</div><div class="v">182 sets</div></div>
+  <div><div class="k">Weekly capacity</div><div class="v">~150 sets</div></div>
+  <div><div class="k">Push : pull ratio</div><div class="v">1.38 : 1</div></div>
+</div>
+
+<p>Two things follow, and they are the whole reason this report exists:</p>
+<ul>
+  <li><b>Capacity is not the problem.</b> The programme already uses 96% of what four
+  sessions can hold. Nothing here needs a fifth day.</li>
+  <li><b>Every target cannot be met at once.</b> 182 wanted against ~150 available is a
+  32-set shortfall. Any plan that appears to hit all fourteen targets on four days is
+  quietly cutting something and not telling you. Here the shortfall is named, and it
+  is placed on the stations that are already in band.</li>
+</ul>
+<p>The push-to-pull ratio of 1.38 : 1 is the same finding stated a second way. For a
+lifter whose stated goal is width and rear-shoulder development, that wants to sit at
+roughly 1 : 1.1 &mdash; slightly pull-dominant.</p>
+
+<h2>4. Loss sources</h2>
+<p>Where sets are being spent without a return. This is not about working hard; every
+set in this log was performed. It is about sets that cost recovery and buy little.</p>
+
+<div class="scroller">
+<table class="rep">
+  <thead><tr><th>Source</th><th>Sets / wk</th><th>Why it returns little</th></tr></thead>
+  <tbody>
+    <tr><td>Redundant chest pressing</td><td class="n">7</td><td>Flat barbell, incline barbell and machine press all load the mid-range through the same pattern. The third variation adds fatigue, not stimulus.</td></tr>
+    <tr><td>Direct front-delt raises</td><td class="n">6</td><td>Front delts already receive 10 fractional sets from 22 sets of pressing. Direct raises stack on a station running at 123%.</td></tr>
+    <tr><td>Short-length isolation</td><td class="n">9</td><td>Concentration curls, leg extensions and cable kickbacks load the muscle at its shortest. Long-length variants produce more hypertrophy for the same set count <a href="#sources">[2]</a>.</td></tr>
+    <tr><td>Curls spread over 4 days</td><td class="n">4</td><td>18 weekly biceps sets at 129% of target, split across four sessions of the same movement. Frequency is not the issue &mdash; the total is.</td></tr>
+    <tr><td>Isolation placed after a pre-fatiguing compound</td><td class="n">5</td><td>Lateral raises programmed immediately after overhead pressing. The delt is already fatigued, so the working load understates what the muscle can take <a href="#sources">[4]</a>.</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>31 of 144 programmed sets &mdash; 22% &mdash; are returning less than they cost.</b>
+That is the budget the fixes below are paid for with. No extra training time is required.</p>
+
+<h2>5. Fix list</h2>
+<p>Ordered by effect per unit of effort, not by size of effect. The first three cost
+nothing but a reallocation; they are what changes the output. Everything below rank 3
+is worth doing and would not, on its own, have been worth an audit.</p>
+
+<ol class="fixes">
+  <li>
+    <div class="ft">Move 6 chest sets to rear delts</div>
+    <div class="fd">Drop the third pressing variation entirely. Replace with reverse
+    pec-deck and cable rear-delt fly, split across two sessions. Rear delts go from
+    3 &rarr; 9 sets and from 1&times; to 2&times; weekly.</div>
+    <div class="fm">Cost: 0 min &middot; 0 extra sets &middot; Effect: releases the constraint</div>
+  </li>
+  <li>
+    <div class="ft">Convert leg extensions to seated leg curls</div>
+    <div class="fd">Quads are at 108% and hamstrings at 31%. A straight swap of 4 sets
+    moves volume across the joint at no cost. Seated curl loads the hamstring at long
+    length, which is the position that pays <a href="#sources">[2]</a>.</div>
+    <div class="fm">Cost: 0 min &middot; 0 extra sets &middot; Effect: releases the second constraint</div>
+  </li>
+  <li>
+    <div class="ft">Delete front raises, move the volume to side delts</div>
+    <div class="fd">6 sets off a station at 123%, onto one at 38%. Side delts go
+    6 &rarr; 12 sets. This is the single largest visual change available in the
+    whole log.</div>
+    <div class="fm">Cost: 0 min &middot; 0 extra sets &middot; Effect: high</div>
+  </li>
+  <li>
+    <div class="ft">Move lateral raises off the back of overhead pressing</div>
+    <div class="fd">Lead one session with them instead, while the delt is fresh
+    <a href="#sources">[3]</a>. Same sets, same session, different order.</div>
+    <div class="fm">Cost: 0 min &middot; 0 extra sets &middot; Effect: moderate</div>
+  </li>
+  <li>
+    <div class="ft">Halve biceps volume, raise upper back</div>
+    <div class="fd">18 &rarr; 12 sets of curls; the 6 recovered sets go to rows and
+    face-pulls. Biceps still receive fractional volume from every pulling set, so
+    measured biceps volume falls far less than 6.</div>
+    <div class="fm">Cost: 0 min &middot; 0 extra sets &middot; Effect: moderate</div>
+  </li>
+  <li>
+    <div class="ft">Raise calves and glutes to 2&times; weekly</div>
+    <div class="fd">Both sit under 50% at one session a week. Frequency first, then
+    volume &mdash; this is the last item because it changes appearance least
+    <a href="#sources">[1]</a>.</div>
+    <div class="fm">Cost: ~6 min / session &middot; +6 sets &middot; Effect: low but cheap</div>
+  </li>
+</ol>
+
+<div class="note">
+<b>Net effect of ranks 1&ndash;5:</b> zero added sets, zero added training time, no extra
+session. Every station under 50% utilisation is brought into band except calves and
+glutes, which rank 6 handles. Push : pull moves from 1.38 : 1 to 1.02 : 1.
+</div>
+
+<h2>6. What happens next</h2>
+<p>The report is the first half. The rest of the cycle: a 45-minute call to walk through
+the findings and adapt them to the kit you actually have, a rebuilt eight-week
+programme with the fixes applied, one form check, and a re-audit at week four against
+your logged numbers &mdash; the same tables, so the change is measurable rather than
+felt.</p>
+
+<h2 id="sources">Sources</h2>
+<p>Every claim above traces to one of these. They are the same five cited in every
+plan the site produces.</p>
+<ol>
+  <li>Pelland et al. (2025). <i>The Resistance Training Dose Response: Meta-Regressions
+  on Weekly Volume and Frequency.</i> Sports Medicine. 67 studies, n=2058.
+  &mdash; weekly volume targets and the 2&times; frequency floor.</li>
+  <li>Systematic review &amp; meta-analysis (2025). <i>Hypertrophy from partial
+  repetitions at long vs. short muscle length.</i> 8 studies.
+  &mdash; why long-length variants are preferred.</li>
+  <li>Nunes et al. (2020). <i>Does exercise order affect resistance training
+  adaptations?</i> A systematic review and meta-analysis. 11 studies, n=268.
+  &mdash; exercise ordering.</li>
+  <li>Pre-exhaustion literature (acute EMG studies, mixed findings).
+  &mdash; why isolation is separated from a compound that pre-fatigues it.</li>
+  <li>1.6&ndash;2.2 g/kg/day protein for resistance-trained individuals.
+  &mdash; the daily protein target.</li>
+</ol>
+
+<div class="cta">
+  <h3>This is what $199 buys</h3>
+  <p>Send your log, get this report on your own numbers, plus the call, the rebuilt
+  programme, a form check and a week-four re-audit.</p>
+  <p class="meta" style="margin-bottom:0;">Not ready? The spec sheet and week one are free,
+  and they use the same volume model.</p>
+  <a class="b" href="index.html#pricing">Book The Audit &mdash; $199 &rarr;</a>
+  <a class="b" href="index.html#build" style="background:#fff;color:#0b0b0b;border:2px solid #0b0b0b;">Get the free spec sheet &rarr;</a>
+</div>
+
+</main>
+
+<footer class="lf"><div class="wrap">
+  <a href="index.html">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a>
+  <div style="margin-top:10px;">© 2026 GERGÖ GAINS · Example report, figures are illustrative</div>
+</div></footer>
+</body>
+</html>
