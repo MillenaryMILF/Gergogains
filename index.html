@@ -42,12 +42,91 @@
      <meta name="google-site-verification" content="PLACEHOLDER"> -->
 
 <title>GERGÖ GAINS — Physique Engineering</title>
+
+<!-- Structured data. Deliberately contains NO aggregateRating and NO review:
+     there are no customers yet, and inventing either is both a Google
+     structured-data violation and a lie. Add them only when they are real. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://gergogains.com/#gergo",
+      "name": "Gergö Szittyai",
+      "jobTitle": "Industrial engineer",
+      "description": "Industrial engineer from Austria applying process-optimisation methods — theory of constraints, capacity planning, statistical process control — to physique training.",
+      "url": "https://gergogains.com/",
+      "sameAs": [
+        "https://www.tiktok.com/@gergogains",
+        "https://www.youtube.com/@gergogains"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://gergogains.com/#business",
+      "name": "Gergö Gains",
+      "url": "https://gergogains.com/",
+      "email": "info@gergogains.com",
+      "founder": { "@id": "https://gergogains.com/#gergo" },
+      "image": "https://gergogains.com/assets/img/og-image.jpg",
+      "priceRange": "$29–$499",
+      "areaServed": "Worldwide",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Höchsterstraße 45",
+        "postalCode": "6850",
+        "addressLocality": "Dornbirn",
+        "addressCountry": "AT"
+      },
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "The Programme",
+          "description": "Weeks 2–8 of a personalised eight-week plan: progression, reps-in-reserve schedule, both deloads, exercise substitutions and a PDF.",
+          "price": "29.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "The Audit",
+          "description": "Training-log audit: bottleneck analysis, per-muscle utilisation profile, loss sources, a fix list ordered by effect per unit of effort, a 45-minute call and a week-four re-audit.",
+          "price": "199.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "The Commission",
+          "description": "Sixteen weeks of direct supervision: three calls, fortnightly reviews against logged numbers, unlimited form checks and nutrition structuring.",
+          "price": "499.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gergogains.com/#website",
+      "url": "https://gergogains.com/",
+      "name": "Gergö Gains",
+      "publisher": { "@id": "https://gergogains.com/#business" },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 <link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <style>
   picture{display:contents;}
   :root{--ink:#0b0b0b;--paper:#ffffff;--muted:#6e6e6e;--line:#0b0b0b;--grid:#e8e8e6;--panel:#f3f3f1;}
   *{box-sizing:border-box;margin:0;padding:0;border-radius:0!important;}
+  /* `hidden` must beat component display rules. Without this, .pmeth's
+     display:flex overrode [hidden] and the crypto toggle stayed clickable
+     even when no crypto checkout URL was configured. */
+  [hidden]{display:none!important;}
   html{scroll-behavior:smooth;}
   body{background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   img,video{max-width:100%;}
@@ -343,6 +422,22 @@
   .seesample{display:block;margin-top:12px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:center;border-bottom:1px solid currentColor;padding-bottom:3px;}
   .pcard.dark .seesample{color:#cfcfcf;} .pcard.dark .seesample:hover{color:#fff;}
 
+  /* crypto price line — injected by the inline script, hidden if not configured */
+  .cryp{display:none;border:1.5px dashed var(--ink);padding:8px 10px;margin:0 0 18px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.04em;line-height:1.5;}
+  .cryp.on{display:block;}
+  .cryp b{font-size:14px;letter-spacing:0;}
+  .pcard.dark .cryp{border-color:#5a5a5a;color:#e2e2e2;}
+  .pmeth{display:flex;gap:0;border:1.5px solid var(--ink);margin-bottom:16px;}
+  .pmeth button{flex:1;background:transparent;border:none;border-left:1.5px solid var(--ink);padding:11px 6px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:.05em;color:var(--ink);}
+  .pmeth button:first-child{border-left:none;}
+  .pmeth button.sel{background:var(--ink);color:var(--paper);}
+  .pmeth .sv{display:block;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.1em;margin-top:3px;opacity:.75;}
+  .modal .mprice .was{font-family:'Space Mono',monospace;font-size:15px;color:var(--muted);text-decoration:line-through;margin-left:10px;letter-spacing:0;}
+  .cnote{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);line-height:1.55;margin-top:12px;}
+  .socialrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px;}
+  .socialrow .sbtn{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);border:1.5px solid rgba(255,255,255,.55);padding:9px 16px;transition:.18s;}
+  .socialrow .sbtn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+
   .journal{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink);}
   @media(max-width:820px){.journal{grid-template-columns:1fr;}}
   .post{border-left:1.5px solid var(--ink);cursor:pointer;transition:.18s;}
@@ -453,6 +548,38 @@
     .creds div:nth-child(n+3){border-top:1.5px solid var(--ink);}
   }
 
+  /* Keyboard users could not see where they were: every interactive element
+     here is custom-styled, which drops the browser's default focus ring. */
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+    outline:3px solid var(--ink);outline-offset:2px;
+  }
+  .manifesto a:focus-visible,.band a:focus-visible,footer.foot a:focus-visible,
+  .app :focus-visible,.pcard.dark :focus-visible,.socialrow a:focus-visible{
+    outline-color:var(--paper);
+  }
+  .skip{position:absolute;left:-9999px;top:0;z-index:400;background:var(--ink);color:var(--paper);padding:12px 18px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.06em;}
+  .skip:focus{left:0;}
+
+  /* The hero pans, the CTA shines, and every section fades in on scroll. For
+     a visitor with a vestibular disorder that is not decoration, it is a
+     symptom trigger — and the reveal must not leave content at opacity 0. */
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+    .rv{opacity:1!important;transform:none!important;}
+    .hero-photo img{animation:none!important;}
+    .hero .btn::after{display:none!important;}
+  }
+
+  /* Sticky mobile buy bar. On a phone the pricing section is a long scroll
+     from the hero, and the nav CTA disappears the moment you scroll past it. */
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:120;display:none;background:var(--ink);color:var(--paper);border-top:2px solid var(--paper);padding:9px 12px;gap:10px;align-items:center;justify-content:space-between;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);}
+  .mbar.on{transform:none;}
+  .mbar .mb-t{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:#9a9a9a;line-height:1.35;}
+  .mbar .mb-t b{display:block;color:var(--paper);font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.04em;}
+  .mbar a{background:var(--paper);color:var(--ink);font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:12.5px;letter-spacing:.06em;padding:11px 15px;white-space:nowrap;}
+  @media(max-width:880px){.mbar{display:flex;}body{padding-bottom:0;}}
+  @media(prefers-reduced-motion:reduce){.mbar{transition:none;}}
+
   /* ---------------------------------------------------------------------
      Narrow phones (360-430px). Two things overflow here:
      the volume table in the results panel, and long unbroken headings.
@@ -477,6 +604,8 @@
 </style>
 </head>
 <body>
+
+<a class="skip" href="#build">Skip to the plan builder</a>
 
 <nav>
   <div class="wrap inner">
@@ -722,6 +851,7 @@
         <h3>The Programme</h3>
         <div class="amt">$29</div>
         <div class="term">One-time · emailed within 24h</div>
+        <div class="cryp" data-cryp="plan"></div>
         <ul>
           <li>Weekly volume per muscle, measured against what your days can carry</li>
           <li>Weeks 2&ndash;8: progression, RIR schedule &amp; both deloads</li>
@@ -739,6 +869,7 @@
         <h3>The Audit</h3>
         <div class="amt">$199</div>
         <div class="term">One-time · ~8-week cycle</div>
+        <div class="cryp" data-cryp="blueprint"></div>
         <ul>
           <li><b>Everything in The Programme</b></li>
           <li>I personally review your analysis &amp; plan</li>
@@ -756,6 +887,7 @@
         <h3>The Commission</h3>
         <div class="amt">$499</div>
         <div class="term">One-time · ~16-week build</div>
+        <div class="cryp" data-cryp="commission"></div>
         <ul>
           <li><b>Everything in The Audit</b></li>
           <li>Fully bespoke program I engineer from the ground up</li>
@@ -768,7 +900,7 @@
         <div class="act"><button class="btn" data-buy="commission">Commission a build — $499 ▸</button></div>
       </div>
     </div>
-    <p class="reassure">Secure checkout · Apple Pay · Google Pay · Card · 14-day guarantee</p>
+    <p class="reassure">Secure checkout · Apple Pay · Google Pay · Card · Crypto &minus;30% · 14-day guarantee</p>
   </div>
 </section>
 
@@ -807,6 +939,7 @@
         <h2>Build to the same standard.</h2>
         <p>Share progress, compare specs, and get accountability from people who treat training as a process, not a mood.</p>
         <a href="#build" class="btn inv">Build my spec sheet — free</a>
+        <div class="socialrow" data-social></div>
       </div>
     </div>
   </div>
@@ -821,8 +954,8 @@
       </div>
       <div class="col"><h5>System</h5><a href="#build">Build a plan</a><a href="#process">The process</a><a href="#fuel">Fuel</a><a href="#pricing">Plans</a></div>
       <div class="col"><h5>Tools</h5><a href="volume-calculator.html">Volume calculator</a><a href="bottleneck-analysis.html">Bottleneck analysis</a><a href="ffmi-calculator.html">FFMI calculator</a><a href="audit-sample.html">Sample audit report</a></div>
-      <div class="col"><h5>Community</h5><a href="#journal">Journal</a><a href="#faqsec">FAQ</a><a href="#">Builds</a></div>
-      <div class="col"><h5>Gergö</h5><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Contact</a></div>
+      <div class="col"><h5>Community</h5><a href="#journal">Journal</a><a href="#faqsec">FAQ</a><a href="audit-sample.html">Sample audit</a></div>
+      <div class="col"><h5>Gergö</h5><span id="footSocial"></span><a href="mailto:info@gergogains.com">Contact</a></div>
       <div class="col"><h5>Legal</h5><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a></div>
     </div>
     <div class="foot-bottom">
@@ -832,6 +965,11 @@
   </div>
 </footer>
 
+<div class="mbar" id="mbar" aria-hidden="false">
+  <div class="mb-t">Free · no account<b>Get your spec sheet</b></div>
+  <a href="#build">Start &#9656;</a>
+</div>
+
 <div class="modal" id="checkout">
   <div class="back" data-close></div>
   <div class="box">
@@ -840,10 +978,15 @@
     <h3 id="ckTier">The Programme</h3>
     <div class="mprice" id="ckPrice">$29</div>
     <div class="mdesc" id="ckDesc"></div>
+    <div class="pmeth" id="ckMeth" hidden>
+      <button type="button" data-m="card" class="sel">Card<span class="sv">Apple / Google Pay</span></button>
+      <button type="button" data-m="crypto">Crypto<span class="sv" id="ckSave">Save 30%</span></button>
+    </div>
     <div class="field"><label>Email for delivery</label><input type="email" id="ckEmail" placeholder="you@email.com"></div>
     <button class="btn pay" id="ckPay">Pay &amp; continue</button>
-    <div class="methods"><span>Apple Pay</span><span>Google Pay</span><span>Visa</span><span>Mastercard</span></div>
-    <div class="secure">🔒 Secure checkout · merchant-of-record handles tax</div>
+    <div class="methods" id="ckMethods"><span>Apple Pay</span><span>Google Pay</span><span>Visa</span><span>Mastercard</span></div>
+    <div class="secure" id="ckSecure">🔒 Secure checkout · merchant-of-record handles tax</div>
+    <div class="cnote" id="ckCnote" hidden></div>
   </div>
 </div>
 
@@ -990,11 +1133,108 @@
   function esc(s){return s.replace(/([,;\\])/g,'\\$1').replace(/\n/g,'\\n');}
   document.getElementById('ics').onclick=()=>{const plan=getPlan();const days=WD[plan.used]||WD[4];const[hh,mm]=state.start.split(':').map(Number);let ics="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//GERGOGAINS//Plan//EN\r\nCALSCALE:GREGORIAN\r\n";plan.days.forEach((d,i)=>{const wd=days[i%days.length];const start=nextWeekday(wd);start.setHours(hh,mm,0,0);const end=new Date(start.getTime()+state.dur*60000);const desc=esc(d.ex.map(e=>`• ${swap(e[0])} — ${e[1]}`).join('\n'));ics+="BEGIN:VEVENT\r\nUID:gg-"+i+"-"+Date.now()+"@gergogains.com\r\nDTSTAMP:"+fmt(new Date())+"\r\nDTSTART:"+fmt(start)+"\r\nDTEND:"+fmt(end)+"\r\nRRULE:FREQ=WEEKLY;COUNT=8\r\nSUMMARY:"+esc('Gergö · '+d.nm)+"\r\nDESCRIPTION:"+desc+"\r\nEND:VEVENT\r\n";});ics+="END:VCALENDAR";const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='gergo-gains-plan.ics';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);};
 
-  const modal=document.getElementById('checkout');let active="plan";
-  function openCk(t){active=t;const i=TIERS[t];document.getElementById('ckSpec').textContent=i.spec;document.getElementById('ckTier').textContent=i.tier;document.getElementById('ckPrice').textContent=i.price;document.getElementById('ckDesc').textContent=i.desc;document.getElementById('ckPay').innerHTML=i.pay;modal.classList.add('on');}
+  /* ---- crypto pricing -------------------------------------------------
+     One source of truth: CRYPTO.discount. Displayed prices are floored, so a
+     buyer always gets AT LEAST the advertised percentage off. Rounding up
+     would advertise a discount larger than the one actually given. */
+  /* Sticky mobile bar appears once the hero CTA is gone, and gets out of the
+     way inside the builder — where it would cover the form's own buttons. */
+  (function(){
+    const bar=document.getElementById('mbar'), build=document.getElementById('build');
+    if(!bar||!build) return;
+    const hero=document.querySelector('.hero');
+    let past=false, inBuild=false;
+    const paint=()=>bar.classList.toggle('on', past && !inBuild);
+    new IntersectionObserver(([e])=>{past=!e.isIntersecting;paint();},{threshold:0})
+      .observe(hero);
+    new IntersectionObserver(([e])=>{inBuild=e.isIntersecting;paint();},{threshold:0})
+      .observe(build);
+  })();
+
+  /* ---- social links ---------------------------------------------------
+     Rendered from config. An entry that is empty or still says REPLACE is
+     skipped entirely, so an unconfigured profile never ships as a dead link. */
+  (function(){
+    const S = window.GG_CONFIG.SOCIAL||{};
+    const NAMES = {tiktok:'TikTok', youtube:'YouTube', instagram:'Instagram'};
+    const live = Object.keys(NAMES).filter(k=>S[k] && !/REPLACE/.test(S[k]));
+    const foot = document.getElementById('footSocial');
+    if(foot) foot.innerHTML = live.map(k=>
+      '<a href="'+S[k]+'" target="_blank" rel="noopener me">'+NAMES[k]+'</a>').join('');
+    document.querySelectorAll('[data-social]').forEach(host=>{
+      if(!live.length){ host.remove(); return; }
+      host.innerHTML = live.map(k=>
+        '<a class="sbtn" href="'+S[k]+'" target="_blank" rel="noopener me">'+NAMES[k]+'</a>').join('');
+    });
+  })();
+
+  const CRYPTO = (window.GG_CONFIG.CRYPTO)||{};
+  const CRYPTO_URL = (window.GG_CONFIG.CHECKOUT_CRYPTO)||{};
+  const cryptoLive = t => !!(CRYPTO.enabled && CRYPTO_URL[t] && !/REPLACE/.test(CRYPTO_URL[t]));
+  const baseAmt = t => parseFloat(String(TIERS[t].price).replace(/[^0-9.]/g,''))||0;
+  const cryptoAmt = t => Math.floor(baseAmt(t)*(1-(+CRYPTO.discount||0)/100));
+
+  /* Price line on each pricing card, only where a real checkout URL exists. */
+  document.querySelectorAll('[data-cryp]').forEach(el=>{
+    const t=el.dataset.cryp;
+    if(!cryptoLive(t)) return;
+    el.innerHTML='Pay with crypto: <b>$'+cryptoAmt(t)+'</b> &middot; save '+
+                 (+CRYPTO.discount)+'%<br>'+(CRYPTO.coins||'');
+    el.classList.add('on');
+  });
+
+  const modal=document.getElementById('checkout');let active="plan";let method="card";
+  const meth=document.getElementById('ckMeth');
+  function paintCk(){
+    const i=TIERS[active], crypto=(method==='crypto');
+    document.getElementById('ckPrice').innerHTML = crypto
+      ? '$'+cryptoAmt(active)+'<span class="was">'+i.price+'</span>'
+      : i.price;
+    document.getElementById('ckPay').innerHTML = crypto
+      ? 'Pay $'+cryptoAmt(active)+' in crypto &#9656;'
+      : i.pay;
+    document.getElementById('ckMethods').hidden = crypto;
+    document.getElementById('ckSecure').hidden = crypto;
+    const note=document.getElementById('ckCnote');
+    note.hidden = !crypto;
+    note.textContent = 'Paid in BTC, ETH, USDC and others via Coinbase Commerce. '+
+      'The rate is locked when you open the checkout. Crypto payments cannot be '+
+      'reversed by us once confirmed on-chain \u2014 refunds are sent back manually '+
+      'to a wallet you give us. See the refund policy.';
+    meth.querySelectorAll('button').forEach(b=>b.classList.toggle('sel', b.dataset.m===method));
+  }
+  function openCk(t){
+    active=t; method='card';
+    const i=TIERS[t];
+    document.getElementById('ckSpec').textContent=i.spec;
+    document.getElementById('ckTier').textContent=i.tier;
+    document.getElementById('ckDesc').textContent=i.desc;
+    meth.hidden=!cryptoLive(t);
+    document.getElementById('ckSave').textContent='Save '+(+CRYPTO.discount||0)+'%';
+    paintCk();
+    modal.classList.add('on');
+  }
+  meth.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-m]'); if(!b) return;
+    method=b.dataset.m; paintCk();
+  });
   document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',()=>openCk(b.dataset.buy)));
   document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>modal.classList.remove('on')));
-  document.getElementById('ckPay').onclick=()=>{const email=document.getElementById('ckEmail').value.trim();let url=CHECKOUT[active];if(email)url+=(url.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);window.location.href=url;};
+  document.getElementById('ckPay').onclick=()=>{
+    const email=document.getElementById('ckEmail').value.trim();
+    if(method==='crypto'){
+      if(!cryptoLive(active)) return;   /* never navigate to a REPLACE URL */
+      /* Coinbase Commerce hosted checkout takes the buyer email on its own
+         page, so it is passed as a plain query param rather than Lemon
+         Squeezy's checkout[email] form. */
+      let u=CRYPTO_URL[active];
+      if(email)u+=(u.includes('?')?'&':'?')+'email='+encodeURIComponent(email);
+      window.location.href=u; return;
+    }
+    let url=CHECKOUT[active];
+    if(email)url+=(url.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);
+    window.location.href=url;
+  };
 
   const reader=document.getElementById('reader');
   document.querySelectorAll('.post').forEach(p=>p.addEventListener('click',()=>{const a=ARTICLES[p.dataset.article];if(!a)return;document.getElementById('rcat').textContent=a.cat;document.getElementById('rtitle').textContent=a.title;document.getElementById('rmeta').textContent=a.meta;document.getElementById('rbody').innerHTML=a.body;reader.classList.add('on');document.body.style.overflow='hidden';}));

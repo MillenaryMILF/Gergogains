@@ -23,6 +23,44 @@ window.GG_CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     1b) CRYPTO PAYMENT LINKS — Coinbase Commerce            [PLACEHOLDER x3]
+     --------------------------------------------------------------------------
+     Create the same three products in Coinbase Commerce, copy each hosted
+     checkout URL, paste below. Buttons only appear when CRYPTO.enabled is true
+     AND the URL below no longer says REPLACE — so this is safe to ship as-is.
+
+     ⚠️ READ BEFORE SWITCHING THIS ON. Lemon Squeezy is a *merchant of record*:
+     they charge, collect and remit EU VAT for you, which is the whole reason
+     the card flow works from Austria with no VAT registration. Coinbase
+     Commerce is NOT a merchant of record. It is a payment processor. On a
+     crypto sale YOU are the seller of record, which means:
+       - you owe the VAT on EU B2C digital sales yourself (OSS registration),
+       - you carry the invoicing obligation,
+       - each received coin is a disposal event for Austrian tax when converted.
+     Talk to your Steuerberater before enabling. Nothing technical here is
+     blocking you — the tax treatment is.
+     ----------------------------------------------------------------------- */
+  CHECKOUT_CRYPTO: {
+    plan:       "https://commerce.coinbase.com/checkout/REPLACE-PLAN-CRYPTO",        // PLACEHOLDER
+    blueprint:  "https://commerce.coinbase.com/checkout/REPLACE-AUDIT-CRYPTO",       // PLACEHOLDER
+    commission: "https://commerce.coinbase.com/checkout/REPLACE-COMMISSION-CRYPTO"   // PLACEHOLDER
+  },
+
+  /* --------------------------------------------------------------------------
+     1c) CRYPTO DISCOUNT
+     --------------------------------------------------------------------------
+     `discount` is the ONE number to change. Displayed prices are derived from
+     it and rounded DOWN, so the buyer always gets at least the advertised
+     percentage — never less, which would be a false price claim.
+     Set `enabled:false` to hide every crypto element on the site at once.
+     ----------------------------------------------------------------------- */
+  CRYPTO: {
+    enabled:  true,
+    discount: 30,
+    coins:    "BTC · ETH · USDC · LTC · more"
+  },
+
+  /* --------------------------------------------------------------------------
      2) PRICING TIERS
      --------------------------------------------------------------------------
      Prices, labels and descriptions exactly as in the source design.
@@ -95,5 +133,18 @@ window.GG_CONFIG = {
   SITE: {
     domain:  "https://gergogains.com",  // PLACEHOLDER — no trailing slash
     contact: "info@gergogains.com"   // forwarded to Gmail — see README 1a
+  },
+
+  /* --------------------------------------------------------------------------
+     6) SOCIAL
+     --------------------------------------------------------------------------
+     Any entry left empty, or still containing REPLACE, is hidden everywhere
+     rather than rendered as a dead link. Add a profile and it appears in the
+     footer and the follow row automatically.
+     ----------------------------------------------------------------------- */
+  SOCIAL: {
+    tiktok:    "https://www.tiktok.com/@gergogains",
+    youtube:   "https://www.youtube.com/@gergogains",
+    instagram: "https://www.instagram.com/REPLACE-INSTAGRAM-HANDLE"   // PLACEHOLDER
   }
 };
