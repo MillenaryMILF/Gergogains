@@ -1231,9 +1231,21 @@
       if(email)u+=(u.includes('?')?'&':'?')+'email='+encodeURIComponent(email);
       window.location.href=u; return;
     }
-    let url=CHECKOUT[active];
-    if(email)url+=(url.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);
-    window.location.href=url;
+    const url=CHECKOUT[active];
+    /* Until the store is created, CHECKOUT still holds YOUR-STORE/REPLACE URLs.
+       Navigating there drops the visitor on a browser DNS error with no way
+       back — say what is happening and keep them on the page instead. */
+    if(!url || /YOUR-STORE|REPLACE/.test(url)){
+      const n=document.getElementById('ckCnote');
+      n.hidden=false;
+      n.textContent='Card checkout is not connected yet. Email '+
+        ((window.GG_CONFIG.SITE&&window.GG_CONFIG.SITE.contact)||'info@gergogains.com')+
+        ' and I will send you a payment link directly \u2014 your spec sheet stays free either way.';
+      return;
+    }
+    let u=url;
+    if(email)u+=(u.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);
+    window.location.href=u;
   };
 
   const reader=document.getElementById('reader');
