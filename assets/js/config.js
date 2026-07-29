@@ -17,9 +17,9 @@ window.GG_CONFIG = {
      Until replaced, the buttons open a URL that does not exist.
      ----------------------------------------------------------------------- */
   CHECKOUT: {
-    plan:       "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-PLAN-19",        // PLACEHOLDER — $19 tier
-    blueprint:  "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-BLUEPRINT-99",   // PLACEHOLDER — $99 tier
-    commission: "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-COMMISSION-249"  // PLACEHOLDER — $249 tier
+    plan:       "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-PLAN-19",        // PLACEHOLDER — $29 The Programme
+    blueprint:  "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-BLUEPRINT-99",   // PLACEHOLDER — $199 The Audit
+    commission: "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-COMMISSION-249"  // PLACEHOLDER — $499 The Commission
   },
 
   /* --------------------------------------------------------------------------
@@ -31,9 +31,9 @@ window.GG_CONFIG = {
      actual charge is whatever your Lemon Squeezy product is set to.
      ----------------------------------------------------------------------- */
   TIERS: {
-    plan:       {spec:"SPEC 00 — AI PLAN", tier:"The Plan",       price:"$19",  pay:"Pay $19 &amp; unlock weeks 2-8 ▸",      desc:"Weeks 2-8 of your programme: the full progression, RIR schedule, both deloads, every substitution for your setup, and a PDF. Your volume targets and week 1 stay free. Emailed within 24 hours."},
-    blueprint:  {spec:"SPEC 01 — GUIDED",  tier:"The Blueprint",  price:"$99",  pay:"Pay $99 &amp; book your call ▸",   desc:"Everything in The Plan, plus I personally review it, a 45-min video call, a hand-tuned program, a form check and a week-4 review. I'll email you to book."},
-    commission: {spec:"SPEC 02 — BESPOKE", tier:"The Commission", price:"$249", pay:"Pay $249 &amp; start the build ▸", desc:"A fully bespoke 16-week build: 3 calls, fortnightly reviews, unlimited form checks, nutrition structuring and priority messaging. I'll email you to begin."}
+    plan:       {spec:"SPEC 01 — THE PROGRAMME", tier:"The Programme", price:"$29",  pay:"Pay $29 &amp; unlock weeks 2-8 &#9656;",   desc:"Weeks 2 to 8: the full progression, the reps-in-reserve schedule, both deload weeks, every exercise substitution for your setup, and a PDF. Your spec sheet and week 1 stay free. Emailed within 24 hours."},
+    blueprint:  {spec:"SPEC 02 — THE AUDIT", tier:"The Audit", price:"$199", pay:"Pay $199 &amp; book my audit &#9656;", desc:"Send me your training log. I treat it like a line running below capacity: bottleneck analysis, utilisation profile per muscle, where sets are being spent without return, and a fix list ordered by effect per unit of effort. You get a report, a 45-minute call, and a re-audit after eight weeks."},
+    commission: {spec:"SPEC 03 — THE COMMISSION",tier:"The Commission",price:"$499", pay:"Pay $499 &amp; start the build &#9656;", desc:"Sixteen weeks under my direct supervision: three calls, fortnightly reviews against your logged numbers, unlimited form checks, nutrition structuring and priority messaging. I take two or three of these at a time, because that is what I can actually deliver."}
   },
 
   /* --------------------------------------------------------------------------

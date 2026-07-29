@@ -138,7 +138,7 @@
         '<ul class="gg-teaser">'+weeksTeaser+'</ul>'+
         '<p class="gg-sub">Plus every exercise substitution for your setup, the deload protocol, '+
         'and the whole thing as a PDF you can take to the gym.</p>'+
-        '<button class="btn" data-buy="plan">Unlock weeks 2&ndash;8 &mdash; $19 &#9656;</button>'+
+        '<button class="btn" data-buy="plan">Unlock weeks 2&ndash;8 &mdash; '+((CFG.TIERS&&CFG.TIERS.plan&&CFG.TIERS.plan.price)||'')+' &#9656;</button>'+
       '</div>'+
 
       '<div class="gg-block gg-eviblock"><h4>Why these numbers</h4>'+
