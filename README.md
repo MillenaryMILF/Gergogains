@@ -33,21 +33,67 @@ Three jobs. Roughly 30 minutes total, in this order.
    GitHub writes the `CNAME` file for you — you do not edit it by hand.
 4. Wait for the check to go green, then tick **Enforce HTTPS**. Certificate
    issuance can take up to an hour. This is normal; do not keep re-saving.
-5. Replace the placeholder domain in these files:
-   - `assets/js/config.js` → `SITE.domain`
-   - `index.html` → 5 × `YOUR-DOMAIN.example` (all in the SEO block at the top)
-   - `robots.txt`, `sitemap.xml`
-   - `privacy.html`, `terms.html`, `refund.html` → contact address
+5. ~~Replace the placeholder domain across the repo.~~ **Done** — `config.js`,
+   the five SEO tags in `index.html`, `robots.txt`, `sitemap.xml` and the contact
+   address on the three legal pages all point at `gergogains.com`.
+
+#### 1a · Make `info@gergogains.com` receive mail (≈5 min)
+
+The address is already live on the three legal pages, but nothing is listening
+yet — mail sent to it bounces today. Google Ads checks that the contact on your
+privacy policy is reachable, so do this before running traffic.
+
+**Plan: forward `info@` into your existing Gmail.** Free, no new mailbox to
+check. Swappable later — if you outgrow it, you point the MX records at a real
+provider and nothing in this repo changes.
+
+If the domain's DNS is on **Cloudflare** (Email Routing is free and the easiest
+path):
+
+1. Cloudflare dashboard → your domain → **Email → Email Routing → Get started**.
+2. Cloudflare offers to add the required MX + TXT records for you — accept.
+   These do not touch the four `A` records, so the website keeps working.
+3. Add a route: `info@gergogains.com` → your Gmail address.
+4. Click the verification link Cloudflare emails to that Gmail. Not verified,
+   not forwarding.
+5. Send a test from any other address and confirm it lands.
+
+If the DNS is **not** on Cloudflare, either move the nameservers there, or use
+**ImprovMX**, which does the same job on a free tier at whatever registrar you
+are on.
+
+**The gap worth knowing about:** forwarding is inbound only. When a customer
+mails `info@` and you hit reply in Gmail, the reply goes out as your personal
+Gmail address — the customer sees a different address than the one they wrote
+to, on a paid product. Fix it in Gmail: **Settings → Accounts and Import → Send
+mail as → Add another email address**, enter `info@gergogains.com`, and confirm
+via the code that arrives through the forward you just set up. Then pick it as
+the From when replying. Takes two minutes and is the difference between looking
+like a business and looking like a hobby.
+
+**Also add these two DNS records** while you are in there. Without them your
+domain is trivially spoofable, which matters once it is attached to ads and
+payments:
+
+| Type | Name      | Value |
+|------|-----------|-------|
+| TXT  | `@`       | `v=spf1 include:_spf.google.com ~all` |
+| TXT  | `_dmarc`  | `v=DMARC1; p=none; rua=mailto:info@gergogains.com` |
+
+SPF names Gmail as allowed to send for the domain, which is what the "send mail
+as" above relies on. DMARC starts at `p=none` deliberately — that is
+report-only. Do not jump straight to `p=reject`; watch the reports for a few
+weeks first, or you risk silently binning your own mail.
 
 ### [ ] 2 · Payments — Lemon Squeezy (≈15 min)
 
 1. Create a store. Fill in payout (IBAN) and tax details. As merchant of record
    they remit EU VAT — that is the whole reason to use them from Austria.
 2. Create three products matching the current prices:
-   - **The Plan** — $19, digital, instant delivery
-   - **The Blueprint** — $99, coaching service
-   - **The Commission** — $249, coaching service
-3. On **The Plan**, enable the setting that captures the customer's express
+   - **The Programme** — $29, digital, instant delivery
+   - **The Audit** — $199, coaching service
+   - **The Commission** — $499, coaching service
+3. On **The Programme**, enable the setting that captures the customer's express
    consent to immediate delivery and waiver of the 14-day withdrawal right.
    Skip this and every buyer keeps a full refund right after downloading.
    See `refund.html` section 2.
@@ -55,7 +101,7 @@ Three jobs. Roughly 30 minutes total, in this order.
    That is the only file to touch. Three lines.
 5. Turn on the checkout email field — you need it to deliver coaching.
 6. Set the order-confirmation email to include your booking link (Cal.com free).
-   For $99/$249 that is your entire fulfilment flow.
+   For $199/$499 that is your entire fulfilment flow.
 7. Test in Lemon Squeezy **test mode**, run a card through, confirm the email
    arrives, then switch to live.
 

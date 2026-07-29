@@ -94,6 +94,6 @@ window.GG_CONFIG = {
      ----------------------------------------------------------------------- */
   SITE: {
     domain:  "https://gergogains.com",  // PLACEHOLDER — no trailing slash
-    contact: "REPLACE@gergogains.com"   // PLACEHOLDER — used in legal pages
+    contact: "info@gergogains.com"   // forwarded to Gmail — see README 1a
   }
 };
