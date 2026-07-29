@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FFMI Calculator — Fat-Free Mass Index, Height-Normalised | Gergö Gains</title>
+<meta name="description" content="Calculate your FFMI and normalised FFMI from bodyweight, height and body-fat estimate. What the number measures, why BMI fails for lifters, and what it cannot tell you.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gergogains.com/ffmi-calculator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gergö Gains">
+<meta property="og:title" content="FFMI Calculator — Fat-Free Mass Index, Height-Normalised">
+<meta property="og:description" content="Calculate your FFMI and normalised FFMI, and see what the number actually measures.">
+<meta property="og:url" content="https://gergogains.com/ffmi-calculator.html">
+<meta property="og:image" content="https://gergogains.com/assets/img/og-image.jpg">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tool.css">
+</head>
+<body>
+
+<nav class="th"><div class="in">
+  <div class="logo"><a href="index.html"><span class="gg">GG</span> GERGÖ GAINS</a></div>
+  <a class="cta" href="index.html#build">Get my spec sheet — free</a>
+</div></nav>
+
+<header class="hd"><div class="wrap">
+  <div class="kick">// Tool 03 · Measurement system analysis</div>
+  <h1>FFMI<br>calculator</h1>
+  <p class="lede">Fat-free mass index: how much lean mass you carry for your height.
+  The number BMI should have been if it had ever accounted for muscle.</p>
+</div></header>
+
+<main class="wrap">
+
+<div class="tool">
+  <h2>Your measurements</h2>
+  <div class="fields">
+    <div class="f"><label>Bodyweight / kg</label><input type="number" id="weight" placeholder="82" min="30" max="250" step="0.1"></div>
+    <div class="f"><label>Height / cm</label><input type="number" id="height" placeholder="178" min="120" max="230" step="0.5"></div>
+    <div class="f"><label>Body fat / %</label><input type="number" id="bf" placeholder="16" min="3" max="60" step="0.5"></div>
+  </div>
+  <button class="go" id="run">Calculate FFMI &#9656;</button>
+  <div class="err" id="err"></div>
+
+  <div class="out" id="out">
+    <div class="stat">
+      <div><div class="k">FFMI</div><div class="v" id="sRaw">—</div><div class="n">lean mass / height&sup2;</div></div>
+      <div><div class="k">Normalised FFMI</div><div class="v" id="sNorm">—</div><div class="n">adjusted to 1.80 m</div></div>
+      <div><div class="k">Lean mass</div><div class="v" id="sLean">—</div><div class="n">everything that is not fat</div></div>
+      <div><div class="k">Fat mass</div><div class="v" id="sFat">—</div><div class="n">at the % you entered</div></div>
+    </div>
+    <div class="note" id="band"></div>
+    <p style="margin-bottom:0;"><b>Protein target at this bodyweight:</b>
+    <span id="prot">—</span> per day, the 1.6&ndash;2.2 g/kg range for
+    resistance-trained individuals.</p>
+  </div>
+</div>
+
+<h2>What FFMI measures</h2>
+<p>BMI divides your total mass by your height squared, which means it cannot tell
+muscle from fat. Every lifter who has ever been told they are &ldquo;overweight&rdquo;
+at 12% body fat has met the limitation directly.</p>
+<p>FFMI does the same division but throws the fat away first: it is your
+<b>fat-free mass</b> divided by height in metres squared. Two people at the same
+weight and height get very different FFMIs if one is carrying ten kilos more muscle.</p>
+
+<h3>Why the normalised figure exists</h3>
+<p>The raw index still drifts with height — taller people tend to score slightly lower
+for the same build, because mass does not scale to the square of height in a real
+body. The normalised figure corrects toward a 1.80 m reference so that two people of
+different heights can be compared at all. It is the number worth tracking.</p>
+
+<h3>The input that decides everything</h3>
+<div class="note">
+<b>Your FFMI is only as good as your body-fat estimate.</b> Every part of this
+calculation except body fat is measured; body fat is guessed. A 4-point error in the
+estimate moves FFMI by roughly a full point, which is larger than a year of
+intermediate training.<br><br>
+Before optimising anything, verify the instrument. If you are tracking FFMI over time,
+use the <i>same</i> estimation method every time and compare the trend rather than the
+absolute value — a consistently wrong method still shows the direction correctly,
+whereas switching methods between measurements tells you nothing at all.
+</div>
+
+<h3>What the number cannot tell you</h3>
+<p>FFMI is a descriptive index, not a verdict. It says nothing about how that lean
+mass is distributed — two lifters at an identical FFMI can look entirely different if
+one has built their back and shoulders and the other has not. It is a gauge for total
+tissue, not for proportion, and proportion is what is actually visible.</p>
+<p>You will find FFMI cited as evidence of a hard natural ceiling. That claim rests on
+a small and much-argued dataset, so it is not made here. What the number is genuinely
+good for is watching your own trend across months.</p>
+
+<h2>How this is calculated</h2>
+<ul>
+  <li><b>Lean mass</b> = bodyweight × (1 − body fat %)</li>
+  <li><b>FFMI</b> = lean mass ÷ height in metres, squared</li>
+  <li><b>Normalised FFMI</b> = FFMI + 6.1 × (1.8 − height in metres)</li>
+  <li><b>Protein</b> = 1.6 to 2.2 g per kg of bodyweight per day</li>
+</ul>
+<p>This page calls the same engine the plan builder uses rather than reimplementing
+the formula, so the figure here and the figure in your spec sheet cannot disagree.</p>
+
+<div class="cta">
+  <h3>FFMI tells you how much. Not where.</h3>
+  <p>The free spec sheet takes the same measurements and answers the more useful
+  question: which muscle is currently limiting the rest, and what to do about it in
+  week one.</p>
+  <a class="b" href="index.html#build">Get my spec sheet — free &rarr;</a>
+  <a class="b alt" href="volume-calculator.html">Volume calculator &rarr;</a>
+</div>
+
+</main>
+
+<footer class="tf"><div class="wrap">
+  <a href="index.html">Home</a><a href="volume-calculator.html">Volume calculator</a><a href="bottleneck-analysis.html">Bottleneck analysis</a><a href="audit-sample.html">Sample audit</a><a href="privacy.html">Privacy</a>
+  <div style="margin-top:10px;">© 2026 GERGÖ GAINS</div>
+</div></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/exercise-db.js"></script>
+<script src="assets/js/programming.js"></script>
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/tool-common.js"></script>
+<script>
+(function(){
+  var E = window.GG_ENGINE;
+
+  document.getElementById('run').onclick = function(){
+    var err = document.getElementById('err');
+    var w  = GGTool.num('weight', 30, 250);
+    var h  = GGTool.num('height', 120, 230);
+    var bf = GGTool.num('bf', 3, 60);
+
+    if (w === null || h === null || bf === null) {
+      err.textContent = 'Enter a bodyweight (30-250 kg), height (120-230 cm) and body fat (3-60%).';
+      document.getElementById('out').classList.remove('on');
+      return;
+    }
+    err.textContent = '';
+
+    // ffmi() is the engine's own function — this page does not carry a copy of
+    // the formula, so the two can never disagree.
+    var f = E.ffmi({ weight: w, height: h, bf: bf });
+    var fat = w - f.lean;
+
+    document.getElementById('sRaw').textContent  = f.raw.toFixed(1);
+    document.getElementById('sNorm').textContent = f.norm.toFixed(1);
+    document.getElementById('sLean').textContent = f.lean.toFixed(1) + ' kg';
+    document.getElementById('sFat').textContent  = fat.toFixed(1) + ' kg';
+    document.getElementById('prot').textContent  = Math.round(w * 1.6) + '-' + Math.round(w * 2.2) + ' g';
+
+    var n = f.norm, where;
+    if      (n < 18) where = 'below the typical untrained range';
+    else if (n < 20) where = 'in the range typical of untrained adults';
+    else if (n < 22) where = 'above the untrained range — consistent with a period of consistent training';
+    else if (n < 24) where = 'well above the untrained range';
+    else             where = 'at the top of the range usually reported in trained populations';
+
+    document.getElementById('band').innerHTML =
+      '<b>Normalised FFMI ' + n.toFixed(1) + '</b> sits ' + where + '. ' +
+      'Treat this as description, not assessment: the figure moves by about a full ' +
+      'point for every 4 points of error in your body-fat estimate, so the trend ' +
+      'across months is worth far more than today&rsquo;s number.';
+
+    document.getElementById('out').classList.add('on');
+  };
+})();
+</script>
+</body>
+</html>

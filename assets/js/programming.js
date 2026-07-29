@@ -104,6 +104,17 @@
     return { raw, norm: raw + 6.1*(1.8-h), lean };
   }
 
+  /* Counted sets a training week can actually hold. Exported because the
+     standalone tool pages need the same number, and a second copy of this
+     arithmetic living in a page's inline script is how the site and the engine
+     start disagreeing with each other in public.
+     AVG_CREDIT is how many muscle-sets one working set credits once fractional
+     synergist contributions are counted. */
+  const AVG_CREDIT = 1.9;
+  function capacity(state){
+    return (+(state && state.days) || 4) * MAX_SETS_PER_SESSION * AVG_CREDIT;
+  }
+
   /* Weekly fractional-set target per muscle. */
   function targets(state){
     const base = BASE_VOL[state.exp] || BASE_VOL.intermediate;
@@ -138,15 +149,14 @@
        relative priorities intact while making every number honest.
        Adding a training day raises every target — that trade is surfaced to the
        user rather than hidden. */
-    const AVG_CREDIT = 1.9;
-    const capacity = (+state.days||4) * MAX_SETS_PER_SESSION * AVG_CREDIT;
+    const cap = capacity(state);
     const asked = DB.MUSCLES.reduce((a,m)=>a+t[m], 0);
-    if (asked > capacity){
-      const k = capacity / asked;
+    if (asked > cap){
+      const k = cap / asked;
       for (const m of DB.MUSCLES) t[m] = t[m] * k;
     }
     for (const m of DB.MUSCLES) t[m] = Math.round(clamp(t[m], 4, 26));
-    t._capacityLimited = asked > capacity;
+    t._capacityLimited = asked > cap;
     return t;
   }
 
@@ -379,5 +389,5 @@
       use:'Daily protein target.'}
   ];
 
-  window.GG_ENGINE = { build, targets, ffmi, CITATIONS, BASE_VOL, SESSION_CAP, MIN_FREQ, RIR };
+  window.GG_ENGINE = { build, targets, ffmi, capacity, CITATIONS, BASE_VOL, SESSION_CAP, MIN_FREQ, RIR };
 })();

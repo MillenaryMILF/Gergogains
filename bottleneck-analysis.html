@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bottleneck Analysis for Training — Find the Muscle Limiting You | Gergö Gains</title>
+<meta name="description" content="Enter your current weekly sets per muscle and see which one is the constraint. Utilisation profile, push-to-pull ratio, and why adding volume anywhere else changes nothing.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gergogains.com/bottleneck-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gergö Gains">
+<meta property="og:title" content="Bottleneck Analysis for Training — Find the Muscle Limiting You">
+<meta property="og:description" content="Enter your weekly sets per muscle and see which one is actually the constraint.">
+<meta property="og:url" content="https://gergogains.com/bottleneck-analysis.html">
+<meta property="og:image" content="https://gergogains.com/assets/img/og-image.jpg">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tool.css">
+</head>
+<body>
+
+<nav class="th"><div class="in">
+  <div class="logo"><a href="index.html"><span class="gg">GG</span> GERGÖ GAINS</a></div>
+  <a class="cta" href="index.html#build">Get my spec sheet — free</a>
+</div></nav>
+
+<header class="hd"><div class="wrap">
+  <div class="kick">// Tool 02 · Theory of constraints</div>
+  <h1>Bottleneck<br>analysis</h1>
+  <p class="lede">A production line runs at the speed of its slowest station. So does
+  a physique. Enter what you currently train and find out which station is holding the
+  rest of it back.</p>
+</div></header>
+
+<main class="wrap">
+
+<div class="tool">
+  <h2>1 · Your parameters</h2>
+  <div class="fields">
+    <div class="f"><label>Experience</label>
+      <div class="seg" id="exp">
+        <button data-v="beginner">Beginner</button>
+        <button data-v="intermediate" class="sel">Intermediate</button>
+        <button data-v="advanced">Advanced</button>
+      </div>
+    </div>
+    <div class="f"><label>Days per week</label>
+      <div class="seg" id="days">
+        <button data-v="3">3</button><button data-v="4" class="sel">4</button>
+        <button data-v="5">5</button><button data-v="6">6</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:26px;">2 · Your current weekly sets</h2>
+  <p style="font-size:13.5px;color:#555;">Count a hard working set as 1 for the muscle
+  it directly trains. Leave a muscle at 0 if you genuinely never train it — that is
+  itself a finding. Warm-ups do not count.</p>
+  <div class="fields" id="setFields"></div>
+
+  <button class="go" id="run">Find my bottleneck &#9656;</button>
+  <div class="err" id="err"></div>
+
+  <div class="out" id="out">
+    <div class="stat">
+      <div><div class="k">Constraint</div><div class="v" id="sCon">—</div><div class="n" id="sConN">&nbsp;</div></div>
+      <div><div class="k">Your total</div><div class="v" id="sTot">—</div><div class="n">counted sets / week</div></div>
+      <div><div class="k">Weekly capacity</div><div class="v" id="sCap">—</div><div class="n">what your days can hold</div></div>
+      <div><div class="k">Push : pull</div><div class="v" id="sPP">—</div><div class="n">target ≈ 1 : 1.1</div></div>
+    </div>
+    <div class="note" id="verdict"></div>
+    <div class="scroller">
+      <table class="t">
+        <thead><tr><th>Muscle</th><th>Yours / target</th><th style="width:30%">&nbsp;</th><th>Util.</th><th>Status</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<h2>Why the weakest station is the only one that matters</h2>
+<p>In a factory, every station upstream of the bottleneck piles up work in front of it
+and every station downstream sits waiting. Add capacity anywhere except the bottleneck
+and total output does not move — you have spent money to make the queue longer.</p>
+<p>Training behaves the same way, for a less obvious reason. Your physique is judged as
+a whole. A chest that is 20% above where it should be does not compensate for rear
+delts at 25% of theirs; it makes the imbalance more visible, not less. The muscle that
+is furthest below its target is setting what the whole structure looks like, and it is
+almost never the one that gets the attention.</p>
+
+<h3>Why people miss it</h3>
+<p>Because the total looks fine. Someone doing 144 sets a week is not undertrained by
+any measure. The volume is there — it is pointed at the stations that were already
+running at capacity, usually the ones that are most enjoyable to train and easiest to
+feel. Nothing about that shows up in a weekly total. It only shows up per muscle,
+measured against a target, which is what the table above does.</p>
+
+<h3>What to do once you find it</h3>
+<ol>
+  <li><b>Do not add sets.</b> If you are already near your weekly capacity, adding
+  volume to the constraint on top of everything else buys fatigue you cannot recover
+  from. Move sets instead, from a station running over target.</li>
+  <li><b>Fix frequency before volume.</b> A muscle trained once a week is under-served
+  even when the weekly total looks correct. Split it across two sessions first.</li>
+  <li><b>Re-measure after a block, not after a week.</b> One good session is noise.
+  Eight weeks against the same table is a signal.</li>
+</ol>
+
+<div class="note">
+<b>This tool reads what you type.</b> It compares your reported sets against the target
+for your experience level and training days, using the same engine as the plan
+builder. It cannot see your exercise selection, your proximity to failure, or whether
+a set was taken through a full range — all of which can turn a set that counts on
+paper into a set that returns nothing. That is what the full audit looks at.
+</div>
+
+<h2>Where the targets come from</h2>
+<p>Targets and the 2× weekly frequency floor come from Pelland et al. (2025),
+<i>The Resistance Training Dose Response: Meta-Regressions on Weekly Volume and
+Frequency</i>, Sports Medicine — 67 studies, 2,058 participants. Weekly capacity is
+derived from a practical ceiling of about 25 working sets per session.</p>
+
+<div class="cta">
+  <h3>Seeing the constraint is step one</h3>
+  <p>The free spec sheet does this on your own body and then builds week one around
+  the finding — exercise order, sets, and reps-in-reserve, with the constraint
+  trained first while you are fresh.</p>
+  <a class="b" href="index.html#build">Get my spec sheet — free &rarr;</a>
+  <a class="b alt" href="audit-sample.html">See a full audit report &rarr;</a>
+</div>
+
+</main>
+
+<footer class="tf"><div class="wrap">
+  <a href="index.html">Home</a><a href="volume-calculator.html">Volume calculator</a><a href="ffmi-calculator.html">FFMI calculator</a><a href="audit-sample.html">Sample audit</a><a href="privacy.html">Privacy</a>
+  <div style="margin-top:10px;">© 2026 GERGÖ GAINS</div>
+</div></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/exercise-db.js"></script>
+<script src="assets/js/programming.js"></script>
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/tool-common.js"></script>
+<script>
+(function(){
+  var DB = window.GG_DB, E = window.GG_ENGINE;
+  var state = { exp: GGTool.seg('exp'), days: GGTool.seg('days') };
+  GGTool.onSeg('exp',  function(v){ state.exp = v; });
+  GGTool.onSeg('days', function(v){ state.days = v; });
+
+  // One numeric field per muscle, generated from the exercise DB so this page
+  // can never drift out of sync with the engine's muscle list.
+  document.getElementById('setFields').innerHTML = DB.MUSCLES.map(function(m){
+    return '<div class="f"><label>' + GGTool.esc(DB.LABEL[m]) + '</label>' +
+           '<input type="number" id="in_' + m + '" placeholder="0" min="0" max="60" step="1"></div>';
+  }).join('');
+
+  var PUSH = ['chest','front_delt','triceps'];
+  var PULL = ['lats','upper_back','rear_delt','biceps'];
+
+  document.getElementById('run').onclick = function(){
+    var err = document.getElementById('err');
+    var mine = {}, total = 0, entered = 0;
+
+    for (var i = 0; i < DB.MUSCLES.length; i++) {
+      var m = DB.MUSCLES[i];
+      var raw = document.getElementById('in_' + m).value;
+      var v = raw === '' ? 0 : parseFloat(raw);
+      if (!isFinite(v) || v < 0 || v > 60) {
+        err.textContent = 'Check ' + DB.LABEL[m] + ' — sets must be a number between 0 and 60.';
+        document.getElementById('out').classList.remove('on');
+        return;
+      }
+      if (raw !== '') entered++;
+      mine[m] = v; total += v;
+    }
+    if (entered === 0 || total === 0) {
+      err.textContent = 'Enter your weekly sets for at least one muscle.';
+      document.getElementById('out').classList.remove('on');
+      return;
+    }
+    err.textContent = '';
+
+    var t = E.targets({ exp: state.exp, days: +state.days, goal: 'aesthetics', weak: [] });
+    var cap = Math.round(E.capacity({ days: +state.days }));
+
+    var rows = DB.MUSCLES.map(function(m){
+      return { m: m, mine: mine[m], target: t[m], util: t[m] ? mine[m] / t[m] : 1 };
+    }).sort(function(a,b){ return a.util - b.util; });
+
+    var con = rows[0];
+    document.getElementById('sCon').textContent  = DB.LABEL[con.m];
+    document.getElementById('sConN').textContent = Math.round(con.util * 100) + '% of target · ' + con.mine + ' of ' + con.target + ' sets';
+    document.getElementById('sTot').textContent  = Math.round(total);
+    document.getElementById('sCap').textContent  = '~' + cap;
+
+    var push = PUSH.reduce(function(a,m){ return a + mine[m]; }, 0);
+    var pull = PULL.reduce(function(a,m){ return a + mine[m]; }, 0);
+    document.getElementById('sPP').textContent = pull > 0
+      ? (push / pull).toFixed(2) + ' : 1'
+      : (push > 0 ? 'no pull' : '—');
+
+    document.getElementById('rows').innerHTML = rows.map(function(r){
+      var pct = Math.round(r.util * 100);
+      var over = r.util > 1;
+      var status = r.util < 0.5 ? 'STARVED' : r.util < 0.85 ? 'UNDER' : r.util <= 1.15 ? 'IN BAND' : 'OVER';
+      return '<tr' + (r === con ? ' class="hi"' : '') + '>' +
+             '<td>' + GGTool.esc(DB.LABEL[r.m]) + (r === con ? ' <span class="chip">CONSTRAINT</span>' : '') + '</td>' +
+             '<td class="n">' + r.mine + ' / ' + r.target + '</td>' +
+             '<td><div class="bar' + (over ? ' over' : '') + '"><i style="width:' + Math.min(pct, 100) + '%"></i></div></td>' +
+             '<td class="n">' + pct + '%</td>' +
+             '<td class="n">' + status + '</td></tr>';
+    }).join('');
+
+    // The interesting case is a programme that is busy but badly aimed, so say
+    // which of the two problems this actually is rather than just naming a muscle.
+    var overTarget = rows.filter(function(r){ return r.util > 1.15; });
+    var msg = '<b>Your constraint is ' + GGTool.esc(DB.LABEL[con.m]) + '</b>, running at ' +
+              Math.round(con.util * 100) + '% of its target. ';
+    if (overTarget.length) {
+      // Something starved while something else runs over: that is an allocation
+      // problem regardless of how full the week is, and it is the cheapest fix
+      // available because the sets already exist.
+      var donor = overTarget[overTarget.length - 1];
+      msg += 'This is not a volume problem — it is an allocation problem. ' +
+             GGTool.esc(DB.LABEL[donor.m]) + ' is running at ' +
+             Math.round(donor.util * 100) + '% of its own target while this one starves. ' +
+             'Moving sets across costs you no extra time, and you are using ' +
+             Math.round(total / cap * 100) + '% of what ' + state.days +
+             ' sessions can hold.';
+    } else if (total < cap * 0.6) {
+      msg += 'Nothing is over target, and you are using only ' +
+             Math.round(total / cap * 100) + '% of your weekly capacity — so add here ' +
+             'directly rather than moving sets across.';
+    } else {
+      msg += 'Nothing is over target, so there are no cheap sets to move. Raise this one ' +
+             'toward target before adding anywhere else — output is set by the slowest ' +
+             'station, not the average one.';
+    }
+    document.getElementById('verdict').innerHTML = msg;
+    document.getElementById('out').classList.add('on');
+  };
+})();
+</script>
+</body>
+</html>

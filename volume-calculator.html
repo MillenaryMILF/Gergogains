@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Volume Calculator — Weekly Sets Per Muscle | Gergö Gains</title>
+<meta name="description" content="Work out how many weekly sets per muscle your training days can actually carry. Fractional set counting, a 2× frequency floor, and the capacity check most volume calculators skip.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://gergogains.com/volume-calculator.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Gergö Gains">
+<meta property="og:title" content="Training Volume Calculator — Weekly Sets Per Muscle">
+<meta property="og:description" content="How many weekly sets per muscle your training days can actually carry — including the capacity check most calculators skip.">
+<meta property="og:url" content="https://gergogains.com/volume-calculator.html">
+<meta property="og:image" content="https://gergogains.com/assets/img/og-image.jpg">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tool.css">
+</head>
+<body>
+
+<nav class="th"><div class="in">
+  <div class="logo"><a href="index.html"><span class="gg">GG</span> GERGÖ GAINS</a></div>
+  <a class="cta" href="index.html#build">Get my spec sheet — free</a>
+</div></nav>
+
+<header class="hd"><div class="wrap">
+  <div class="kick">// Tool 01 · Capacity planning</div>
+  <h1>Training volume<br>calculator</h1>
+  <p class="lede">How many weekly sets each muscle should get — and, unlike most
+  calculators, whether the days you train can actually carry that number.</p>
+</div></header>
+
+<main class="wrap">
+
+<div class="tool">
+  <h2>Your parameters</h2>
+  <div class="fields">
+    <div class="f"><label>Experience</label>
+      <div class="seg" id="exp">
+        <button data-v="beginner">Beginner</button>
+        <button data-v="intermediate" class="sel">Intermediate</button>
+        <button data-v="advanced">Advanced</button>
+      </div>
+    </div>
+    <div class="f"><label>Days per week</label>
+      <div class="seg" id="days">
+        <button data-v="3">3</button><button data-v="4" class="sel">4</button>
+        <button data-v="5">5</button><button data-v="6">6</button>
+      </div>
+    </div>
+    <div class="f"><label>Goal</label>
+      <select id="goal">
+        <option value="aesthetics">Aesthetics</option>
+        <option value="strength">Strength</option>
+        <option value="calisthenics">Calisthenics</option>
+      </select>
+    </div>
+  </div>
+  <button class="go" id="run">Calculate my volume &#9656;</button>
+  <div class="err" id="err"></div>
+
+  <div class="out" id="out">
+    <div class="stat">
+      <div><div class="k">Sum of targets</div><div class="v" id="sTot">—</div><div class="n">counted sets / week</div></div>
+      <div><div class="k">Weekly capacity</div><div class="v" id="sCap">—</div><div class="n">what your days can hold</div></div>
+      <div><div class="k">Verdict</div><div class="v" id="sVer">—</div><div class="n" id="sVerN">&nbsp;</div></div>
+    </div>
+    <div class="scroller">
+      <table class="t">
+        <thead><tr><th>Muscle</th><th>Sets / week</th><th style="width:38%">&nbsp;</th><th>Min freq</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div class="note" id="capNote"></div>
+  </div>
+</div>
+
+<h2>What this actually counts</h2>
+<p>Most volume calculators give you a number per muscle and stop. Two things are
+missing from that, and both change the answer.</p>
+
+<h3>1. Sets are counted fractionally</h3>
+<p>A set of barbell rows is not zero chest work and it is not a full set of biceps
+work either. Here a movement scores <b>1.0</b> for the muscle it directly trains and
+<b>0.5</b> where that muscle acts as a synergist. Count that way and most people
+discover their biceps and front delts are already near target before a single curl or
+raise is programmed &mdash; which is exactly why adding direct arm work so often fails
+to add arm size.</p>
+
+<h3>2. Your week has a ceiling</h3>
+<p>You cannot schedule more work into a shift than the shift can hold. A session has a
+practical limit of about 25 working sets before quality falls off, and each set credits
+roughly 1.9 muscle-sets once fractional contributions are counted. Four sessions
+therefore carry on the order of 190 counted sets per week &mdash; no matter what the
+sum of your fourteen targets says.</p>
+<p>When the targets add up to more than that ceiling, they get scaled down to fit.
+That is the honest answer. A calculator that returns the unscaled numbers is handing
+you a plan that will quietly under-deliver somewhere without telling you where.</p>
+
+<h3>3. Frequency has a floor</h3>
+<p>Hitting your weekly number in one session is not equivalent to splitting it across
+two. Every muscle you train gets a minimum of <b>2× per week</b>, and the volume
+figure above is the weekly total, not a single session's work.</p>
+
+<div class="note">
+<b>These are targets, not prescriptions.</b> They are a band to train inside, not a
+number to hit exactly. A week at 80% of target is a normal week, not a failed one
+— which is the whole point of specifying a tolerance rather than a single value.
+</div>
+
+<h2>Where the numbers come from</h2>
+<p>Weekly volume targets and the frequency floor come from Pelland et al. (2025),
+<i>The Resistance Training Dose Response: Meta-Regressions on Weekly Volume and
+Frequency</i>, Sports Medicine — a meta-regression across 67 studies and 2,058
+participants. It is the same source the full plan builder cites, and this page runs
+the identical engine rather than a simplified copy of it.</p>
+
+<div class="cta">
+  <h3>This is one number out of the plan</h3>
+  <p>The free spec sheet runs the same calculation on your body, finds which muscle is
+  actually limiting you, and gives you week one in full — exercises, sets, and
+  reps-in-reserve. No payment, no account.</p>
+  <a class="b" href="index.html#build">Get my spec sheet — free &rarr;</a>
+  <a class="b alt" href="bottleneck-analysis.html">Find my bottleneck &rarr;</a>
+</div>
+
+</main>
+
+<footer class="tf"><div class="wrap">
+  <a href="index.html">Home</a><a href="bottleneck-analysis.html">Bottleneck analysis</a><a href="ffmi-calculator.html">FFMI calculator</a><a href="audit-sample.html">Sample audit</a><a href="privacy.html">Privacy</a>
+  <div style="margin-top:10px;">© 2026 GERGÖ GAINS</div>
+</div></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/exercise-db.js"></script>
+<script src="assets/js/programming.js"></script>
+<script src="assets/js/consent.js" defer></script>
+<script src="assets/js/tool-common.js"></script>
+<script>
+(function(){
+  var DB = window.GG_DB, E = window.GG_ENGINE;
+  var pick = GGTool.seg;
+  var state = { exp: pick('exp'), days: pick('days'), goal: 'aesthetics' };
+
+  GGTool.onSeg('exp',  function(v){ state.exp = v; });
+  GGTool.onSeg('days', function(v){ state.days = v; });
+  document.getElementById('goal').onchange = function(e){ state.goal = e.target.value; };
+
+  document.getElementById('run').onclick = function(){
+    // The engine already scales targets to what the chosen days can carry, so
+    // this page must not re-implement any of that — it only renders the result.
+    var t = E.targets({ exp: state.exp, days: +state.days, goal: state.goal, weak: [] });
+    var total = DB.MUSCLES.reduce(function(a,m){ return a + t[m]; }, 0);
+    var cap = Math.round(E.capacity({ days: +state.days }));
+    var limited = !!t._capacityLimited;
+    var max = DB.MUSCLES.reduce(function(a,m){ return Math.max(a, t[m]); }, 0);
+
+    document.getElementById('sTot').textContent = total;
+    document.getElementById('sCap').textContent = '~' + cap;
+    document.getElementById('sVer').textContent = limited ? 'SCALED' : 'FITS';
+    document.getElementById('sVerN').textContent = limited
+      ? 'targets exceeded capacity and were scaled to fit'
+      : 'your days can carry every target';
+
+    document.getElementById('rows').innerHTML = DB.MUSCLES.map(function(m){
+      return '<tr><td>' + GGTool.esc(DB.LABEL[m]) + '</td>' +
+             '<td class="n">' + t[m] + '</td>' +
+             '<td><div class="bar"><i style="width:' + Math.round(t[m]/max*100) + '%"></i></div></td>' +
+             '<td class="n">' + E.MIN_FREQ + '&times;</td></tr>';
+    }).join('');
+
+    document.getElementById('capNote').innerHTML = limited
+      ? '<b>Capacity limited.</b> The unscaled targets for your experience level add up to more than ' +
+        state.days + ' sessions can hold, so every target above has been scaled down proportionally. ' +
+        'Training more days is the only way to raise them — not asking for more sets on the same days.'
+      : '<b>Within capacity.</b> At ' + state.days + ' days a week these targets fit with room to spare. ' +
+        'The limit is roughly ' + cap + ' counted sets before session quality is the thing being traded away.';
+
+    document.getElementById('out').classList.add('on');
+  };
+})();
+</script>
+</body>
+</html>
