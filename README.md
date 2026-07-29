@@ -148,6 +148,7 @@ commercial is in there.
 
 ```
 index.html               the site — markup, inline <style>, inline <script>
+404.html                 not-found page (GitHub Pages serves this automatically)
 audit-sample.html        worked example of the $199 Audit deliverable
 volume-calculator.html   standalone tool — weekly sets per muscle
 bottleneck-analysis.html standalone tool — which muscle is the constraint
@@ -176,6 +177,8 @@ assets/
   video/coach.mp4        avatar clip
 docs/
   engine-tests.js        9 assertions — run before every commit
+  prepare-photo.py       crops/resizes a photo into a slot, writes .jpg + .webp
+  content-plan.md        launch content plan for TikTok / YouTube / Journal
   analyze.js             serverless analysis — PARKED, not wired up
   go-live-checklist.md   the earlier Cloudflare-based plan, for reference
 ```
@@ -217,25 +220,40 @@ Direktlink: https://github.dev/MillenaryMILF/Gergogains
 
 Die Dateinamen sind fix, das HTML verweist nur auf sie. Also:
 
-1. Neues Bild vorbereiten — **wichtig**: auf das richtige Seitenverhältnis
-   zuschneiden, sonst schneidet der Browser dir das Motiv ab:
+**Der einfache Weg — ein Befehl macht alles richtig:**
 
-   | Datei | Seitenverhältnis | Zielgröße |
-   |---|---|---|
-   | `hero.jpg` | 3:4 hoch | 825×1100 |
-   | `editorial.jpg` | 3:4 hoch | 975×1300 |
-   | `gallery-fullbody.jpg` | 4:5 hoch | 800×1000 |
-   | `gallery-field.jpg` | 16:9 | 920×518 |
-   | `gallery-coach.jpg` | 1:1 | 300×300 |
-   | `community-band.jpg` | ~2.4:1 breit | 1240×517 |
+```bash
+pip install Pillow
+python3 docs/prepare-photo.py ~/Desktop/neues-foto.jpg editorial --zoom 1.8 --focus 50,62
+```
 
-2. In `assets/img/` gehen → **Add file → Upload files** → Datei mit **exakt dem
-   gleichen Namen** hochladen → Commit.
+Das schneidet auf das richtige Seitenverhältnis zu, skaliert, und schreibt
+**beide** Dateien (`.jpg` und `.webp`). Danach committen.
 
-3. **Nicht vergessen:** zu jedem `.jpg` gehört ein `.webp` mit gleichem Namen.
-   Der Browser nimmt bevorzugt das WebP — tauschst du nur das JPG, siehst du
-   weiter das alte Bild. WebP erzeugen z. B. auf squoosh.app (kostenlos, läuft
-   im Browser, nichts wird hochgeladen).
+- `--zoom` grösser als 1 zoomt näher ans Motiv heran. Nimm das, wenn du im Bild
+  klein bist.
+- `--focus x,y` ist der Punkt in Prozent, der mittig bleiben soll. Stehende
+  Ganzkörperaufnahme meist `50,60`, Kopf/Schulter eher `50,25`.
+- Slots: `hero`, `editorial`, `gallery-fullbody`, `gallery-field`,
+  `gallery-coach`, `community-band`, `og-image`.
+
+**Der Weg ohne Terminal:** in `assets/img/` gehen → **Add file → Upload files** →
+Datei mit **exakt dem gleichen Namen** hochladen → Commit.
+
+| Datei | Seitenverhältnis | Zielgrösse |
+|---|---|---|
+| `hero.jpg` | 3:4 hoch | 1000×1334 |
+| `editorial.jpg` | 3:4 hoch | 1400×1867 |
+| `gallery-fullbody.jpg` | 4:5 hoch | 800×1000 |
+| `gallery-field.jpg` | 16:9 | 1200×675 |
+| `gallery-coach.jpg` | 1:1 | 600×600 |
+| `community-band.jpg` | ~2.4:1 breit | 1600×667 |
+
+⚠️ **Dabei gilt:** zu jedem `.jpg` gehört ein `.webp` mit gleichem Namen, und du
+musst **beide** ersetzen. Der Browser nimmt bevorzugt das WebP — tauschst du nur
+das JPG, siehst du weiter das alte Bild. Und löschst du das WebP einfach, ist das
+Bild kaputt: ein `<source>` mit fehlender Datei fällt **nicht** auf das JPG
+zurück. Deshalb ist das Skript oben der sichere Weg.
 
 Fotos vom iPhone sind meist **HEIC** und müssen vorher zu JPG konvertiert
 werden — Browser zeigen HEIC nicht an. Vorsicht bei der Konvertierung: viele
