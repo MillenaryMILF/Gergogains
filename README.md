@@ -101,24 +101,36 @@ commercial is in there.
 ## Structure
 
 ```
-index.html               the site (81 KB)
+index.html               the site — markup, inline <style>, inline <script>
+audit-sample.html        worked example of the $199 Audit deliverable
+volume-calculator.html   standalone tool — weekly sets per muscle
+bottleneck-analysis.html standalone tool — which muscle is the constraint
+ffmi-calculator.html     standalone tool — FFMI from mass/height/body fat
 training-plan.html       sample deliverable
 aesthetic-report.html    sample deliverable
-privacy.html             DRAFT — fill in and review
-terms.html               DRAFT — fill in and review
-refund.html              DRAFT — fill in and review
+privacy.html             legal — business details filled in, review before selling
+terms.html               legal — same
+refund.html              legal — same
 robots.txt  sitemap.xml
-CNAME                    empty; GitHub fills this in for you
-CNAME.example            what it looks like once populated
+CNAME                    gergogains.com — written by GitHub Pages, don't edit
+CNAME.example            what it looks like before a domain is connected
 .nojekyll                skips Jekyll processing
 assets/
-  css/legal.css          styling for the three legal pages only
+  css/fonts.css          @font-face rules — GENERATED, do not hand-edit
+  css/legal.css          styling for the legal pages + audit sample
+  css/tool.css           styling for the three tool pages
+  fonts/                 16 self-hosted .woff2 files (381 KB)
   js/config.js           ⚠️ ALL PLACEHOLDERS
   js/consent.js          GDPR gate + conversion tracking
+  js/exercise-db.js      60 exercises, fractional muscle contributions
+  js/programming.js      the engine — volume, frequency, RIR, deloads
+  js/plan-ui.js          renders engine output + paywall
+  js/tool-common.js      DOM helpers for the tool pages (no training logic)
   img/                   7 photos as .webp + .jpg, icons, OG image
-  video/coach.mp4        AI coach avatar
+  video/coach.mp4        avatar clip
 docs/
-  analyze.js             serverless AI analysis — PARKED, not wired up
+  engine-tests.js        9 assertions — run before every commit
+  analyze.js             serverless analysis — PARKED, not wired up
   go-live-checklist.md   the earlier Cloudflare-based plan, for reference
 ```
 
@@ -191,6 +203,35 @@ gehen, den letzten guten auswählen und **Revert**. Nichts ist unwiederbringlic
 
 ---
 
+## Before every commit
+
+```bash
+node docs/engine-tests.js     # 9 assertions, all must pass
+```
+
+The suite loads `exercise-db.js` and `programming.js` relative to its own
+location, so it runs from any checkout.
+
+Two rules that come from outages, not theory:
+
+1. **Never anchor an edit in `index.html` to a comment string.** Several exist in
+   both the `<style>` and the `<script>` block. A CSS block once landed inside
+   the script, threw `SyntaxError`, aborted the whole inline script, and because
+   the scroll-reveal observer never ran, every `.rv` element stayed at
+   `opacity: 0` and the page rendered blank. Anchor to `</style>` or to unique
+   markup.
+2. **Replace prices longest-first.** `$99`→`$199` then `$19`→`$29` turns `$199`
+   into `$299`.
+
+After any change to `index.html`, confirm the inline script still parses and no
+`.rv` element is stuck at opacity 0 after scrolling.
+
+**Capacity lives in one place.** `GG_ENGINE.capacity({days})` is the only
+definition of how many counted sets a week can hold. The tool pages call it. If
+you change it, the copy quoting "roughly 190 counted sets" in `index.html`
+(Method, principle 02), `volume-calculator.html` and `audit-sample.html` needs
+updating too — those are the only hardcoded mentions.
+
 ## Things deliberately left undone
 
 - **`docs/analyze.js` is not wired up.** It calls Claude with an
@@ -198,13 +239,6 @@ gehen, den letzten guten auswählen und **Revert**. Nichts ist unwiederbringlic
   only, so activating it means adding Cloudflare Pages Functions or Vercel.
   The plan builder currently runs its rule-based logic in the browser — which is
   also why the site needs no keys and leaks nothing.
-
-- **Google Fonts loads from Google's CDN.** This sends visitor IPs to Google
-  before consent, and EU courts have ruled against exactly that. It is
-  disclosed in `privacy.html`, but the real fix is to self-host: download the
-  four families, drop the `.woff2` files into `assets/fonts/`, replace the
-  `<link>` in the head with local `@font-face` rules. Worth doing before you
-  put real ad money behind the page.
 
 - **No recurring tier.** Your notes mention a possible 39–79/month level.
   `config.js` has a comment marking where it would go.
