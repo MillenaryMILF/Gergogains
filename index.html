@@ -400,6 +400,21 @@
   .foot-bottom{margin-top:38px;padding-top:18px;border-top:1px solid #262626;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
   .foot-bottom p{font-family:'Space Mono',monospace;font-size:10.5px;color:#7a7a7a;line-height:1.7;}
   .disclaimer{font-family:'Space Mono',monospace;font-size:10px;color:#6a6a6a;line-height:1.7;margin-top:12px;max-width:84ch;}
+  /* ---- method: industrial principles ---- */
+  .method-lead{max-width:62ch;font-size:clamp(14px,1.6vw,17px);line-height:1.7;margin-bottom:34px;}
+  .method-lead b{font-weight:600;}
+  .princ{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);}
+  .princ .p{border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:22px 22px 24px;}
+  .princ .p .n{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);}
+  .princ .p h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:16px;letter-spacing:.03em;margin:8px 0 4px;}
+  .princ .p .field{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .princ .p p{font-size:13.5px;line-height:1.62;color:#2a2a2a;}
+  .princ .p .arrow{display:block;margin:10px 0 6px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink);}
+  .creds{display:flex;flex-wrap:wrap;gap:0;border:1.5px solid var(--ink);margin-top:36px;}
+  .creds div{flex:1 1 190px;padding:18px 20px;border-right:1.5px solid var(--ink);}
+  .creds div:last-child{border-right:none;}
+  .creds .k{font-family:'Anton',sans-serif;font-size:clamp(24px,3.4vw,36px);line-height:1;}
+  .creds .l{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 </style>
 </head>
 <body>
@@ -808,21 +823,6 @@
   };
 
 
-  /* ---- method: industrial principles ---- */
-  .method-lead{max-width:62ch;font-size:clamp(14px,1.6vw,17px);line-height:1.7;margin-bottom:34px;}
-  .method-lead b{font-weight:600;}
-  .princ{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);}
-  .princ .p{border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:22px 22px 24px;}
-  .princ .p .n{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--muted);}
-  .princ .p h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;font-size:16px;letter-spacing:.03em;margin:8px 0 4px;}
-  .princ .p .field{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-  .princ .p p{font-size:13.5px;line-height:1.62;color:#2a2a2a;}
-  .princ .p .arrow{display:block;margin:10px 0 6px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--ink);}
-  .creds{display:flex;flex-wrap:wrap;gap:0;border:1.5px solid var(--ink);margin-top:36px;}
-  .creds div{flex:1 1 190px;padding:18px 20px;border-right:1.5px solid var(--ink);}
-  .creds div:last-child{border-right:none;}
-  .creds .k{font-family:'Anton',sans-serif;font-size:clamp(24px,3.4vw,36px);line-height:1;}
-  .creds .l{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;}
   /* ---- build panel ---- */
   /* The talking avatar was removed. Its dialogue calls remain in the step flow
      and are neutralised here so nothing references a missing element. */
