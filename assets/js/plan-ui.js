@@ -37,16 +37,26 @@
   /* -------------------------------------------------- read the form from DOM */
   function readState(){
     const num = id => { const e=document.getElementById(id); const v=e?parseFloat(e.value):NaN; return isFinite(v)?v:null; };
-    const sel = attr => {
-      const e = document.querySelector('.sel['+attr+'], ['+attr+'].sel, ['+attr+'].on');
-      return e ? e.getAttribute(attr) : null;
+
+    /* The builder's segmented controls are <button data-v="..."> inside #exp,
+       #days and #env, and the chosen one carries .sel. An earlier version of
+       this function looked for data-exp / data-days / data-env attributes,
+       which do not exist anywhere in the markup — so every lookup returned
+       null and the engine was silently handed the defaults. That meant the
+       plan ignored the visitor's training days, experience and gym/home
+       choice completely: everybody got the same 4-day intermediate gym plan. */
+    const seg = id => {
+      const b = document.querySelector('#' + id + ' button.sel');
+      return b ? b.dataset.v : null;
     };
-    const days = parseInt(sel('data-days'),10);
+    const goalEl = document.querySelector('#goals .goal.sel');
+    const days = parseInt(seg('days'), 10);
+
     return {
-      goal:  sel('data-goal') || 'aesthetics',
-      exp:   (sel('data-exp') || 'intermediate').toLowerCase(),
+      goal:  (goalEl && goalEl.dataset.goal) || 'aesthetics',
+      exp:   (seg('exp') || 'intermediate').toLowerCase(),
       days:  isFinite(days) ? days : 4,
-      env:   (sel('data-env') || 'gym').toLowerCase(),
+      env:   (seg('env') || 'gym').toLowerCase(),
       age: num('age'), weight: num('weight'), height: num('height'), bf: num('bf'),
       weak
     };
@@ -55,11 +65,29 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
   /* ------------------------------------------------------------------ render */
+  /* Last rendered plan, exposed for the .ics export in index.html. Without
+     this the calendar was built from the old hardcoded template, so the
+     sessions you downloaded were not the sessions on the screen. */
+  let lastPlan = null;
+
   function render(){
     const st = readState();
     const r  = EN.build(st);
     const host = document.getElementById('sched');
     if (!host) return;
+
+    const w1p = r.weeks[0];
+    lastPlan = {
+      used: st.days,
+      days: r.split.map(s => ({
+        nm: s.label,
+        ex: s.items.map(it => {
+          const iso = Object.keys(it.ex.contrib).length === 1;
+          const sets = Math.max(2, Math.round(it.sets * w1p.setMult));
+          return [it.ex.name, sets + ' x RIR ' + (iso ? w1p.rir.iso : w1p.rir.comp)];
+        })
+      }))
+    };
 
     const d = r.diagnosis;
     const bar = (got, tgt) => {
@@ -215,5 +243,5 @@
     if (e.target && e.target.id === 'generate') setTimeout(render, 60);
   }, true);
 
-  window.GG_UI = { render, get weak(){ return weak; } };
+  window.GG_UI = { render, plan: () => lastPlan, get weak(){ return weak; } };
 })();
