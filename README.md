@@ -85,25 +85,57 @@ as" above relies on. DMARC starts at `p=none` deliberately — that is
 report-only. Do not jump straight to `p=reject`; watch the reports for a few
 weeks first, or you risk silently binning your own mail.
 
-### [ ] 2 · Payments — Lemon Squeezy (≈15 min)
+### [ ] 2 · Payments — Stripe (≈20 min)
 
-1. Create a store. Fill in payout (IBAN) and tax details. As merchant of record
-   they remit EU VAT — that is the whole reason to use them from Austria.
-2. Create three products matching the current prices:
-   - **The Programme** — $29, digital, instant delivery
-   - **The Audit** — $199, coaching service
-   - **The Commission** — $499, coaching service
-3. On **The Programme**, enable the setting that captures the customer's express
-   consent to immediate delivery and waiver of the 14-day withdrawal right.
-   Skip this and every buyer keeps a full refund right after downloading.
-   See `refund.html` section 2.
-4. Copy each product's checkout URL into **`assets/js/config.js`** → `CHECKOUT`.
-   That is the only file to touch. Three lines.
-5. Turn on the checkout email field — you need it to deliver coaching.
-6. Set the order-confirmation email to include your booking link (Cal.com free).
-   For $199/$499 that is your entire fulfilment flow.
-7. Test in Lemon Squeezy **test mode**, run a card through, confirm the email
-   arrives, then switch to live.
+The funnel: free spec sheet on the site → free written **status check** by email
+(you read the numbers yourself) → **The Programme, $29** for the engineered plan.
+You build those plans by hand at first, which is why nothing here needs a server.
+
+**⚠️ Do this first: the VAT question.** Lemon Squeezy was a *merchant of record* —
+they charged the customer, collected EU VAT and remitted it, which is why selling
+from Austria needed no VAT registration. **Stripe is not.** On Stripe you are the
+seller of record, so EU B2C digital VAT is yours: register for **OSS**, and turn on
+**Stripe Tax** so it is at least calculated and collected at checkout. Stripe Tax
+does not remit for you. Settle this with your Steuerberater before the first sale —
+nothing technical is blocking you, the tax treatment is.
+
+1. **Activate the account.** dashboard.stripe.com → business details, IBAN for
+   payouts. Account `GergöGains` already exists.
+2. **Turn on Stripe Tax.** Settings → Tax → add Austria as your origin, enable
+   automatic calculation.
+3. **Create three products** (Product catalogue → Add product), one-time price,
+   USD:
+
+   | Product | Price | Type |
+   |---|---|---|
+   | The Programme | $29 | Digital / one-time |
+   | The Audit | $199 | Service / one-time |
+   | The Commission | $499 | Service / one-time |
+
+4. **Create a Payment Link per product** (Payment links → New). On each one:
+   - **Collect customer email** — ON. You cannot deliver anything without it.
+   - **After payment** → show a confirmation message, or point it at a thank-you
+     page. Say plainly that the plan arrives by email within 24 hours.
+   - Leave "Allow promotion codes" on if you want discount codes later.
+5. **Copy the three URLs** — they look like `https://buy.stripe.com/aBC123xyz`.
+6. **Paste them into `assets/js/config.js` → `CHECKOUT`**, replacing the three
+   `REPLACE-…` strings. Keep `provider: "stripe"`. That is the only file to edit.
+7. **Test in Stripe test mode** with card `4242 4242 4242 4242`, any future expiry,
+   any CVC. Confirm the receipt arrives and the email reaches you.
+8. **Set the customer email receipt** (Settings → Emails → successful payments) so
+   buyers get proof of purchase without you sending it.
+
+Until step 6 is done the buy button does not dump anyone on a broken URL — it
+shows "card checkout is not connected yet" and gives the contact address instead.
+
+**Delivering The Programme by hand.** The free status-check form already emails you
+the buyer's full spec: goal, days, environment, experience, bodyweight, FFMI,
+protein range and the per-muscle volume targets. When a $29 order comes in, match
+the Stripe receipt email to that submission, build weeks 2–8 from the same engine
+the site runs, and send the PDF. Nothing else is required to fulfil an order.
+
+**Crypto** is already wired alongside at 30% off and stays invisible until the
+Coinbase Commerce URLs in `CHECKOUT_CRYPTO` are real. Same VAT position as Stripe.
 
 ### [ ] 3 · Ads — driving traffic here (≈10 min)
 

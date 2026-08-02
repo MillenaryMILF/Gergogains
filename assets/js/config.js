@@ -10,16 +10,31 @@
 window.GG_CONFIG = {
 
   /* --------------------------------------------------------------------------
-     1) PAYMENT LINKS — Lemon Squeezy                          [PLACEHOLDER x3]
+     1) PAYMENT LINKS — Stripe                                 [PLACEHOLDER x3]
      --------------------------------------------------------------------------
-     Create 3 products in your Lemon Squeezy store, copy each product's
-     "Buy now" / checkout URL, and paste it below. Nothing else to change.
-     Until replaced, the buttons open a URL that does not exist.
+     Create three Payment Links in the Stripe Dashboard and paste the URLs
+     below. They look like https://buy.stripe.com/aBC123...
+
+     `provider` decides how the buyer's email is handed to the checkout:
+       stripe        -> ?prefilled_email=
+       lemonsqueezy  -> ?checkout[email]=
+     Switching provider is a one-word change; nothing else in the site moves.
+
+     ⚠️ VAT. Lemon Squeezy was a *merchant of record* — they charged the
+     customer, collected EU VAT and remitted it, which is why selling from
+     Austria needed no VAT registration. Stripe is NOT a merchant of record.
+     It is a payment processor. On Stripe you are the seller of record, so:
+       - you owe EU B2C digital VAT yourself (register for OSS),
+       - you must issue compliant invoices,
+       - Stripe Tax can CALCULATE and collect it, but it does not remit for you.
+     This is the single biggest consequence of moving to Stripe. Nothing
+     technical is blocking you; get the OSS registration in place first.
      ----------------------------------------------------------------------- */
   CHECKOUT: {
-    plan:       "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-PLAN-19",        // PLACEHOLDER — $29 The Programme
-    blueprint:  "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-BLUEPRINT-99",   // PLACEHOLDER — $199 The Audit
-    commission: "https://YOUR-STORE.lemonsqueezy.com/buy/REPLACE-COMMISSION-249"  // PLACEHOLDER — $499 The Commission
+    provider:   "stripe",
+    plan:       "https://buy.stripe.com/REPLACE-PROGRAMME-29",   // PLACEHOLDER — $29 The Programme
+    blueprint:  "https://buy.stripe.com/REPLACE-AUDIT-199",      // PLACEHOLDER — $199 The Audit
+    commission: "https://buy.stripe.com/REPLACE-COMMISSION-499"  // PLACEHOLDER — $499 The Commission
   },
 
   /* --------------------------------------------------------------------------
@@ -29,11 +44,9 @@ window.GG_CONFIG = {
      checkout URL, paste below. Buttons only appear when CRYPTO.enabled is true
      AND the URL below no longer says REPLACE — so this is safe to ship as-is.
 
-     ⚠️ READ BEFORE SWITCHING THIS ON. Lemon Squeezy is a *merchant of record*:
-     they charge, collect and remit EU VAT for you, which is the whole reason
-     the card flow works from Austria with no VAT registration. Coinbase
-     Commerce is NOT a merchant of record. It is a payment processor. On a
-     crypto sale YOU are the seller of record, which means:
+     ⚠️ READ BEFORE SWITCHING THIS ON. Coinbase Commerce is a payment processor,
+     not a merchant of record — the same position as Stripe above. On a crypto
+     sale you are the seller of record, which means:
        - you owe the VAT on EU B2C digital sales yourself (OSS registration),
        - you carry the invoicing obligation,
        - each received coin is a disposal event for Austrian tax when converted.
@@ -66,7 +79,7 @@ window.GG_CONFIG = {
      Prices, labels and descriptions exactly as in the source design.
      Change `price` and `pay` together so the button text stays consistent.
      To switch currency, edit the strings ($19 -> €19) — display only, the
-     actual charge is whatever your Lemon Squeezy product is set to.
+     actual charge is whatever the Stripe Payment Link is set to.
      ----------------------------------------------------------------------- */
   TIERS: {
     plan:       {spec:"SPEC 01 — THE PROGRAMME", tier:"The Programme", price:"$29",  pay:"Pay $29 &amp; unlock weeks 2-8 &#9656;",   desc:"Weeks 2 to 8: the full progression, the reps-in-reserve schedule, both deload weeks, every exercise substitution for your setup, and a PDF. Your spec sheet and week 1 stay free. Emailed within 24 hours."},

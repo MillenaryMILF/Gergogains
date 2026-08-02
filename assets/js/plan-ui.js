@@ -176,10 +176,13 @@
       '</div>'+
 
       '<form class="gg-lead" id="ggLead">'+
-        '<h4>Email me this diagnosis</h4>'+
-        '<p class="gg-sub">Your volume table and week 1, sent to you. No spam.</p>'+
+        '<h4>Free status check &mdash; read by me, not a script</h4>'+
+        '<p class="gg-sub">Send me the numbers above and I go through them myself: what is '+
+        'actually limiting you, what your split is costing you, and whether the volume you '+
+        'are running is worth the recovery. You get it back by email, usually within 24 '+
+        'hours. Free, and there is nothing to buy to get it.</p>'+
         '<div class="gg-row"><input type="email" name="email" required placeholder="you@example.com" aria-label="Email">'+
-        '<button class="btn" type="submit">Send it &#9656;</button></div>'+
+        '<button class="btn" type="submit">Send my numbers &#9656;</button></div>'+
         '<div class="gg-msg" id="ggLeadMsg" role="status"></div>'+
       '</form>';
 
@@ -214,7 +217,9 @@
       msg.textContent = 'Sending…'; msg.className = 'gg-msg';
       const spec = {
         access_key: LEAD.endpointKey,
-        subject: 'GG diagnosis request — ' + email,
+        subject: 'GG free status check — ' + email,
+        replyto: email,          /* so a reply goes straight back to them */
+        from_name: 'Gergö Gains site',
         email,
         goal: st.goal, experience: st.exp, days: st.days, environment: st.env,
         age: st.age, weight_kg: st.weight, height_cm: st.height, bodyfat_pct: st.bf,
@@ -228,7 +233,10 @@
           method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(spec)
         });
         if (!res.ok) throw new Error('HTTP '+res.status);
-        msg.textContent = 'Sent. Check your inbox.'; msg.className = 'gg-msg ok';
+        /* Web3Forms delivers this to Gergö, not to the visitor. Saying
+           "check your inbox" promised an automatic email that never arrives. */
+        msg.textContent = 'Got it. I read these myself \u2014 your status check comes back by email, usually within 24 hours.';
+        msg.className = 'gg-msg ok';
         f.querySelector('button[type=submit]').disabled = true;
       } catch (err) {
         msg.textContent = 'Could not send. Try again, or email me directly.';

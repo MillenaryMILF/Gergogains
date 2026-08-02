@@ -1014,7 +1014,7 @@
 <script>
 (function(){
   "use strict";
-  /* ===== PAYMENT — paste your live Lemon Squeezy buy links here ===== */
+  /* ===== PAYMENT — checkout links live in assets/js/config.js ===== */
   /* Payment links, prices and tracking IDs all live in assets/js/config.js
      — that is the ONLY file you edit to go live. */
   if(!window.GG_CONFIG){
@@ -1243,8 +1243,12 @@
         ' and I will send you a payment link directly \u2014 your spec sheet stays free either way.';
       return;
     }
+    /* Each hosted checkout names the prefill parameter differently. Sending
+       Stripe a checkout[email] param just drops the email silently. */
+    const PARAM={stripe:'prefilled_email',lemonsqueezy:'checkout[email]'};
+    const key=PARAM[(CHECKOUT.provider||'stripe')]||'prefilled_email';
     let u=url;
-    if(email)u+=(u.includes('?')?'&':'?')+'checkout[email]='+encodeURIComponent(email);
+    if(email)u+=(u.includes('?')?'&':'?')+key+'='+encodeURIComponent(email);
     window.location.href=u;
   };
 
