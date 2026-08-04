@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site editor — Gergö Gains</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tool.css">
+<style>
+  .wrap{max-width:900px;}
+  .gate{border:2px solid var(--ink);padding:clamp(18px,3vw,30px);margin:26px 0;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .field label em{text-transform:none;letter-spacing:0;font-style:normal;color:#999;}
+  .field input,.field textarea{width:100%;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;font-size:14px;padding:10px 12px;line-height:1.5;}
+  .field textarea{min-height:96px;resize:vertical;}
+  .field input:focus,.field textarea:focus{outline:3px solid var(--ink);outline-offset:1px;}
+  .tabs{display:flex;border:1.5px solid var(--ink);margin:26px 0 22px;}
+  .tab{flex:1;background:transparent;border:none;border-left:1.5px solid var(--ink);padding:13px 8px;font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.05em;cursor:pointer;color:var(--ink);}
+  .tab:first-child{border-left:none;}
+  .tab.on{background:var(--ink);color:var(--paper);}
+  .status{font-family:'Space Mono',monospace;font-size:12px;padding:11px 13px;border:1.5px solid var(--ink);margin:16px 0;min-height:42px;}
+  .status.ok{background:var(--ink);color:var(--paper);}
+  .status.warn{background:#fff8d6;border-color:#b8951f;}
+  h3{margin:26px 0 12px;padding-top:14px;border-top:1.5px solid var(--ink);}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  canvas{max-width:100%;border:1.5px solid var(--ink);display:block;margin:16px 0 8px;background:#000;}
+  .sl{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-bottom:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .sl input[type=range]{width:100%;}
+  .warnbox{background:#fff8d6;border-left:3px solid #b8951f;padding:14px 16px;margin:18px 0;font-size:14px;}
+  .warnbox b{text-transform:uppercase;letter-spacing:.06em;font-size:12px;}
+  code{font-family:'Space Mono',monospace;background:var(--panel);padding:1px 5px;font-size:12.5px;}
+  ol li{margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<nav class="th"><div class="in">
+  <div class="logo"><a href="index.html"><span class="gg">GG</span> GERGÖ GAINS</a></div>
+  <a class="cta" href="index.html">View the site &rarr;</a>
+</div></nav>
+
+<header class="hd"><div class="wrap">
+  <div class="kick">// Private · not indexed</div>
+  <h1>Site editor</h1>
+  <p class="lede">Change the words, the settings and the photos without touching
+  code. Every save is a normal commit, so anything here can be undone from
+  GitHub like any other change.</p>
+</div></header>
+
+<main class="wrap">
+
+<div class="status" id="status">Not connected.</div>
+
+<!-- ------------------------------------------------------------------ gate -->
+<section class="gate" id="gate">
+  <h2 style="margin-top:0;border-top:none;padding-top:0;">Connect once</h2>
+  <p>This page needs permission to write to your repository. That comes from a
+  GitHub token you create yourself and paste here. It is stored only in this
+  browser and is never part of the website.</p>
+
+  <ol>
+    <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a></li>
+    <li><b>Token name:</b> anything, e.g. <code>site editor</code></li>
+    <li><b>Expiration:</b> 90 days. Shorter is safer; you just repeat this when it lapses.</li>
+    <li><b>Repository access:</b> <i>Only select repositories</i> &rarr; <code>Gergogains</code></li>
+    <li><b>Permissions:</b> Repository permissions &rarr; <b>Contents</b> &rarr; <b>Read and write</b>. Nothing else.</li>
+    <li>Generate, copy, paste below.</li>
+  </ol>
+
+  <div class="field">
+    <label>GitHub token <em>starts with github_pat_</em></label>
+    <input type="password" id="token" placeholder="github_pat_…" autocomplete="off">
+  </div>
+  <button class="go" id="connect">Connect &#9656;</button>
+
+  <div class="warnbox">
+    <b>Treat this token like a password.</b><br>
+    It can write to this repository, so do not paste it on a shared or public
+    computer, and do not put it in a screenshot. Scoped as above it can do
+    nothing else — it cannot touch your other repositories, your account
+    settings or your billing. If it ever leaks, delete it on the GitHub tokens
+    page and the access is gone immediately.
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------------- app -->
+<div id="app" hidden>
+
+  <div class="tabs">
+    <button class="tab on" data-tab="text">Words</button>
+    <button class="tab" data-tab="settings">Settings</button>
+    <button class="tab" data-tab="photo">Photos</button>
+  </div>
+
+  <!-- WORDS -->
+  <section class="panel" data-panel="text">
+    <p>Edit and save. Changes appear on gergogains.com about a minute later.
+    Anything marked <em>HTML allowed</em> can contain tags like
+    <code>&lt;b&gt;</code> or <code>&lt;br&gt;</code> — leave them alone if you
+    are unsure.</p>
+    <div id="textFields"></div>
+    <button class="go" id="saveText" disabled>Save the words &#9656;</button>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="panel" data-panel="settings" hidden>
+    <p>These are the values from <code>assets/js/config.js</code>. The comments
+    and warnings in that file are left untouched — only the value you type is
+    replaced.</p>
+    <div id="cfgFields"></div>
+    <button class="go" id="saveCfg" disabled>Save settings &#9656;</button>
+
+    <div class="warnbox">
+      <b>Before you paste Stripe links</b><br>
+      Stripe is not a merchant of record, so EU VAT on digital sales is yours to
+      register for and remit. See the README, section 2, and settle it with your
+      Steuerberater before the first sale.
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="panel" data-panel="photo" hidden>
+    <p>Pick a photo, choose where it goes, drag the sliders until it looks right,
+    save. Both the <code>.jpg</code> and the <code>.webp</code> are written for
+    you — replacing only one is the usual reason a photo "does not change".</p>
+
+    <div class="field">
+      <label>Photo from your computer <em>JPG or PNG — iPhone HEIC needs converting first</em></label>
+      <input type="file" id="file" accept="image/jpeg,image/png,image/webp">
+    </div>
+
+    <div id="photoTools" hidden>
+      <div class="field">
+        <label>Where does it go</label>
+        <select id="slot">
+          <option value="hero">Hero portrait (tall)</option>
+          <option value="editorial" selected>Wide editorial band</option>
+          <option value="gallery-fullbody">Gallery — full body</option>
+          <option value="gallery-field">Gallery — wide</option>
+          <option value="gallery-coach">Gallery — square</option>
+          <option value="community-band">Bottom band (very wide)</option>
+          <option value="og-image">Link preview image</option>
+        </select>
+      </div>
+
+      <div class="sl"><span>Zoom</span><input type="range" id="zoom" min="1" max="3" step="0.05" value="1"><span id="pxOut">—</span></div>
+      <div class="sl"><span>Left / right</span><input type="range" id="fx" min="0" max="100" step="1" value="50"><span></span></div>
+      <div class="sl"><span>Up / down</span><input type="range" id="fy" min="0" max="100" step="1" value="50"><span></span></div>
+
+      <p style="font-size:13px;color:#555;">This is exactly what will be published,
+      cropped to the right shape. Zoom in if you are small in the frame.</p>
+      <canvas id="canvas"></canvas>
+      <button class="go" id="savePhoto">Publish this photo &#9656;</button>
+    </div>
+  </section>
+
+  <p style="margin-top:34px;">
+    <button class="go" id="forget" style="background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);">Forget my token on this device</button>
+  </p>
+</div>
+
+</main>
+
+<footer class="tf"><div class="wrap">
+  <a href="index.html">Site</a><a href="https://github.com/MillenaryMILF/Gergogains/commits/main" target="_blank" rel="noopener">Change history</a>
+  <div style="margin-top:10px;">© 2026 GERGÖ GAINS · editor</div>
+</div></footer>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

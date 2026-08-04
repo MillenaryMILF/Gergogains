@@ -2,4 +2,7 @@
 User-agent: *
 Allow: /
 
+# Private editing UI. Also carries a noindex tag; this is belt and braces.
+Disallow: /admin.html
+
 Sitemap: https://gergogains.com/sitemap.xml

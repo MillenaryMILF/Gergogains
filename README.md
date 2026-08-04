@@ -180,6 +180,7 @@ commercial is in there.
 
 ```
 index.html               the site — markup, inline <style>, inline <script>
+admin.html               low-code editor (noindex) — words, settings, photos
 404.html                 not-found page (GitHub Pages serves this automatically)
 audit-sample.html        worked example of the $199 Audit deliverable
 volume-calculator.html   standalone tool — weekly sets per muscle
@@ -205,6 +206,7 @@ assets/
   js/programming.js      the engine — volume, frequency, RIR, deloads
   js/plan-ui.js          renders engine output + paywall
   js/tool-common.js      DOM helpers for the tool pages (no training logic)
+  js/admin.js            the editor: GitHub Contents API, marker surgery, crop
   img/                   7 photos as .webp + .jpg, icons, OG image
   video/coach.mp4        avatar clip
 docs/
@@ -232,66 +234,75 @@ want the paths to behave exactly as they will on Pages.
 
 ## Die Seite selbst bearbeiten (ohne Terminal)
 
-### Der Web-Editor
-Im Repo auf github.com die Taste **`.`** drücken → vollständiges VS Code im
-Browser, nichts zu installieren. Links Datei wählen, ändern, dann links im
-Quellcodeverwaltungs-Panel Commit-Nachricht eintippen und **Commit & Push**.
-Die Seite ist ~1 Minute später aktualisiert.
+### Der Editor — der einfachste Weg
+
+**https://gergogains.com/admin.html**
+
+Texte, Einstellungen und Fotos ändern, ohne Code anzufassen. Jede Speicherung ist
+ein ganz normaler Commit, also lässt sich alles über GitHub wieder rückgängig
+machen. Die Seite ist `noindex` und in `robots.txt` gesperrt — sie taucht in
+keiner Suchmaschine auf.
+
+**Einmalig einrichten (2 Minuten):** Der Editor braucht Schreibrechte auf das
+Repo. Die kommen von einem Token, das du selbst erstellst:
+
+1. [github.com/settings/personal-access-tokens/new](https://github.com/settings/personal-access-tokens/new)
+2. **Expiration:** 90 Tage
+3. **Repository access:** *Only select repositories* → `Gergogains`
+4. **Permissions:** Repository permissions → **Contents** → **Read and write**.
+   Sonst nichts.
+5. Token kopieren, im Editor einfügen. Es bleibt nur in diesem Browser.
+
+⚠️ **Das Token ist wie ein Passwort.** Nicht auf fremden Rechnern eingeben, nicht
+auf Screenshots. Mit den Rechten oben kann es ausschliesslich in dieses eine Repo
+schreiben — nicht in andere Repos, nicht in Kontoeinstellungen. Falls es doch mal
+irgendwo landet: auf der GitHub-Token-Seite löschen, dann ist der Zugriff sofort
+weg.
+
+**Die drei Reiter:**
+
+| Reiter | Was du damit machst |
+|---|---|
+| **Words** | Überschriften und Absätze auf der Startseite |
+| **Settings** | Stripe-Links, Social-Links, Kontakt-E-Mail, Tracking-IDs |
+| **Photos** | Foto hochladen, mit Reglern zuschneiden, veröffentlichen |
+
+Beim Foto-Reiter erzeugt der Editor automatisch **beide** Dateien (`.jpg` und
+`.webp`). Genau das ist die Falle beim Hochladen von Hand: der Browser bevorzugt
+die WebP-Datei, also bleibt beim Ersetzen nur des JPGs das alte Bild stehen.
+
+**Welche Texte editierbar sind:** alles, was in `index.html` zwischen
+`<!--e:name-->` und `<!--/e-->` steht. Kommt später ein Textblock dazu, einfach
+diese beiden Marker drumherum setzen und einen Eintrag in `LABELS` in
+`assets/js/admin.js` ergänzen — dann erscheint das Feld im Editor.
+
+### Der Web-Editor (für alles andere)
+
+Im Repo auf github.com die Taste **`.`** drücken → vollständiges VS Code im
+Browser, nichts zu installieren. Damit kommst du an *jede* Datei, nicht nur an
+die im Editor freigegebenen.
 
 Direktlink: https://github.dev/MillenaryMILF/Gergogains
 
-### Was wo geändert wird
-
-| Was du ändern willst | Datei |
+| Was du ändern willst | Datei |
 |---|---|
 | Preise, Zahlungslinks, Tracking-IDs, Domain | `assets/js/config.js` |
-| Überschriften, Fließtext, FAQ, Journal-Artikel | `index.html` |
+| Überschriften, Fließtext, FAQ, Journal-Artikel | `index.html` |
 | Rechtstexte | `privacy.html`, `terms.html`, `refund.html` |
 
-### Ein Bild austauschen — kein Code nötig
+### Ein Bild austauschen — ohne Editor
 
-Die Dateinamen sind fix, das HTML verweist nur auf sie. Also:
-
-**Der einfache Weg — ein Befehl macht alles richtig:**
+Der Foto-Reiter oben macht das alles. Falls du es doch lieber im Terminal machst:
 
 ```bash
 pip install Pillow
 python3 docs/prepare-photo.py ~/Desktop/neues-foto.jpg editorial --zoom 1.8 --focus 50,62
 ```
 
-Das schneidet auf das richtige Seitenverhältnis zu, skaliert, und schreibt
-**beide** Dateien (`.jpg` und `.webp`). Danach committen.
+`--zoom` grösser als 1 zoomt näher heran, `--focus x,y` legt den Bildpunkt fest,
+der mittig bleibt. Slots: `hero`, `editorial`, `gallery-fullbody`,
+`gallery-field`, `gallery-coach`, `community-band`, `og-image`.
 
-- `--zoom` grösser als 1 zoomt näher ans Motiv heran. Nimm das, wenn du im Bild
-  klein bist.
-- `--focus x,y` ist der Punkt in Prozent, der mittig bleiben soll. Stehende
-  Ganzkörperaufnahme meist `50,60`, Kopf/Schulter eher `50,25`.
-- Slots: `hero`, `editorial`, `gallery-fullbody`, `gallery-field`,
-  `gallery-coach`, `community-band`, `og-image`.
-
-**Der Weg ohne Terminal:** in `assets/img/` gehen → **Add file → Upload files** →
-Datei mit **exakt dem gleichen Namen** hochladen → Commit.
-
-| Datei | Seitenverhältnis | Zielgrösse |
-|---|---|---|
-| `hero.jpg` | 3:4 hoch | 1000×1334 |
-| `editorial.jpg` | 3:4 hoch | 1400×1867 |
-| `gallery-fullbody.jpg` | 4:5 hoch | 800×1000 |
-| `gallery-field.jpg` | 16:9 | 1200×675 |
-| `gallery-coach.jpg` | 1:1 | 600×600 |
-| `community-band.jpg` | ~2.4:1 breit | 1600×667 |
-
-⚠️ **Dabei gilt:** zu jedem `.jpg` gehört ein `.webp` mit gleichem Namen, und du
-musst **beide** ersetzen. Der Browser nimmt bevorzugt das WebP — tauschst du nur
-das JPG, siehst du weiter das alte Bild. Und löschst du das WebP einfach, ist das
-Bild kaputt: ein `<source>` mit fehlender Datei fällt **nicht** auf das JPG
-zurück. Deshalb ist das Skript oben der sichere Weg.
-
-Fotos vom iPhone sind meist **HEIC** und müssen vorher zu JPG konvertiert
-werden — Browser zeigen HEIC nicht an. Vorsicht bei der Konvertierung: viele
-Tools ignorieren das EXIF-Rotationsflag, dann liegt das Bild auf der Seite quer.
-In der macOS-Vorschau: *Werkzeuge → Größe anpassen* und *Datei → Exportieren als
-JPEG* macht das korrekt.
 
 ### Sicherheitsnetz
 Jede Änderung ist ein Commit. Wenn etwas kaputt geht, im Repo auf **Commits**
