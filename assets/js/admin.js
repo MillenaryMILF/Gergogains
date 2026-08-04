@@ -161,38 +161,62 @@
 
   /* ----------------------------------------------------------- settings tab */
   /* key -> [label, hint]. Each maps to a "key: \"value\"" pair in config.js. */
+  /* [block, key, label, hint]. The block matters: `plan`, `blueprint` and
+     `commission` each appear twice in config.js — once under CHECKOUT and once
+     under CHECKOUT_CRYPTO. Matching on the bare key name is ambiguous and would
+     silently edit whichever happened to come first in the file. */
   const SETTINGS = [
     ['__h', 'Payments — Stripe'],
-    ['plan',        'Payment link — The Programme ($29)', 'From Stripe → Payment links. Looks like https://buy.stripe.com/…'],
-    ['blueprint',   'Payment link — The Audit ($199)', ''],
-    ['commission',  'Payment link — The Commission ($499)', ''],
+    ['CHECKOUT', 'plan',       'Payment link — The Programme ($29)', 'Stripe → Payment links. Looks like https://buy.stripe.com/…'],
+    ['CHECKOUT', 'blueprint',  'Payment link — The Audit ($199)', ''],
+    ['CHECKOUT', 'commission', 'Payment link — The Commission ($499)', ''],
+    ['__h', 'Payments — crypto (30% off, hidden until filled in)'],
+    ['CHECKOUT_CRYPTO', 'plan',       'Crypto link — The Programme', 'Coinbase Commerce hosted checkout URL'],
+    ['CHECKOUT_CRYPTO', 'blueprint',  'Crypto link — The Audit', ''],
+    ['CHECKOUT_CRYPTO', 'commission', 'Crypto link — The Commission', ''],
     ['__h', 'Social'],
-    ['tiktok',      'TikTok URL', ''],
-    ['youtube',     'YouTube URL', ''],
-    ['instagram',   'Instagram URL', 'Leave the REPLACE text in to hide the link entirely.'],
+    ['SOCIAL', 'tiktok',    'TikTok URL', ''],
+    ['SOCIAL', 'youtube',   'YouTube URL', ''],
+    ['SOCIAL', 'instagram', 'Instagram URL', 'Leave the REPLACE text in to hide the link entirely.'],
     ['__h', 'Contact'],
-    ['contact',     'Contact email shown on the legal pages', ''],
+    ['SITE', 'contact', 'Contact email shown on the legal pages', ''],
     ['__h', 'Tracking — leave as-is until you have the real IDs'],
-    ['ga4',         'Google Analytics 4 ID', 'G-XXXXXXXXXX'],
-    ['googleAds',   'Google Ads ID', 'AW-XXXXXXXXX'],
-    ['adsLabel',    'Google Ads conversion label', '']
+    ['TRACKING', 'ga4',       'Google Analytics 4 ID', 'G-XXXXXXXXXX'],
+    ['TRACKING', 'googleAds', 'Google Ads ID', 'AW-XXXXXXXXX'],
+    ['TRACKING', 'adsLabel',  'Google Ads conversion label', '']
   ];
 
-  const cfgRE = k => new RegExp('(\\b' + k + ':\\s*")([^"]*)(")');
+  /* Locate "key: \"value\"" only inside the named block, so a key that exists in
+     two blocks resolves to exactly one place. Returns {start,end} of the value. */
+  function findValue(text, block, key) {
+    const b = text.indexOf(block + ': {');
+    if (b < 0) return null;
+    let depth = 0, end = -1;
+    for (let i = text.indexOf('{', b); i < text.length; i++) {
+      if (text[i] === '{') depth++;
+      else if (text[i] === '}') { depth--; if (!depth) { end = i; break; } }
+    }
+    if (end < 0) return null;
+    const slice = text.slice(b, end);
+    const m = slice.match(new RegExp('\\b' + key + ':\\s*"([^"]*)"'));
+    if (!m) return null;
+    const valStart = b + m.index + m[0].indexOf('"') + 1;
+    return { start: valStart, end: valStart + m[1].length, value: m[1] };
+  }
 
   async function loadSettings() {
     const f = await getFile('assets/js/config.js');
     const host = $('#cfgFields'); host.innerHTML = '';
     SETTINGS.forEach(row => {
       if (row[0] === '__h') { host.appendChild(el('h3', null, row[1])); return; }
-      const [key, label, hint] = row;
-      const m = f.text.match(cfgRE(key));
-      if (!m) return;
+      const [block, key, label, hint] = row;
+      const hit = findValue(f.text, block, key);
+      if (!hit) return;
       const wrap = el('div', 'field');
       wrap.appendChild(el('label', null, label + (hint ? ' <em>' + hint + '</em>' : '')));
-      const input = el('input'); input.type = 'text'; input.value = m[2];
+      const input = el('input'); input.type = 'text'; input.value = hit.value;
       input.addEventListener('input', () => {
-        dirty.config[key] = input.value;
+        dirty.config[block + '.' + key] = input.value;
         $('#saveCfg').disabled = false;
       });
       wrap.appendChild(input);
@@ -207,10 +231,15 @@
     status('Saving settings…');
     const f = await getFile('assets/js/config.js');
     let out = f.text;
-    keys.forEach(k => {
-      const v = dirty.config[k].replace(/"/g, '');   // a quote would break the file
-      out = out.replace(cfgRE(k), (_, a, __, c) => a + v + c);
-    });
+    /* Apply back-to-front so an earlier edit cannot shift a later offset. */
+    const edits = keys.map(k => {
+      const [block, key] = k.split('.');
+      const hit = findValue(out, block, key);
+      return hit ? { hit, value: dirty.config[k].replace(/"/g, '') } : null;
+    }).filter(Boolean).sort((a, b) => b.hit.start - a.hit.start);
+
+    edits.forEach(e => { out = out.slice(0, e.hit.start) + e.value + out.slice(e.hit.end); });
+
     await putFile('assets/js/config.js', out, 'Update settings via the editor\n\n' + keys.map(k => '- ' + k).join('\n'));
     dirty.config = {}; $('#saveCfg').disabled = true;
     status('Saved. Live in about a minute.', 'ok');
